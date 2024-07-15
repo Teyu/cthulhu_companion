@@ -2,7 +2,7 @@
  * Copyright 2024, Julia Michaely, All rights reserved.
  */
 
-package com.example.cthulhucompanion.screens.Main;
+package com.example.cthulhucompanion.screens.choosemain;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -12,14 +12,14 @@ import com.example.cthulhucompanion.screens.common.BaseActivity;
 
 import java.util.Objects;
 
-public class ActivityMain extends BaseActivity {
+public class ActivityChooseMain extends BaseActivity {
 
-    private ControllerMain mControllerWelcome;
+    private ControllerChooseMain mControllerWelcome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_choose_main);
 
         ViewMvcMain viewMvcMain = getCompositionRoot().getViewMvcFactory().getViewMvcMain(null);
 

@@ -2,7 +2,7 @@
  * Copyright 2024, Julia Michaely, All rights reserved.
  */
 
-package com.example.cthulhucompanion.screens.Main;
+package com.example.cthulhucompanion.screens.choosemain;
 
 import com.example.cthulhucompanion.screens.common.mvcviews.ObservableViewMvc;
 

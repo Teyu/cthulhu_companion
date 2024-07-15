@@ -2,7 +2,7 @@
  * Copyright 2024, Julia Michaely, All rights reserved.
  */
 
-package com.example.cthulhucompanion.screens.Main;
+package com.example.cthulhucompanion.screens.choosemain;
 
 import android.view.*;
 
@@ -13,7 +13,7 @@ import com.example.cthulhucompanion.screens.common.mvcviews.BaseObservableViewMv
 public class ViewMvcMainImpl extends BaseObservableViewMvc<ViewMvcMain.Listener> implements ViewMvcMain {
 
     public ViewMvcMainImpl(LayoutInflater inflater, ViewGroup parent, ViewMvcFactory viewMvcFactory){
-        setRootView(inflater.inflate(R.layout.activity_main, parent, false));
+        setRootView(inflater.inflate(R.layout.activity_choose_main, parent, false));
 
         //TODO: do something
     }

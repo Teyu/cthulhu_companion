@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 
 import androidx.fragment.app.FragmentActivity;
 
-import com.example.cthulhucompanion.screens.Main.ControllerMain;
+import com.example.cthulhucompanion.screens.choosemain.ControllerChooseMain;
 import com.example.cthulhucompanion.screens.common.ViewMvcFactory;
 import com.example.cthulhucompanion.screens.common.screensnavigator.ScreensNavigator;
 
@@ -47,8 +47,8 @@ public class ControllerCompositionRoot {
 
     /** ------------------------------------- controllers ------------------------------------- **/
 
-    public ControllerMain getControllerMain(ScreensNavigator screensNavigator){
-        return new ControllerMain(screensNavigator, getContext());
+    public ControllerChooseMain getControllerMain(ScreensNavigator screensNavigator){
+        return new ControllerChooseMain(screensNavigator, getContext());
     }
 
     /** ------------------------------------- use cases ------------------------------------- **/

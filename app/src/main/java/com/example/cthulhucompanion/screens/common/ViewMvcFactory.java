@@ -8,7 +8,7 @@ import android.view.*;
 
 import androidx.annotation.Nullable;
 
-import com.example.cthulhucompanion.screens.Main.ViewMvcMainImpl;
+import com.example.cthulhucompanion.screens.choosemain.ViewMvcMainImpl;
 
 public class ViewMvcFactory {
 
