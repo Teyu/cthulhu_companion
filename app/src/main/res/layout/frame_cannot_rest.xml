@@ -11,12 +11,9 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/episode_action_tv"
+            android:id="@+id/invalid_rest_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Beschreibung der Episodenaktion" />
-
-        <include layout="@layout/item_property" />
-        <include layout="@layout/item_property" />
+            android:text="Es befinden sich Gegner auf deinem Feld!" />
     </LinearLayout>
 </ScrollView>

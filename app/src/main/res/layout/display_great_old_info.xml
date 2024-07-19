@@ -10,14 +10,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/episode_tv"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Episode" />
-
         <LinearLayout
             android:id="@+id/great_old_layout"
             android:layout_width="match_parent"
@@ -31,7 +23,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
                 android:gravity="center"
-                android:text="Great Old One" />
+                android:text="Great Old One"
+                tools:ignore="NestedWeights" />
 
             <TextView
                 android:id="@+id/great_old_level_tv"
@@ -55,32 +48,51 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@tools:sample/avatars" />
+                android:src="@tools:sample/avatars"
+                tools:ignore="NestedWeights"
+                android:contentDescription="TODO" />
 
             <ImageView
                 android:id="@+id/mystery_token2_img"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@tools:sample/avatars" />
+                android:src="@tools:sample/avatars"
+                android:contentDescription="TODO" />
 
             <ImageView
                 android:id="@+id/mystery_token3_img"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@tools:sample/avatars" />
+                android:src="@tools:sample/avatars"
+                android:contentDescription="TODO"  />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/progression_list"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
-                android:orientation="horizontal"
-                tools:itemCount="3"> <!--- WARNING: delete when implementing recyclerview  -->
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/progression_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:orientation="horizontal"
+                    tools:itemCount="3"> <!--- WARNING: delete when implementing recyclerview  -->
 
 
-            </androidx.recyclerview.widget.RecyclerView>
+                </androidx.recyclerview.widget.RecyclerView>
+
+                <TextView
+                    android:id="@+id/proceed_effect_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:text="Vorrücken:" />
+            </LinearLayout>
+
         </LinearLayout>
 
         <!-- LONGPRESS: display ability to change order using left/right arrow icons on each item -->

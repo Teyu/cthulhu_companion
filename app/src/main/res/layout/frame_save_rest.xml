@@ -11,11 +11,12 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/episode_action_tv"
+            android:id="@+id/rest_description_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Beschreibung der Episodenaktion" />
+            android:text="Heile 3+X Wunden/Stress" />
 
+        <include layout="@layout/display_player_info" />
         <include layout="@layout/item_property" />
         <include layout="@layout/item_property" />
     </LinearLayout>

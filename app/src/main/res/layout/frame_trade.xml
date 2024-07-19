@@ -1,12 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView9"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="<-- Wähle 1. Aktion" />
-</FrameLayout>
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/invalid_rest_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tausche Ermittlerkarten mit Mitspielern auf deinem Feld" />
+
+        <!-- players not in the game and/or not on the same field: make appropriate views invisible -->
+
+        <!-- includes own cards -->
+        <TextView
+            android:id="@+id/player_self_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Du:" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cards_self_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:itemCount="3" >
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+        <!-- includes cards from that player -->
+        <TextView
+            android:id="@+id/player1_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Spieler 1:" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cards_player1_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:itemCount="3" />
+
+
+        <!-- includes cards from that player -->
+        <TextView
+            android:id="@+id/player2_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Spieler 2:" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cards_player2_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:itemCount="3" />
+
+
+        <!-- includes cards from that player -->
+        <TextView
+            android:id="@+id/player3_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Spieler 3:" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cards_player3_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:itemCount="3" />
+
+        <include layout="@layout/item_property" />
+
+        <include layout="@layout/item_property" />
+    </LinearLayout>
+</ScrollView>

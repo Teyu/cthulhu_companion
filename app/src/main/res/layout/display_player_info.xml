@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/gg_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:itemCount="3" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:baselineAligned="false">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/burn_decrease_icon"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:contentDescription="TODO"
+                        android:src="@tools:sample/avatars"
+                        app:srcCompat="@android:drawable/arrow_down_float" />
+
+                    <ImageView
+                        android:id="@+id/burn_token_img"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="TODO"
+                        android:src="@tools:sample/avatars" />
+
+                    <ImageView
+                        android:id="@+id/burn_increase_icon"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:contentDescription="TODO"
+                        android:src="@tools:sample/avatars"
+                        app:srcCompat="@android:drawable/arrow_up_float" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/burn_token_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="X" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/life_decrease_icon"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:src="@tools:sample/avatars"
+                        android:contentDescription="TODO"
+                        app:srcCompat="@android:drawable/arrow_down_float" />
+
+                    <ImageView
+                        android:id="@+id/life_point_img"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="TODO"
+                        android:scaleType="fitCenter"
+                        android:src="@tools:sample/avatars" />
+
+                    <ImageView
+                        android:id="@+id/life_point_increase_icon"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:src="@tools:sample/avatars"
+                        android:contentDescription="TODO"
+                        app:srcCompat="@android:drawable/arrow_up_float" />
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/lifepoints_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Y" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/stress_decrease_icon"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:contentDescription="TODO"
+                        android:src="@tools:sample/avatars"
+                        app:srcCompat="@android:drawable/arrow_down_float" />
+
+                    <ImageView
+                        android:id="@+id/stresslevel_img"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:contentDescription="TODO"
+                        android:src="@tools:sample/avatars" />
+
+                    <ImageView
+                        android:id="@+id/stress_increase_icon"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:contentDescription="TODO"
+                        android:src="@tools:sample/avatars"
+                        app:srcCompat="@android:drawable/arrow_up_float" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/stresslevel_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Z" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/player_info_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/player_name_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Player name" />
+
+            <TextView
+                android:id="@+id/location_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:text="location" />
+
+        </LinearLayout>
+
+    </LinearLayout>
