@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+        android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/card_name_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="5"
+        android:text="Kartenname" />
+
+    <!-- onpress open warning dialog -->
+    <ImageButton
+        android:id="@+id/delete_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:contentDescription="TODO"
+        android:src="@android:drawable/ic_menu_delete" />
+    </LinearLayout>

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+    Copyright 2024, Julia Michaely, All rights reserved.
+-->
+
     <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -15,65 +19,15 @@
                 android:id="@+id/move_description_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="Bewege dich  3+X Felder weit" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/choose_location_tv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Wähle neuen Ort:" />
-
-                <Spinner
-                    android:id="@+id/spinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
 
             <TextView
                 android:id="@+id/burn_description_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="Füge ggf Brandmarker hinzu:" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/burn_decrease_icon"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:contentDescription="TODO"
-                    android:src="@tools:sample/avatars"
-                    app:srcCompat="@android:drawable/arrow_down_float" />
-
-                <ImageView
-                    android:id="@+id/burn_token_img"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:adjustViewBounds="true"
-                    android:contentDescription="TODO"
-                    android:src="@tools:sample/avatars" />
-
-                <ImageView
-                    android:id="@+id/burn_increase_icon"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:contentDescription="TODO"
-                    android:src="@tools:sample/avatars"
-                    app:srcCompat="@android:drawable/arrow_up_float" />
-
-            </LinearLayout>
 
             <include layout="@layout/item_property" />
             <include layout="@layout/item_property" />

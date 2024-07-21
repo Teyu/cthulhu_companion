@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+    Copyright 2024, Julia Michaely, All rights reserved.
+-->
+
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -14,9 +18,9 @@
             android:id="@+id/rest_description_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="Heile 3+X Wunden/Stress" />
 
-        <include layout="@layout/display_player_info" />
         <include layout="@layout/item_property" />
         <include layout="@layout/item_property" />
     </LinearLayout>

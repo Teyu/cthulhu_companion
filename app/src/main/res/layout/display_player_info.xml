@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+    Copyright 2024, Julia Michaely, All rights reserved.
+-->
 
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -9,12 +12,12 @@
         android:orientation="vertical"
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/gg_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            tools:itemCount="3" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/gg_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:itemCount="1" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,8 +36,8 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:id="@+id/burn_decrease_icon"
+                    <ImageButton
+                        android:id="@+id/burn_decrease_btn"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -51,8 +54,8 @@
                         android:contentDescription="TODO"
                         android:src="@tools:sample/avatars" />
 
-                    <ImageView
-                        android:id="@+id/burn_increase_icon"
+                    <ImageButton
+                        android:id="@+id/burn_increase_btn"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -82,8 +85,8 @@
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:id="@+id/life_decrease_icon"
+                    <ImageButton
+                        android:id="@+id/life_decrease_btn"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -101,8 +104,8 @@
                         android:scaleType="fitCenter"
                         android:src="@tools:sample/avatars" />
 
-                    <ImageView
-                        android:id="@+id/life_point_increase_icon"
+                    <ImageButton
+                        android:id="@+id/life_point_increase_btn"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -132,8 +135,8 @@
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:id="@+id/stress_decrease_icon"
+                    <ImageButton
+                        android:id="@+id/stress_decrease_btn"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -150,8 +153,8 @@
                         android:contentDescription="TODO"
                         android:src="@tools:sample/avatars" />
 
-                    <ImageView
-                        android:id="@+id/stress_increase_icon"
+                    <ImageButton
+                        android:id="@+id/stress_increase_btn"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -169,6 +172,13 @@
                     android:text="Z" />
             </LinearLayout>
 
+            <ImageButton
+                android:id="@+id/show_cards_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="?attr/actionModeCopyDrawable" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -178,20 +188,21 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/player_name_tv"
+                android:id="@+id/playername_tv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="Player name" />
+                android:text="Spielername" />
 
-            <TextView
-                android:id="@+id/location_tv"
-                android:layout_width="0dp"
+            <Spinner
+                android:id="@+id/location_list"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_gravity="end"
+                android:foregroundGravity="right"
                 android:gravity="end"
-                android:text="location" />
+                android:text="location"
+                android:textAlignment="viewEnd" />
 
         </LinearLayout>
 

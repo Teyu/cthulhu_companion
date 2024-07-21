@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright 2024, Julia Michaely, All rights reserved.
+-->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,8 +11,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+
+    <include layout="@layout/element_all_players_info_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
@@ -23,14 +28,15 @@
         android:text="Episode" />
 
     <include layout="@layout/display_great_old_info"/>
+    <include layout="@layout/display_enemy_list"/>
     <include layout="@layout/display_player_info"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0"
-        android:orientation="horizontal"
-        android:baselineAligned="false">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -39,47 +45,46 @@
             android:orientation="vertical"
             tools:ignore="NestedWeights">
 
-            <TextView
-                android:id="@+id/textView"
+            <ImageButton
+                android:id="@+id/attack_btn"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:contentDescription="TODO"
                 android:text="Angreifen" />
 
-            <TextView
-                android:id="@+id/textView4"
+            <ImageButton
+                android:id="@+id/move_btn"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="Laufen" />
+                android:text="Laufen"
+                android:contentDescription="TODO"/>
 
-            <TextView
-                android:id="@+id/textView5"
+            <ImageButton
+                android:id="@+id/rest_button"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="Ausruhen" />
+                android:text="Ausruhen"
+                android:contentDescription="TODO"/>
 
-            <TextView
-                android:id="@+id/textView6"
+            <ImageButton
+                android:id="@+id/trade_btn"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="Tauschen" />
+                android:text="Tauschen"
+                android:contentDescription="TODO"/>
 
-            <TextView
-                android:id="@+id/textView7"
+            <ImageButton
+                android:id="@+id/episode_btn"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="Episode1" />
+                android:text="Episode1"
+                android:contentDescription="TODO"/>
 
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text="Episode2" />
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -87,8 +92,11 @@
             android:layout_height="match_parent"
             android:layout_weight="5">
 
+            <!-- floating button will change icon to selected action -->
+            <!-- nothing selected = show first button, while others are gone-->
+            <!-- confirmed = show action is confirmed with appropiate icon, make next button visible -->
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/return_action_button"
+                android:id="@+id/confirm_action1_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
@@ -98,10 +106,10 @@
                 android:focusable="true"
                 android:src="?android:attr/textCheckMark"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/proceed_action_button" />
+                app:layout_constraintEnd_toStartOf="@id/confirm_action2_button" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/proceed_action_button"
+                android:id="@+id/confirm_action2_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
@@ -110,6 +118,34 @@
                 android:contentDescription="TODO"
                 android:focusable="true"
                 android:src="?android:attr/textCheckMark"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/confirm_action3_button" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/confirm_action3_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="32dp"
+                android:clickable="true"
+                android:contentDescription="TODO"
+                android:focusable="true"
+                android:visibility="gone"
+                android:src="?android:attr/textCheckMark"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/confirm_extra_action_button" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/confirm_extra_action_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="32dp"
+                android:clickable="true"
+                android:contentDescription="TODO"
+                android:focusable="true"
+                android:src="?android:attr/textCheckMark"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -125,5 +161,12 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/continue_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mythosphase" />
+    <!-- -> Mythosphase -> Ermitteln/Angreifen -> Ende der Runde -> nächster Spieler -->
 
 </LinearLayout>

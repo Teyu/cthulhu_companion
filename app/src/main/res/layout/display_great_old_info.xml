@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright 2024, Julia Michaely, All rights reserved.
+-->
+
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_info_layout"
@@ -13,8 +18,7 @@
         <LinearLayout
             android:id="@+id/great_old_layout"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <TextView
@@ -39,34 +43,37 @@
         <LinearLayout
             android:id="@+id/great_old_progression_layout"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/mystery_token1_img"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:contentDescription="TODO"
+                android:scaleType="fitCenter"
                 android:src="@tools:sample/avatars"
-                tools:ignore="NestedWeights"
-                android:contentDescription="TODO" />
+                tools:ignore="NestedWeights" />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/mystery_token2_img"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:src="@tools:sample/avatars"
-                android:contentDescription="TODO" />
+                android:contentDescription="TODO"
+                android:scaleType="fitCenter"
+                android:src="@tools:sample/avatars" />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/mystery_token3_img"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:src="@tools:sample/avatars"
-                android:contentDescription="TODO"  />
+                android:contentDescription="TODO"
+                android:scaleType="fitCenter"
+                android:src="@tools:sample/avatars" />
+
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -77,31 +84,30 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/progression_list"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    tools:itemCount="3"> <!--- WARNING: delete when implementing recyclerview  -->
+                    tools:itemCount="1"> <!--- WARNING: delete when implementing recyclerview  -->
 
 
                 </androidx.recyclerview.widget.RecyclerView>
 
                 <TextView
+                    android:id="@+id/peoceed_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Vorrücken:"
+                    android:textStyle="bold" />
+
+                <TextView
                     android:id="@+id/proceed_effect_tv"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:text="Vorrücken:" />
+                    android:layout_height="wrap_content"
+                    android:text="Effekt" />
             </LinearLayout>
 
         </LinearLayout>
 
         <!-- LONGPRESS: display ability to change order using left/right arrow icons on each item -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/enemy_list"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3"
-            tools:itemCount="3" />
 
     </LinearLayout>
 </FrameLayout>

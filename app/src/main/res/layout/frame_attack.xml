@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+    Copyright 2024, Julia Michaely, All rights reserved.
+-->
+
     <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -15,6 +19,7 @@
                 android:id="@+id/attack_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="Greife 1+X Gegner auf deinem Feld an" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -22,13 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                tools:itemCount="3" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/enemy_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:itemCount="3">
+                tools:itemCount="1">
 
             </androidx.recyclerview.widget.RecyclerView>
 
