@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright 2024, Julia Michaely, All rights reserved.
+-->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <LinearLayout
@@ -14,10 +20,10 @@
             android:id="@+id/choose_location_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Wähle neuen Ort:" />
+            android:text="@string/choose_new_location" />
 
         <Spinner
-            android:id="@+id/spinner"
+            android:id="@+id/card_selection_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -33,26 +39,24 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:contentDescription="TODO"
-            android:src="@tools:sample/avatars"
+            android:contentDescription="@null"
             app:srcCompat="@android:drawable/arrow_down_float" />
 
         <ImageView
-            android:id="@+id/burn_token_img"
+            android:id="@+id/burn_on_move_token_img"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:contentDescription="TODO"
-            android:src="@tools:sample/avatars" />
+            android:contentDescription="@null"
+            tools:src="@tools:sample/avatars" />
 
         <ImageView
             android:id="@+id/burn_increase_icon"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:contentDescription="TODO"
-            android:src="@tools:sample/avatars"
+            android:contentDescription="@null"
             app:srcCompat="@android:drawable/arrow_up_float" />
 
     </LinearLayout>

@@ -35,7 +35,8 @@
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="2">
+                android:layout_weight="2"
+                tools:ignore="NestedWeights,UselessLeaf">
 
             </FrameLayout>
 
@@ -45,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@android:drawable/arrow_down_float"
-                android:contentDescription="TODO" />
+                android:contentDescription="@null" />
 
             <ImageButton
                 android:id="@+id/increase_sanity_btn"
@@ -53,12 +54,13 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@android:drawable/arrow_up_float"
-                android:contentDescription="TODO" />
+                android:contentDescription="@null" />
 
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="2">
+                android:layout_weight="2"
+                tools:ignore="UselessLeaf">
 
             </FrameLayout>
         </LinearLayout>
@@ -85,36 +87,34 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:contentDescription="TODO"
-                        android:src="@tools:sample/avatars"
+                        android:contentDescription="@null"
                         app:srcCompat="@android:drawable/arrow_down_float" />
 
                     <ImageView
-                        android:id="@+id/burn_token_img"
+                        android:id="@+id/burn_token_mutable_img"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:adjustViewBounds="true"
-                        android:contentDescription="TODO"
-                        android:src="@tools:sample/avatars" />
+                        android:contentDescription="@null"
+                        tools:src="@tools:sample/avatars"  />
 
                     <ImageButton
                         android:id="@+id/burn_increase_btn"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:contentDescription="TODO"
-                        android:src="@tools:sample/avatars"
+                        android:contentDescription="@null"
                         app:srcCompat="@android:drawable/arrow_up_float" />
 
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/burn_token_tv"
+                    android:id="@+id/burn_token_mutable_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="X" />
+                    android:text="@string/initial_num_burn_tokens" />
 
             </LinearLayout>
 
@@ -130,42 +130,40 @@
                     android:orientation="horizontal">
 
                     <ImageButton
-                        android:id="@+id/life_decrease_btn"
+                        android:id="@+id/life_points_decrease_btn"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:contentDescription="TODO"
-                        android:src="@tools:sample/avatars"
+                        android:contentDescription="@null"
                         app:srcCompat="@android:drawable/arrow_down_float" />
 
                     <ImageView
-                        android:id="@+id/life_point_img"
+                        android:id="@+id/life_points_img"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:adjustViewBounds="true"
-                        android:contentDescription="TODO"
+                        android:contentDescription="@null"
                         android:scaleType="fitCenter"
-                        android:src="@tools:sample/avatars" />
+                        tools:src="@tools:sample/avatars"  />
 
                     <ImageButton
-                        android:id="@+id/life_point_increase_btn"
+                        android:id="@+id/life_points_increase_btn"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:contentDescription="TODO"
-                        android:src="@tools:sample/avatars"
+                        android:contentDescription="@null"
                         app:srcCompat="@android:drawable/arrow_up_float" />
 
 
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/lifepoints_tv"
+                    android:id="@+id/lifepoints_player_mutable_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Y" />
+                    android:text="@string/initial_num_life_points_player" />
             </LinearLayout>
 
             <LinearLayout
@@ -180,40 +178,38 @@
                     android:orientation="horizontal">
 
                     <ImageButton
-                        android:id="@+id/stress_decrease_btn"
+                        android:id="@+id/stresslevel_decrease_btn"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:contentDescription="TODO"
-                        android:src="@tools:sample/avatars"
+                        android:contentDescription="@null"
                         app:srcCompat="@android:drawable/arrow_down_float" />
 
                     <ImageView
-                        android:id="@+id/stresslevel_img"
+                        android:id="@+id/stresslevel_mutable_img"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:adjustViewBounds="true"
-                        android:contentDescription="TODO"
-                        android:src="@tools:sample/avatars" />
+                        android:contentDescription="@null"
+                        tools:src="@tools:sample/avatars"  />
 
                     <ImageButton
-                        android:id="@+id/stress_increase_btn"
+                        android:id="@+id/stresslevel_increase_btn"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:contentDescription="TODO"
-                        android:src="@tools:sample/avatars"
+                        android:contentDescription="@null"
                         app:srcCompat="@android:drawable/arrow_up_float" />
 
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/stresslevel_tv"
+                    android:id="@+id/stresslevel_mutable_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Z" />
+                    android:text="@string/initial_num_stress_level" />
             </LinearLayout>
 
             <ImageButton
@@ -222,12 +218,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="?attr/actionModeCopyDrawable"
-                android:contentDescription="TODO" />
+                android:contentDescription="@null" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/player_info_layout"
+            android:id="@+id/player_info_mutable_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -237,7 +233,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Spielername" />
+                android:text="@string/character_name" />
 
             <Spinner
                 android:id="@+id/location_list"
@@ -246,7 +242,7 @@
                 android:layout_gravity="end"
                 android:foregroundGravity="right"
                 android:gravity="end"
-                android:text="location"
+                android:text="@string/player_location"
                 android:textAlignment="viewEnd" />
 
         </LinearLayout>

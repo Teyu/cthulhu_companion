@@ -8,6 +8,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <TextView
@@ -16,7 +17,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="Wähle Spielerfarbe" />
+        android:text="@string/choose_player_color" />
 
     <LinearLayout
         android:id="@+id/add_player_layout"
@@ -36,8 +37,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:baselineAlignBottom="true"
-                android:contentDescription="TODO"
-                android:src="@tools:sample/avatars"
+                android:contentDescription="@null"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="H,1:1"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -57,8 +57,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:baselineAlignBottom="true"
-                android:contentDescription="TODO"
-                android:src="@tools:sample/avatars"
+                android:contentDescription="@null"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="H,1:1"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -78,8 +77,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:baselineAlignBottom="true"
-                android:contentDescription="TODO"
-                android:src="@tools:sample/avatars"
+                android:contentDescription="@null"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="H,1:1"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -99,8 +97,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:baselineAlignBottom="true"
-                android:contentDescription="TODO"
-                android:src="@tools:sample/avatars"
+                android:contentDescription="@null"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="H,1:1"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -118,7 +115,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="Wähle Charakter:" />
+        android:text="@string/choose_character" />
 
     <TableLayout
         android:id="@+id/table_layout"
@@ -139,8 +136,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:contentDescription="TODO"
-                android:src="@tools:sample/avatars" />
+                android:contentDescription="@null"
+                tools:src="@tools:sample/avatars" />
 
 
             <ImageButton
@@ -148,16 +145,16 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:contentDescription="TODO"
-                android:src="@tools:sample/avatars" />
+                android:contentDescription="@null"
+                tools:src="@tools:sample/avatars" />
 
             <ImageButton
                 android:id="@+id/character5_img"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:contentDescription="TODO"
-                android:src="@tools:sample/avatars" />
+                android:contentDescription="@null"
+                tools:src="@tools:sample/avatars" />
         </TableRow>
 
         <TableRow
@@ -170,8 +167,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:contentDescription="TODO"
-                android:src="@tools:sample/avatars" />
+                android:contentDescription="@null"
+                tools:src="@tools:sample/avatars"  />
 
 
             <ImageButton
@@ -179,16 +176,16 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:contentDescription="TODO"
-                android:src="@tools:sample/avatars" />
+                android:contentDescription="@null"
+                tools:src="@tools:sample/avatars"  />
 
             <ImageButton
                 android:id="@+id/character2_img"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:contentDescription="TODO"
-                android:src="@tools:sample/avatars" />
+                android:contentDescription="@null"
+                tools:src="@tools:sample/avatars" />
         </TableRow>
 
     </TableLayout>

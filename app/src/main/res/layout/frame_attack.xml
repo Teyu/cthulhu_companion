@@ -20,7 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Du kannst 1+X Gegner auf deinem Feld angreifen" />
+                android:text="@string/attack_enemies_reminder" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/dice_list"

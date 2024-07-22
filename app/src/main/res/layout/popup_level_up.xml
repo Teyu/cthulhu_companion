@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright 2024, Julia Michaely, All rights reserved.
+-->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -15,21 +20,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@android:drawable/btn_star" />
+            android:src="@android:drawable/btn_star"
+            android:contentDescription="@null" />
 
         <ImageButton
             android:id="@+id/property2_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@android:drawable/btn_star" />
+            android:src="@android:drawable/btn_star"
+            android:contentDescription="@null" />
 
         <ImageButton
             android:id="@+id/property3_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@android:drawable/btn_star" />
+            android:src="@android:drawable/btn_star"
+            android:contentDescription="@null" />
     </LinearLayout>
 
     <include layout="@layout/display_property" />
@@ -38,8 +46,8 @@
         android:id="@+id/evolve_icon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@tools:sample/avatars"
-        app:srcCompat="@android:drawable/arrow_down_float" />
+        app:srcCompat="@android:drawable/arrow_down_float"
+        android:contentDescription="@null" />
 
     <include layout="@layout/display_property" />
 
@@ -47,5 +55,5 @@
         android:id="@+id/level_up_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Aufleveln" />
+        android:text="@string/level_up" />
 </LinearLayout>

@@ -18,7 +18,7 @@
             android:id="@+id/episode_action_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Beschreibung der Episodenaktion" />
+            android:text="@string/episode_action_description" />
 
         <include layout="@layout/display_property" />
         <include layout="@layout/display_property" />

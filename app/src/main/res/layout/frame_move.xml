@@ -7,8 +7,7 @@
     <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,14 +19,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Du kannst dich 3+X Felder weit bewegen" />
+                android:text="@string/move_reminder" />
 
             <TextView
                 android:id="@+id/burn_description_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Füge ggf Brandmarker hinzu" />
+                android:text="@string/add_burn_tokens_reminder" />
 
             <include layout="@layout/display_property" />
             <include layout="@layout/display_property" />
@@ -38,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Gegner folgen dir:" />
+                android:text="@string/on_move_enemy_follows_reminder" />
 
             <include layout="@layout/display_property"/>
             <include layout="@layout/display_property"/>

@@ -20,6 +20,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="Es befinden sich Gegner auf deinem Feld!" />
+            android:text="@string/invalid_rest_reminder" />
     </LinearLayout>
 </ScrollView>

@@ -4,8 +4,6 @@
 
 package com.example.cthulhucompanion.screens.common;
 
-import android.app.Application;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cthulhucompanion.common.CustomApplication;

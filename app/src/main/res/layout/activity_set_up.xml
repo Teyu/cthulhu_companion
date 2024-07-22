@@ -14,7 +14,7 @@
 
     <include layout="@layout/element_all_players_info_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="0"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
@@ -48,7 +48,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Füge Spieler hinzu"
+                android:text="@string/add_player"
                 tools:ignore="NestedWeights" />
 
             <LinearLayout
@@ -68,14 +68,13 @@
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:baselineAlignBottom="true"
-                        android:src="@tools:sample/avatars"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintDimensionRatio="H,1:1"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@color/design_default_color_primary"
-                        android:contentDescription="TODO" />
+                        android:background ="@color/design_default_color_primary"
+                        android:contentDescription="@null" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -89,14 +88,13 @@
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:baselineAlignBottom="true"
-                        android:src="@tools:sample/avatars"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintDimensionRatio="H,1:1"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@color/design_default_color_error"
-                        android:contentDescription="TODO" />
+                        android:background="@color/design_default_color_error"
+                        android:contentDescription="@null" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -110,14 +108,13 @@
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:baselineAlignBottom="true"
-                        android:src="@tools:sample/avatars"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintDimensionRatio="H,1:1"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@android:color/holo_green_light"
-                        android:contentDescription="TODO" />
+                        android:background="@android:color/holo_green_light"
+                        android:contentDescription="@null" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -131,14 +128,13 @@
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:baselineAlignBottom="true"
-                        android:src="@tools:sample/avatars"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintDimensionRatio="H,1:1"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="?android:attr/colorPressedHighlight"
-                        android:contentDescription="TODO" />
+                        android:background="?android:attr/colorPressedHighlight"
+                        android:contentDescription="@null" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -152,8 +148,7 @@
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:baselineAlignBottom="true"
-                        android:contentDescription="TODO"
-                        android:src="@tools:sample/avatars"
+                        android:contentDescription="@null"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintDimensionRatio="H,1:1"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -195,7 +190,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:layout_weight="1"
-                android:text="START"
+                android:text="@string/confirm_set_up"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

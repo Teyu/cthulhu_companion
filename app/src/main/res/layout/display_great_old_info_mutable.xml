@@ -4,7 +4,7 @@
     Copyright 2024, Julia Michaely, All rights reserved.
 -->
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_info_layout"
     android:layout_width="match_parent"
@@ -13,7 +13,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
 
         <LinearLayout
             android:id="@+id/great_old_layout"
@@ -27,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
                 android:gravity="center"
-                android:text="Great Old One"
+                android:text="@string/great_old_one_name"
                 tools:ignore="NestedWeights" />
 
             <TextView
@@ -36,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Stufe X" />
+                android:text="@string/great_old_one_level" />
 
         </LinearLayout>
 
@@ -51,28 +52,28 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:contentDescription="TODO"
+                android:contentDescription="@null"
                 android:scaleType="fitCenter"
-                android:src="@tools:sample/avatars"
-                tools:ignore="NestedWeights" />
+                tools:ignore="NestedWeights"
+                tools:src="@tools:sample/avatars" />
 
             <ImageButton
                 android:id="@+id/mystery_token2_img"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:contentDescription="TODO"
+                android:contentDescription="@null"
                 android:scaleType="fitCenter"
-                android:src="@tools:sample/avatars" />
+                tools:src="@tools:sample/avatars" />
 
             <ImageButton
                 android:id="@+id/mystery_token3_img"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:contentDescription="TODO"
+                android:contentDescription="@null"
                 android:scaleType="fitCenter"
-                android:src="@tools:sample/avatars" />
+                tools:src="@tools:sample/avatars" />
 
 
             <LinearLayout
@@ -92,17 +93,17 @@
                 </androidx.recyclerview.widget.RecyclerView>
 
                 <TextView
-                    android:id="@+id/peoceed_tv"
+                    android:id="@+id/proceed_mutable_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Vorrücken:"
+                    android:text="@string/great_old_one_proceeds"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/proceed_effect_tv"
+                    android:id="@+id/proceed_effect_mutable_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Effekt" />
+                    android:text="@string/great_old_one_proceeds_effect" />
             </LinearLayout>
 
         </LinearLayout>
@@ -110,4 +111,4 @@
         <!-- LONGPRESS: display ability to change order using left/right arrow icons on each item -->
 
     </LinearLayout>
-</FrameLayout>
+</merge>

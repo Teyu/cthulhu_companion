@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Episode" />
+        android:text="@string/episode_title" />
 
     <include layout="@layout/display_great_old_info_immutable"/>
     <include layout="@layout/list_enemy_immutable"/>
@@ -38,7 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Gegner greifen an" />
+        android:text="@string/enemies_attack_reminder" />
 
     <include layout="@layout/list_enemy_immutable" />
 
@@ -72,7 +72,7 @@
                 <!-- onpress: mark the appropriate enemy in the list as done -->
 
                 <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/floatingActionButton"
+                    android:id="@+id/confirm_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
@@ -80,16 +80,18 @@
                     android:clickable="true"
                     android:src="?android:attr/textCheckMark"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:contentDescription="@null"
+                    android:focusable="true" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>
 
     <Button
-        android:id="@+id/continue_btn"
+        android:id="@+id/fight_finish_round_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Zug beenden" />
+        android:text="@string/navigate_to_end_of_round" />
     <!-- -> Mythosphase -> Ermitteln/Angreifen -> Ende des Zuges -> nächster Spieler -->
 
 </LinearLayout>

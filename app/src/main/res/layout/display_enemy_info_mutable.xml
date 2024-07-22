@@ -16,8 +16,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="7"
-        android:src="@tools:sample/avatars"
-        android:contentDescription="TODO" />
+        android:contentDescription="@null"
+        tools:srcCompat="@tools:sample/avatars" />
     <!-- popup_enemy_info -->
 
     <LinearLayout
@@ -31,7 +31,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Name" />
+            android:text="@string/enemy_name"
+            tools:ignore="NestedWeights" />
 
         <Spinner
             android:id="@+id/location_list"
@@ -41,7 +42,7 @@
             android:layout_weight="1"
             android:foregroundGravity="right"
             android:gravity="end"
-            android:text="location"
+            android:text="@string/enemy_location"
             android:textAlignment="viewEnd" />
 
     </LinearLayout>
@@ -57,35 +58,36 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@tools:sample/avatars"
             app:srcCompat="@android:drawable/arrow_down_float"
-            tools:ignore="NestedWeights" />
+            tools:ignore="NestedWeights"
+            android:contentDescription="@null" />
 
         <ImageView
-            android:id="@+id/life_point_img"
+            android:id="@+id/life_points_enemy_mutable_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:adjustViewBounds="true"
-            android:src="@tools:sample/avatars" />
+            android:contentDescription="@null"
+            tools:srcCompat="@tools:sample/avatars" />
 
         <ImageButton
             android:id="@+id/increase_icon"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@tools:sample/avatars"
-            app:srcCompat="@android:drawable/arrow_up_float" />
+            app:srcCompat="@android:drawable/arrow_up_float"
+            android:contentDescription="@null" />
 
     </LinearLayout>
 
     <TextView
-        android:id="@+id/life_points_tv"
+        android:id="@+id/life_points_mutable_tv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="X" />
+        android:text="@string/initial_num_life_points_enemy" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/dice_list"

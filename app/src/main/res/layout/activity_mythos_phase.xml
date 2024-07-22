@@ -5,6 +5,7 @@
 -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -23,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Episode" />
+        android:text="@string/episode_title" />
 
     <!-- if addition of mythos symbols is not possible disable those buttons -->
     <include layout="@layout/display_great_old_info_mutable" />
@@ -44,7 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Gezogene Mythoskarte" />
+            android:text="@string/drawn_investigation_card" />
 
         <Spinner
             android:id="@+id/investigation_card_list"
@@ -58,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Es kommt (k)ein neuer Mythosmarker hinzu" />
+            android:text="@string/add_mythos_token_info" />
 
         <!-- use mutable enemy items -->
         <!-- display only those effected -->
@@ -73,7 +74,8 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            tools:ignore="NestedWeights">
 
             <LinearLayout
                 android:id="@+id/content_layout"
@@ -86,7 +88,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Du befindest dich im Moment noch auf einem sicheren Feld \n und kannst ermitteln" />
+                    android:text="@string/secure_rest_reminder" />
 
                 <!-- inclusions depend on drawn mythos card -->
                 <include
@@ -104,16 +106,16 @@
 
         <!-- buttons may be grayed out depending on wether the location is save or not and depending on properties-->
         <Button
-            android:id="@+id/finish_round_btn"
+            android:id="@+id/investigate_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ermitteln" />
+            android:text="@string/navigate_to_investigate" />
 
         <Button
             android:id="@+id/fight_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Kämpfen" />
+            android:text="@string/navigate_to_fight" />
     </LinearLayout>
 
 </LinearLayout>

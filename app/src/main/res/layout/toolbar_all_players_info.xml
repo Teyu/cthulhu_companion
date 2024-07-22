@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+    Copyright 2024, Julia Michaely, All rights reserved.
+-->
+
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/toolbar_mainmenu_cl"
@@ -31,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:contentDescription="TODO" />
+                android:contentDescription="@null" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -46,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@android:drawable/btn_star"
-                android:contentDescription="TODO" />
+                android:contentDescription="@null" />
 
             <ImageButton
                 android:id="@+id/player2_btn"
@@ -54,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@android:drawable/btn_star"
-                android:contentDescription="TODO"/>
+                android:contentDescription="@null"/>
 
             <ImageButton
                 android:id="@+id/player3_btn"
@@ -62,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@android:drawable/btn_star"
-                android:contentDescription="TODO" />
+                android:contentDescription="@null" />
 
             <ImageButton
                 android:id="@+id/player4_btn"
@@ -70,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@android:drawable/btn_star"
-                android:contentDescription="TODO" />
+                android:contentDescription="@null" />
             <!-- android:visibility="gone" -->
         </LinearLayout>
 

@@ -1,5 +1,9 @@
+
+<!--
+    Copyright 2024, Julia Michaely, All rights reserved.
+-->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -8,38 +12,4 @@
     <!-- displays only attackable enemies -->
     <include layout="@layout/list_enemy_immutable"/>
     <include layout="@layout/frame_attack"/>
-
-    <!--
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/attack_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Du kannst 1+X Gegner auf deinem Feld angreifen" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/dice_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                tools:itemCount="1">
-
-            </androidx.recyclerview.widget.RecyclerView>
-
-
-            <include layout="@layout/item_property" />
-
-            <include layout="@layout/item_property" />
-        </LinearLayout>
-    </ScrollView>
-    -->
 </LinearLayout>

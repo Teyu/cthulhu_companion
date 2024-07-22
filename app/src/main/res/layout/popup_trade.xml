@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright 2024, Julia Michaely, All rights reserved.
+-->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -18,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Du:" />
+            android:text="@string/self_name" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cards_self_list"
@@ -36,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Spieler 1:" />
+            android:text="@string/player1_name" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cards_player1_list"
@@ -52,7 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Spieler 2:" />
+            android:text="@string/player2_name" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cards_player2_list"
@@ -68,7 +73,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Spieler 3:" />
+            android:text="@string/player3_name" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cards_player3_list"

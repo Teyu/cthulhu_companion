@@ -21,7 +21,7 @@
     </androidx.recyclerview.widget.RecyclerView>
 
     <LinearLayout
-        android:id="@+id/player_info_layout"
+        android:id="@+id/player_info_immutable_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -31,7 +31,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@android:drawable/btn_star" />
+            android:src="@android:drawable/btn_star"
+            android:contentDescription="@null" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -43,13 +44,13 @@
                 android:id="@+id/name_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Spielername" />
+                android:text="@string/character_name" />
 
             <TextView
                 android:id="@+id/player_location_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ort" />
+                android:text="@string/player_location" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -62,21 +63,22 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@color/material_dynamic_neutral40"
-                    android:src="@tools:sample/avatars"
-                    app:srcCompat="?attr/actionModeCopyDrawable" />
+                    app:srcCompat="?attr/actionModeCopyDrawable"
+                    android:contentDescription="@null" />
 
                 <TextView
                     android:id="@+id/card_count_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:text="X Ermittlerkarten" />
+                    android:text="@string/num_investigation_cards" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:baselineAligned="false">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -85,20 +87,21 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/burn_token_img"
+                        android:id="@+id/burn_token_immutable_img"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
                         android:layout_weight="1"
                         android:adjustViewBounds="true"
-                        android:contentDescription="TODO"
-                        android:src="@tools:sample/avatars" />
+                        android:contentDescription="@null"
+                        tools:src="@tools:sample/avatars"
+                        tools:ignore="NestedWeights" />
 
                     <TextView
-                        android:id="@+id/burn_token_tv"
+                        android:id="@+id/burn_token_immutable_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="X" />
+                        android:text="@string/initial_num_burn_tokens" />
 
                 </LinearLayout>
 
@@ -109,21 +112,22 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/life_point_img"
+                        android:id="@+id/life_points_player_immmutable_img"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
                         android:layout_weight="1"
                         android:adjustViewBounds="true"
-                        android:contentDescription="TODO"
+                        android:contentDescription="@null"
                         android:scaleType="fitCenter"
-                        android:src="@tools:sample/avatars" />
+                        tools:src="@tools:sample/avatars"
+                        tools:ignore="NestedWeights" />
 
                     <TextView
-                        android:id="@+id/lifepoints_tv"
+                        android:id="@+id/life_points_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Y" />
+                        android:text="@string/initial_num_life_points_player" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -133,26 +137,28 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/stresslevel_img"
+                        android:id="@+id/stresslevel_immutable_img"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
                         android:layout_weight="1"
                         android:adjustViewBounds="true"
-                        android:contentDescription="TODO"
-                        android:src="@tools:sample/avatars" />
+                        android:contentDescription="@null"
+                        tools:src="@tools:sample/avatars"
+                        tools:ignore="NestedWeights" />
 
                     <TextView
-                        android:id="@+id/stresslevel_tv"
+                        android:id="@+id/stresslevel_immutable_tv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="Z" />
+                        android:text="@string/initial_num_stress_level" />
                 </LinearLayout>
 
                 <FrameLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="5">
+                    android:layout_weight="5"
+                    tools:ignore="UselessLeaf">
 
                 </FrameLayout>
 

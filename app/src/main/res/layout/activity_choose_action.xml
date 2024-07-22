@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Episode" />
+        android:text="@string/episode_title" />
 
     <include layout="@layout/display_great_old_info_immutable"/>
     <include layout="@layout/list_enemy_immutable"/>
@@ -52,48 +52,42 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:contentDescription="TODO"
-                android:text="Angreifen" />
+                android:contentDescription="@null"/>
 
             <ImageButton
                 android:id="@+id/move_btn"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="Laufen"
-                android:contentDescription="TODO"/>
+                android:contentDescription="@null"/>
 
             <ImageButton
                 android:id="@+id/rest_button"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="Ausruhen"
-                android:contentDescription="TODO"/>
+                android:contentDescription="@null"/>
 
             <ImageButton
                 android:id="@+id/trade_btn"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="Tauschen"
-                android:contentDescription="TODO"/>
+                android:contentDescription="@null"/>
 
             <ImageButton
                 android:id="@+id/episode1_btn"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="Episode1"
-                android:contentDescription="TODO"/>
+                android:contentDescription="@null"/>
 
             <ImageButton
                 android:id="@+id/episode2_btn"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:text="Episode1"
-                android:contentDescription="TODO"/>
+                android:contentDescription="@null"/>
 
         </LinearLayout>
 
@@ -112,7 +106,7 @@
                 android:layout_marginEnd="32dp"
                 android:layout_marginBottom="32dp"
                 android:clickable="true"
-                android:contentDescription="TODO"
+                android:contentDescription="@null"
                 android:focusable="true"
                 android:src="?android:attr/textCheckMark"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -125,7 +119,7 @@
                 android:layout_marginEnd="32dp"
                 android:layout_marginBottom="32dp"
                 android:clickable="true"
-                android:contentDescription="TODO"
+                android:contentDescription="@null"
                 android:focusable="true"
                 android:src="?android:attr/textCheckMark"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -138,7 +132,7 @@
                 android:layout_marginEnd="32dp"
                 android:layout_marginBottom="32dp"
                 android:clickable="true"
-                android:contentDescription="TODO"
+                android:contentDescription="@null"
                 android:focusable="true"
                 android:visibility="gone"
                 android:src="?android:attr/textCheckMark"
@@ -152,7 +146,7 @@
                 android:layout_marginEnd="32dp"
                 android:layout_marginBottom="32dp"
                 android:clickable="true"
-                android:contentDescription="TODO"
+                android:contentDescription="@null"
                 android:focusable="true"
                 android:src="?android:attr/textCheckMark"
                 android:visibility="gone"
@@ -173,10 +167,10 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/continue_btn"
+        android:id="@+id/fight_finish_round_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Mythosphase" />
+        android:text="@string/navigate_to_mythos_phase" />
     <!-- -> Mythosphase -> Ermitteln/Angreifen -> Ende des Zuges -> nächster Spieler -->
 
 </LinearLayout>

@@ -5,6 +5,7 @@
 -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -23,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Episode" />
+        android:text="@string/episode_title" />
 
     <include layout="@layout/display_great_old_info_immutable" />
     <include layout="@layout/list_enemy_immutable"/>
@@ -49,7 +50,8 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            tools:ignore="NestedWeights">
 
             <LinearLayout
                 android:id="@+id/content_layout"
@@ -72,10 +74,10 @@
 
         <!-- buttons may be grayed out depending on wether the location is save or not and depending on properties-->
         <Button
-            android:id="@+id/finish_round_btn"
+            android:id="@+id/investigate_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nächster Spieler" />
+            android:text="@string/navigate_to_next_player" />
 
     </LinearLayout>
 

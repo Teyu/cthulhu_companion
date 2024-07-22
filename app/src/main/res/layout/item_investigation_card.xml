@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+    Copyright 2024, Julia Michaely, All rights reserved.
+-->
+
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="wrap_content"
@@ -13,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="5"
-        android:text="Kartenname" />
+        android:text="@string/investigation_card_name" />
 
     <!-- onpress open warning dialog -->
     <ImageButton
@@ -21,6 +25,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:contentDescription="TODO"
+        android:contentDescription="@null"
         android:src="@android:drawable/ic_menu_delete" />
     </LinearLayout>

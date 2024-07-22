@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+    Copyright 2024, Julia Michaely, All rights reserved.
+-->
+
 <!-- WARNING: will actually not be used -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -20,6 +24,6 @@
         android:id="@+id/remove_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ENTFERNEN" />
+        android:text="@string/remove" />
 
 </LinearLayout>

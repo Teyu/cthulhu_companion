@@ -51,7 +51,7 @@ public class ControllerCompositionRoot {
         return new ControllerChooseMain(screensNavigator, getContext());
     }
 
-    /** ------------------------------------- use cases ------------------------------------- **/
+    /* ------------------------------------- use cases ------------------------------------- **/
 
     /*public GlobalExample getGlobalExample() {
         return mCompositionRoot.getGlobalExample();
