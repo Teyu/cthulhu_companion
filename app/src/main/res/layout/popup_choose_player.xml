@@ -11,7 +11,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/choose_color_tv"
+        android:id="@+id/choose_location_tv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"

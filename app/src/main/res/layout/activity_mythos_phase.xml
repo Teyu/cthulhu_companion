@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright 2024, Julia Michaely, All rights reserved.
+-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/element_all_players_info_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+
+    <TextView
+        android:id="@+id/episode_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Episode" />
+
+    <include layout="@layout/display_great_old_info_immutable" />
+    <include layout="@layout/list_enemy_immutable"/>
+    <include layout="@layout/display_player_info_immutable" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0"
+        android:orientation="vertical">
+
+        <!-- choose text accordingly -->
+        <TextView
+            android:id="@+id/drawn_investigation_card_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Gezogene Mythoskarte" />
+
+        <Spinner
+            android:id="@+id/investigation_card_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/mythos_tokenshint_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Es kommt (k)ein neuer Mythosmarker hinzu" />
+
+        <!-- use mutable enemy items -->
+        <!-- display only those effected -->
+
+        <include layout="@layout/list_enemy_mutable"/>
+        <!-- becomes visible as soon as a mythos card has been selected
+        android:visibility="gone"
+        -->
+
+        <!-- if needed include further, i.e. all mutable player infos if all loose sanity-->
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/content_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/secure_place_hint_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Du befindest dich im Moment noch auf einem sicheren Feld \n und kannst ermitteln" />
+
+                <include
+                    layout="@layout/display_property"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <include
+                    layout="@layout/display_property"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- buttons may be grayed out depending on wether the location is save or not and depending on properties-->
+        <Button
+            android:id="@+id/finish_round_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ermitteln" />
+
+        <Button
+            android:id="@+id/fight_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kämpfen" />
+    </LinearLayout>
+
+</LinearLayout>

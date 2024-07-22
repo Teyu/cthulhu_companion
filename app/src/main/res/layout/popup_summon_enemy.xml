@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright 2024, Julia Michaely, All rights reserved.
+-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/choose_location_tv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:gravity="center"
+        android:text="Wähle Ort" />
+
+    <Spinner
+        android:id="@+id/summon_location_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/choose_character_tv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:gravity="center"
+        android:text="Wähle Charakter:" />
+
+    <TableLayout
+        android:id="@+id/table_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:gravity="center"
+        android:isScrollContainer="true">
+
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/enemy1_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:contentDescription="TODO"
+                android:src="@tools:sample/avatars" />
+
+
+            <ImageButton
+                android:id="@+id/enemy2_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:contentDescription="TODO"
+                android:src="@tools:sample/avatars" />
+
+            <ImageButton
+                android:id="@+id/enemy3_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:contentDescription="TODO"
+                android:src="@tools:sample/avatars" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:id="@+id/enemy4_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:contentDescription="TODO"
+                android:src="@tools:sample/avatars" />
+
+
+            <ImageButton
+                android:id="@+id/enemy5_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:contentDescription="TODO"
+                android:src="@tools:sample/avatars" />
+
+            <ImageButton
+                android:id="@+id/enemy6_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:contentDescription="TODO"
+                android:src="@tools:sample/avatars" />
+        </TableRow>
+
+    </TableLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/summon_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="BESCHÖREN" />
+    </FrameLayout>
+
+    <!-- click out of scope to cancel -->
+
+</LinearLayout>

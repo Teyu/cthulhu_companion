@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"/>
+
+    <include layout="@layout/display_player_info_mutable"/>
+    <include layout="@layout/display_property"/>
+    <include layout="@layout/display_property"/>
+    <include layout="@layout/display_property"/>
+
+    <TextView
+        android:id="@+id/flavor_text_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Beschreibung des Charakters" />
+
+</LinearLayout>

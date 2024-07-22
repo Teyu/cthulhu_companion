@@ -4,26 +4,70 @@
     Copyright 2024, Julia Michaely, All rights reserved.
 -->
 
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        tools:ignore="UselessParent">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/gg_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        tools:itemCount="1" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/gg_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:itemCount="1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2">
+
+            </FrameLayout>
+
+            <ImageButton
+                android:id="@+id/decrease_sanity_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@android:drawable/arrow_down_float"
+                android:contentDescription="TODO" />
+
+            <ImageButton
+                android:id="@+id/increase_sanity_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@android:drawable/arrow_up_float"
+                android:contentDescription="TODO" />
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2">
+
+            </FrameLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:baselineAligned="false">
+            android:baselineAligned="false"
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -90,8 +134,8 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:src="@tools:sample/avatars"
                         android:contentDescription="TODO"
+                        android:src="@tools:sample/avatars"
                         app:srcCompat="@android:drawable/arrow_down_float" />
 
                     <ImageView
@@ -109,8 +153,8 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:src="@tools:sample/avatars"
                         android:contentDescription="TODO"
+                        android:src="@tools:sample/avatars"
                         app:srcCompat="@android:drawable/arrow_up_float" />
 
 
@@ -177,7 +221,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="?attr/actionModeCopyDrawable" />
+                android:src="?attr/actionModeCopyDrawable"
+                android:contentDescription="TODO" />
 
         </LinearLayout>
 
@@ -205,5 +250,6 @@
                 android:textAlignment="viewEnd" />
 
         </LinearLayout>
-
     </LinearLayout>
+
+</LinearLayout>

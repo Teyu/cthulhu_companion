@@ -19,7 +19,7 @@ public class ActivityChooseMain extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_main);
+        setContentView(R.layout.activity_set_up);
 
         ViewMvcMain viewMvcMain = getCompositionRoot().getViewMvcFactory().getViewMvcMain(null);
 

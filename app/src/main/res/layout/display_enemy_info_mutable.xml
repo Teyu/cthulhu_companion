@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    Copyright 2024, Julia Michaely, All rights reserved.
+-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/enemy_img"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:src="@tools:sample/avatars"
+        android:contentDescription="TODO" />
+    <!-- popup_enemy_info -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/name_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Name" />
+
+        <Spinner
+            android:id="@+id/location_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_weight="1"
+            android:foregroundGravity="right"
+            android:gravity="end"
+            android:text="location"
+            android:textAlignment="viewEnd" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/decrease_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@tools:sample/avatars"
+            app:srcCompat="@android:drawable/arrow_down_float"
+            tools:ignore="NestedWeights" />
+
+        <ImageView
+            android:id="@+id/life_point_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:src="@tools:sample/avatars" />
+
+        <ImageButton
+            android:id="@+id/increase_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@tools:sample/avatars"
+            app:srcCompat="@android:drawable/arrow_up_float" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/life_points_tv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="X" />
+
+</LinearLayout>

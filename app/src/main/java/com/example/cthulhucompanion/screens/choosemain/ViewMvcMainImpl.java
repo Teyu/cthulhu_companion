@@ -13,7 +13,7 @@ import com.example.cthulhucompanion.screens.common.mvcviews.BaseObservableViewMv
 public class ViewMvcMainImpl extends BaseObservableViewMvc<ViewMvcMain.Listener> implements ViewMvcMain {
 
     public ViewMvcMainImpl(LayoutInflater inflater, ViewGroup parent, ViewMvcFactory viewMvcFactory){
-        setRootView(inflater.inflate(R.layout.activity_choose_main, parent, false));
+        setRootView(inflater.inflate(R.layout.activity_set_up, parent, false));
 
         //TODO: do something
     }

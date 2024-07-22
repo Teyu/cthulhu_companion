@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- WARNING: will actually not be used -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/display_enemy_info_immutable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
+    <include layout="@layout/display_property" />
+
+    <include layout="@layout/display_property" />
+
+    <Button
+        android:id="@+id/remove_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ENTFERNEN" />
+
+</LinearLayout>

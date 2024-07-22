@@ -27,20 +27,23 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/enemy_name_tv"
-            android:layout_width="wrap_content"
+            android:id="@+id/name_tv"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="name"
-            tools:ignore="NestedWeights" />
+            android:text="Name" />
 
         <TextView
-            android:id="@+id/enemy_location_tv"
-            android:layout_width="wrap_content"
+            android:id="@+id/location_tv"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="end"
             android:layout_weight="1"
+            android:foregroundGravity="right"
             android:gravity="end"
-            android:text="location" />
+            android:text="location"
+            android:textAlignment="viewEnd" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -49,38 +52,24 @@
         android:layout_weight="2"
         android:orientation="horizontal">
 
-        <ImageButton
-            android:id="@+id/decrease_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@tools:sample/avatars"
-            app:srcCompat="@android:drawable/arrow_down_float"
-            tools:ignore="NestedWeights" />
-
         <ImageView
             android:id="@+id/life_point_img"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:adjustViewBounds="true"
+            android:scaleType="fitEnd"
             android:src="@tools:sample/avatars" />
 
-        <ImageButton
-            android:id="@+id/increase_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+        <TextView
+            android:id="@+id/life_points_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_weight="1"
-            android:src="@tools:sample/avatars"
-            app:srcCompat="@android:drawable/arrow_up_float" />
+            android:gravity="start"
+            android:text="X" />
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/life_points_tv"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:text="X" />
 </LinearLayout>

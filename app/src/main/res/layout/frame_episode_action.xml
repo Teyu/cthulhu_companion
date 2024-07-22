@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:text="Beschreibung der Episodenaktion" />
 
-        <include layout="@layout/item_property" />
-        <include layout="@layout/item_property" />
+        <include layout="@layout/display_property" />
+        <include layout="@layout/display_property" />
     </LinearLayout>
 </ScrollView>

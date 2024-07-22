@@ -20,7 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Bewege dich  3+X Felder weit" />
+                android:text="Du kannst dich 3+X Felder weit bewegen" />
 
             <TextView
                 android:id="@+id/burn_description_tv"
@@ -29,7 +29,7 @@
                 android:gravity="center"
                 android:text="Füge ggf Brandmarker hinzu:" />
 
-            <include layout="@layout/item_property" />
-            <include layout="@layout/item_property" />
+            <include layout="@layout/display_property" />
+            <include layout="@layout/display_property" />
         </LinearLayout>
     </ScrollView>

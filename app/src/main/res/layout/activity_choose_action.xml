@@ -27,9 +27,10 @@
         android:gravity="center"
         android:text="Episode" />
 
-    <include layout="@layout/display_great_old_info"/>
-    <include layout="@layout/display_enemy_list"/>
-    <include layout="@layout/display_player_info"/>
+    <include layout="@layout/display_great_old_info_immutable"/>
+    <include layout="@layout/list_enemy_immutable"/>
+
+    <include layout="@layout/display_player_info_immutable" />
 
     <LinearLayout
         android:layout_width="match_parent"

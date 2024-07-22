@@ -7,13 +7,19 @@
     android:orientation="vertical">
 
     <include
-        layout="@layout/item_enemy_info"
+        layout="@layout/display_enemy_info_mutable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center" />
 
-    <include layout="@layout/item_property" />
+    <include layout="@layout/display_property" />
 
-    <include layout="@layout/item_property" />
+    <include layout="@layout/display_property" />
+
+    <Button
+        android:id="@+id/remove_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ENTFERNEN" />
 
 </LinearLayout>

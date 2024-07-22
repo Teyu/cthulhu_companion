@@ -1,14 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-<!--
-    Copyright 2024, Julia Michaely, All rights reserved.
--->
+    <!-- contains mutable enemy items -->
+    <!-- displays only attackable enemies -->
+    <include layout="@layout/list_enemy_immutable"/>
+    <include layout="@layout/frame_attack"/>
 
+    <!--
     <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,7 +36,10 @@
             </androidx.recyclerview.widget.RecyclerView>
 
 
-            <include layout="@layout/display_property"/>
-            <include layout="@layout/display_property"/>
+            <include layout="@layout/item_property" />
+
+            <include layout="@layout/item_property" />
         </LinearLayout>
     </ScrollView>
+    -->
+</LinearLayout>

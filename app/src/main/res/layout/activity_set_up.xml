@@ -12,11 +12,10 @@
     android:orientation="vertical"
     tools:context=".screens.choosemain.ActivityChooseMain">
 
-    <!-- use register toolbar to switch between framelayouts (each framelayout contains 1 of these 3 item lists and can be reused)  -->
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/choose_main_toolbar"
+    <include layout="@layout/element_all_players_info_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="0"
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme" />

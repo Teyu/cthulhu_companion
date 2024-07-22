@@ -19,9 +19,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Heile 3+X Wunden/Stress" />
+            android:text="Du kannst 3+X Wunden/Stress heilen" />
 
-        <include layout="@layout/item_property" />
-        <include layout="@layout/item_property" />
+        <include layout="@layout/display_property" />
+        <include layout="@layout/display_property" />
     </LinearLayout>
 </ScrollView>
