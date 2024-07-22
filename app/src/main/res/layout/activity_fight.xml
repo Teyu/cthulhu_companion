@@ -20,6 +20,7 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme" />
 
+    <!-- oncklick -> popup_episode_info -->
     <TextView
         android:id="@+id/episode_tv"
         android:layout_width="match_parent"
@@ -88,7 +89,7 @@
         android:id="@+id/continue_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Runde beenden" />
-    <!-- -> Mythosphase -> Ermitteln/Angreifen -> Ende der Runde -> nächster Spieler -->
+        android:text="Zug beenden" />
+    <!-- -> Mythosphase -> Ermitteln/Angreifen -> Ende des Zuges -> nächster Spieler -->
 
 </LinearLayout>

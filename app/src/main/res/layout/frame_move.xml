@@ -27,9 +27,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Füge ggf Brandmarker hinzu:" />
+                android:text="Füge ggf Brandmarker hinzu" />
 
             <include layout="@layout/display_property" />
             <include layout="@layout/display_property" />
+            <include layout="@layout/display_player_info_mutable"/>
+
+            <TextView
+                android:id="@+id/enemies_follow_hint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Gegner folgen dir:" />
+
+            <include layout="@layout/display_property"/>
+            <include layout="@layout/display_property"/>
+            <!-- use mutable items -->
+            <include layout="@layout/list_enemy_immutable" />
         </LinearLayout>
     </ScrollView>

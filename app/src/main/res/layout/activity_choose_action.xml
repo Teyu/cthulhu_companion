@@ -20,6 +20,7 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme" />
 
+    <!-- oncklick -> popup_episode_info -->
     <TextView
         android:id="@+id/episode_tv"
         android:layout_width="match_parent"
@@ -79,7 +80,15 @@
                 android:contentDescription="TODO"/>
 
             <ImageButton
-                android:id="@+id/episode_btn"
+                android:id="@+id/episode1_btn"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="Episode1"
+                android:contentDescription="TODO"/>
+
+            <ImageButton
+                android:id="@+id/episode2_btn"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -168,6 +177,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Mythosphase" />
-    <!-- -> Mythosphase -> Ermitteln/Angreifen -> Ende der Runde -> nächster Spieler -->
+    <!-- -> Mythosphase -> Ermitteln/Angreifen -> Ende des Zuges -> nächster Spieler -->
 
 </LinearLayout>

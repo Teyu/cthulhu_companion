@@ -17,6 +17,7 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme" />
 
+    <!-- oncklick -> popup_episode_info -->
     <TextView
         android:id="@+id/episode_tv"
         android:layout_width="match_parent"
@@ -79,6 +80,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
+                <!-- depending on wether theirs a cost to the card or not -->
+                <include layout="@layout/display_player_info_mutable"/>
+
             </LinearLayout>
         </ScrollView>
 
@@ -87,7 +91,7 @@
             android:id="@+id/finish_round_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Runde beenden" />
+            android:text="Zug beenden" />
 
     </LinearLayout>
 

@@ -17,6 +17,7 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme" />
 
+    <!-- oncklick -> popup_episode_info -->
     <TextView
         android:id="@+id/episode_tv"
         android:layout_width="match_parent"

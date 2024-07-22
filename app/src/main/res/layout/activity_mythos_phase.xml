@@ -17,6 +17,7 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme" />
 
+    <!-- oncklick -> popup_episode_info -->
     <TextView
         android:id="@+id/episode_tv"
         android:layout_width="match_parent"
@@ -24,7 +25,10 @@
         android:gravity="center"
         android:text="Episode" />
 
-    <include layout="@layout/display_great_old_info_immutable" />
+    <!-- if addition of mythos symbols is not possible disable those buttons -->
+    <include layout="@layout/display_great_old_info_mutable" />
+
+    <!-- inclusion depends on the drawn mythos card-->
     <include layout="@layout/list_enemy_immutable"/>
     <include layout="@layout/display_player_info_immutable" />
 
@@ -84,6 +88,7 @@
                     android:gravity="center"
                     android:text="Du befindest dich im Moment noch auf einem sicheren Feld \n und kannst ermitteln" />
 
+                <!-- inclusions depend on drawn mythos card -->
                 <include
                     layout="@layout/display_property"
                     android:layout_width="match_parent"

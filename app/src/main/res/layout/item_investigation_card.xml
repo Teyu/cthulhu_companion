@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
         android:orientation="horizontal">
 
+    <!-- onclick -> popup_investigation_card_info -->
     <TextView
         android:id="@+id/card_name_tv"
         android:layout_width="0dp"
