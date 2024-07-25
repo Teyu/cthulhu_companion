@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import com.example.cthulhucompanion.R;
 import com.example.cthulhucompanion.screens.chooseaction.ViewMvcChooseAction;
 import com.example.cthulhucompanion.screens.common.ViewMvcFactory;
-import com.example.cthulhucompanion.screens.common.mvcviews.BaseObservableViewMvc;
+import com.example.cthulhucompanion.screens.common.mvcviews.observable.BaseObservableViewMvc;
 
 public class ViewMvcToolbarMain extends BaseObservableViewMvc<ViewMvcChooseAction.Listener> implements ViewMvcChooseAction {
 

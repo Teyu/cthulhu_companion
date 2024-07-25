@@ -2,7 +2,9 @@
  * Copyright 2024, Julia Michaely, All rights reserved.
  */
 
-package com.example.cthulhucompanion.screens.common.mvcviews;
+package com.example.cthulhucompanion.screens.common.mvcviews.observable;
+
+import com.example.cthulhucompanion.screens.common.mvcviews.BaseViewMvc;
 
 import java.util.Collections;
 import java.util.HashSet;

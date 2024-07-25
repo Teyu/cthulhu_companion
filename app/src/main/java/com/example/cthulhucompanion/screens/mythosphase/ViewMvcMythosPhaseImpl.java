@@ -5,14 +5,15 @@
 package com.example.cthulhucompanion.screens.mythosphase;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toolbar;
 
 import com.example.cthulhucompanion.R;
 import com.example.cthulhucompanion.screens.common.ViewMvcFactory;
-import com.example.cthulhucompanion.screens.common.mvcviews.BaseObservableViewMvc;
+import com.example.cthulhucompanion.screens.common.mvcviews.observable.BaseObservableViewMvc;
+import com.example.cthulhucompanion.screens.common.mvcviews.popup.PopUpViewMvc;
 import com.example.cthulhucompanion.screens.toolbar.allplayerinfo.ViewMvcToolbarAllPlayerInfo;
 
 public class ViewMvcMythosPhaseImpl extends BaseObservableViewMvc<ViewMvcMythosPhase.Listener> implements ViewMvcMythosPhase {
@@ -21,6 +22,8 @@ public class ViewMvcMythosPhaseImpl extends BaseObservableViewMvc<ViewMvcMythosP
     private final ViewMvcToolbarAllPlayerInfo mToolbarViewMvc;
     private final Button mButtonFight;
     private final Button mButtonInvestigate;
+    private final ImageButton mButtonSummonEnemy;
+    private final PopUpViewMvc mViewMvcSummonEnemy;
 
     public ViewMvcMythosPhaseImpl(LayoutInflater inflater, ViewGroup parent, ViewMvcFactory viewMvcFactory){
         setRootView(inflater.inflate(R.layout.activity_mythos_phase, parent, false));
@@ -42,5 +45,9 @@ public class ViewMvcMythosPhaseImpl extends BaseObservableViewMvc<ViewMvcMythosP
         mToolbar = this.findViewById(R.id.toolbar);
         mToolbarViewMvc = viewMvcFactory.getViewMvcToolbarAllPlayerInfo(mToolbar);
         mToolbar.addView(mToolbarViewMvc.getRootView());
+
+        mButtonSummonEnemy = this.findViewById(R.id.summon_enemy_btn);
+        mViewMvcSummonEnemy = viewMvcFactory.getViewMvcSummonEnemy();
+        mViewMvcSummonEnemy.bindAnchorView(mButtonSummonEnemy);
     }
 }

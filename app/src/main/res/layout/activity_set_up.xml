@@ -142,7 +142,7 @@
                     android:layout_height="match_parent">
 
                     <ImageButton
-                        android:id="@+id/player5_img"
+                        android:id="@+id/add_player_btn"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_weight="1"

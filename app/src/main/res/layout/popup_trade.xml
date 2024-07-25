@@ -8,6 +8,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/material_dynamic_neutral40"
     android:orientation="vertical">
 
     <LinearLayout
@@ -84,6 +85,6 @@
 
     </LinearLayout>
 
-    <include layout="@layout/frame_trade"/>
+    <include layout="@layout/frame_trade" />
 
 </LinearLayout>

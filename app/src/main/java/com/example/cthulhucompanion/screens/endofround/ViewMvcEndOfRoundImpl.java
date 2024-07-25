@@ -5,14 +5,13 @@
 package com.example.cthulhucompanion.screens.endofround;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toolbar;
 
 import com.example.cthulhucompanion.R;
 import com.example.cthulhucompanion.screens.common.ViewMvcFactory;
-import com.example.cthulhucompanion.screens.common.mvcviews.BaseObservableViewMvc;
+import com.example.cthulhucompanion.screens.common.mvcviews.observable.BaseObservableViewMvc;
 import com.example.cthulhucompanion.screens.toolbar.allplayerinfo.ViewMvcToolbarAllPlayerInfo;
 
 public class ViewMvcEndOfRoundImpl extends BaseObservableViewMvc<ViewMvcEndOfRound.Listener> implements ViewMvcEndOfRound {

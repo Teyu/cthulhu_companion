@@ -7,12 +7,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/material_dynamic_neutral40"
     android:orientation="vertical">
 
-    <include layout="@layout/display_player_info_mutable"/>
-    <include layout="@layout/display_property"/>
-    <include layout="@layout/display_property"/>
-    <include layout="@layout/display_property"/>
+    <include layout="@layout/display_player_info_mutable" />
+
+    <include layout="@layout/display_property" />
+
+    <include layout="@layout/display_property" />
+
+    <include layout="@layout/display_property" />
 
     <TextView
         android:id="@+id/flavor_text_tv"

@@ -5,11 +5,13 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/material_dynamic_neutral40"
     android:orientation="vertical">
 
     <!-- contains mutable enemy items -->
     <!-- displays only attackable enemies -->
-    <include layout="@layout/list_enemy_immutable"/>
-    <include layout="@layout/frame_attack"/>
+    <include layout="@layout/list_enemy_immutable" />
+
+    <include layout="@layout/frame_attack" />
 </LinearLayout>

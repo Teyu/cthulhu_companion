@@ -4,7 +4,7 @@
 
 package com.example.cthulhucompanion.screens.investigate;
 
-import com.example.cthulhucompanion.screens.common.mvcviews.ObservableViewMvc;
+import com.example.cthulhucompanion.screens.common.mvcviews.observable.ObservableViewMvc;
 
 public interface ViewMvcInvestigate extends ObservableViewMvc<ViewMvcInvestigate.Listener> {
 

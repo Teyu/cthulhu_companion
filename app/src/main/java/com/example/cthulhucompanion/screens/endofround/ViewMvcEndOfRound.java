@@ -4,7 +4,7 @@
 
 package com.example.cthulhucompanion.screens.endofround;
 
-import com.example.cthulhucompanion.screens.common.mvcviews.ObservableViewMvc;
+import com.example.cthulhucompanion.screens.common.mvcviews.observable.ObservableViewMvc;
 
 public interface ViewMvcEndOfRound extends ObservableViewMvc<ViewMvcEndOfRound.Listener> {
 
