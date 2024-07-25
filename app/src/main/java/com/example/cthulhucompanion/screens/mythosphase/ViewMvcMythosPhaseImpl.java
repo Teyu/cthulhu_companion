@@ -8,13 +8,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toolbar;
 
 import com.example.cthulhucompanion.R;
 import com.example.cthulhucompanion.screens.common.ViewMvcFactory;
 import com.example.cthulhucompanion.screens.common.mvcviews.BaseObservableViewMvc;
+import com.example.cthulhucompanion.screens.toolbar.allplayerinfo.ViewMvcToolbarAllPlayerInfo;
 
 public class ViewMvcMythosPhaseImpl extends BaseObservableViewMvc<ViewMvcMythosPhase.Listener> implements ViewMvcMythosPhase {
 
+    private final Toolbar mToolbar;
+    private final ViewMvcToolbarAllPlayerInfo mToolbarViewMvc;
     private final Button mButtonFight;
     private final Button mButtonInvestigate;
 
@@ -22,23 +26,21 @@ public class ViewMvcMythosPhaseImpl extends BaseObservableViewMvc<ViewMvcMythosP
         setRootView(inflater.inflate(R.layout.activity_mythos_phase, parent, false));
 
         mButtonFight = this.findViewById(R.id.fight_btn);
-        mButtonFight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for (Listener listener : getListeners()){
-                    listener.OnFightClicked();
-                }
+        mButtonFight.setOnClickListener(v -> {
+            for (Listener listener : getListeners()){
+                listener.OnFightClicked();
             }
         });
 
         mButtonInvestigate = this.findViewById(R.id.next_player_btn);
-        mButtonInvestigate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for (Listener listener : getListeners()){
-                    listener.OnInvestigateClicked();
-                }
+        mButtonInvestigate.setOnClickListener(v -> {
+            for (Listener listener : getListeners()){
+                listener.OnInvestigateClicked();
             }
         });
+
+        mToolbar = this.findViewById(R.id.toolbar);
+        mToolbarViewMvc = viewMvcFactory.getViewMvcToolbarAllPlayerInfo(mToolbar);
+        mToolbar.addView(mToolbarViewMvc.getRootView());
     }
 }

@@ -5,6 +5,7 @@
 package com.example.cthulhucompanion.screens.common;
 
 import android.view.*;
+import android.widget.Toolbar;
 
 import androidx.annotation.Nullable;
 
@@ -19,6 +20,8 @@ import com.example.cthulhucompanion.screens.investigate.ViewMvcInvestigateImpl;
 import com.example.cthulhucompanion.screens.mythosphase.ViewMvcMythosPhase;
 import com.example.cthulhucompanion.screens.mythosphase.ViewMvcMythosPhaseImpl;
 import com.example.cthulhucompanion.screens.setup.ViewMvcSetUpImpl;
+import com.example.cthulhucompanion.screens.toolbar.allplayerinfo.ViewMvcToolbarAllPlayerInfo;
+import com.example.cthulhucompanion.screens.toolbar.main.ViewMvcToolbarMain;
 
 public class ViewMvcFactory {
 
@@ -50,5 +53,13 @@ public class ViewMvcFactory {
 
     public ViewMvcMythosPhase getViewMythosPhase(@Nullable ViewGroup parent) {
         return new ViewMvcMythosPhaseImpl(mLayoutInflater, parent, this);
+    }
+
+    public ViewMvcToolbarMain getViewMvcToolbarMain(ViewGroup parent) {
+        return new ViewMvcToolbarMain(mLayoutInflater, parent, this);
+    }
+
+    public ViewMvcToolbarAllPlayerInfo getViewMvcToolbarAllPlayerInfo(ViewGroup parent) {
+        return new ViewMvcToolbarAllPlayerInfo(mLayoutInflater, parent, this);
     }
 }
