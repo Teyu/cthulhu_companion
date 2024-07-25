@@ -2,13 +2,13 @@
  * Copyright 2024, Julia Michaely, All rights reserved.
  */
 
-package com.example.cthulhucompanion.screens.choosemain;
+package com.example.cthulhucompanion.screens.setup;
 
 import com.example.cthulhucompanion.screens.common.mvcviews.ObservableViewMvc;
 
-public interface ViewMvcMain extends ObservableViewMvc<ViewMvcMain.Listener> {
+public interface ViewMvcSetUp extends ObservableViewMvc<ViewMvcSetUp.Listener> {
 
     interface Listener{
-        //void example();
+        void OnFinishSetUp();
     }
 }

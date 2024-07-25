@@ -106,7 +106,7 @@
 
         <!-- buttons may be grayed out depending on wether the location is save or not and depending on properties-->
         <Button
-            android:id="@+id/investigate_btn"
+            android:id="@+id/next_player_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/navigate_to_investigate" />

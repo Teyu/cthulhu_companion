@@ -10,7 +10,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".screens.choosemain.ActivityChooseMain">
+    tools:context=".screens.setup.ActivitySetUp">
 
     <include layout="@layout/element_all_players_info_toolbar"
         android:layout_width="match_parent"
@@ -186,7 +186,7 @@
             android:layout_weight="1">
 
             <Button
-                android:id="@+id/continue_button"
+                android:id="@+id/continue_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
                 android:layout_weight="1"

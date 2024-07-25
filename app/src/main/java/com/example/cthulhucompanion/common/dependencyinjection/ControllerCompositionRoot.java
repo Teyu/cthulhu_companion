@@ -9,7 +9,12 @@ import android.view.LayoutInflater;
 
 import androidx.fragment.app.FragmentActivity;
 
-import com.example.cthulhucompanion.screens.choosemain.ControllerChooseMain;
+import com.example.cthulhucompanion.screens.chooseaction.ControllerChooseAction;
+import com.example.cthulhucompanion.screens.endofround.ControllerEndOfRound;
+import com.example.cthulhucompanion.screens.fight.ControllerFight;
+import com.example.cthulhucompanion.screens.investigate.ControllerInvestigate;
+import com.example.cthulhucompanion.screens.mythosphase.ControllerMythosPhase;
+import com.example.cthulhucompanion.screens.setup.ControllerSetUp;
 import com.example.cthulhucompanion.screens.common.ViewMvcFactory;
 import com.example.cthulhucompanion.screens.common.screensnavigator.ScreensNavigator;
 
@@ -47,8 +52,28 @@ public class ControllerCompositionRoot {
 
     /** ------------------------------------- controllers ------------------------------------- **/
 
-    public ControllerChooseMain getControllerMain(ScreensNavigator screensNavigator){
-        return new ControllerChooseMain(screensNavigator, getContext());
+    public ControllerSetUp getControllerSetUp(ScreensNavigator screensNavigator){
+        return new ControllerSetUp(screensNavigator, getContext());
+    }
+
+    public ControllerChooseAction getControllerChooseAction(ScreensNavigator screensNavigator) {
+        return new ControllerChooseAction(screensNavigator, getContext());
+    }
+
+    public ControllerEndOfRound getControllerEndOfRound(ScreensNavigator screensNavigator) {
+        return new ControllerEndOfRound(screensNavigator, getContext());
+    }
+
+    public ControllerFight getControllerFight(ScreensNavigator screensNavigator) {
+        return new ControllerFight(screensNavigator, getContext());
+    }
+
+    public ControllerInvestigate getControllerInvestigate(ScreensNavigator screensNavigator) {
+        return new ControllerInvestigate(screensNavigator, getContext());
+    }
+
+    public ControllerMythosPhase getControllerMythosPhase(ScreensNavigator screensNavigator) {
+        return new ControllerMythosPhase(screensNavigator, getContext());
     }
 
     /* ------------------------------------- use cases ------------------------------------- **/

@@ -2,7 +2,7 @@
  * Copyright 2024, Julia Michaely, All rights reserved.
  */
 
-package com.example.cthulhucompanion.screens.choosemain;
+package com.example.cthulhucompanion.screens.investigate;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -12,37 +12,37 @@ import com.example.cthulhucompanion.screens.common.BaseActivity;
 
 import java.util.Objects;
 
-public class ActivityChooseMain extends BaseActivity {
+public class ActivityInvestigate extends BaseActivity {
 
-    private ControllerChooseMain mControllerWelcome;
+    private ControllerInvestigate mControllerInvestigate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_set_up);
+        setContentView(R.layout.activity_investigate);
 
-        ViewMvcMain viewMvcMain = getCompositionRoot().getViewMvcFactory().getViewMvcMain(null);
+        ViewMvcInvestigate viewMvcInvestigate = getCompositionRoot().getViewMvcFactory().getViewMvcInvestigate(null);
 
         try {
-            mControllerWelcome = getCompositionRoot().getControllerMain(
+            mControllerInvestigate = getCompositionRoot().getControllerInvestigate(
                     getCompositionRoot().getScreensNavigator());
         } catch (Exception e) {
             Log.i("ERROR", Objects.requireNonNull(e.getMessage()));
         }
 
-        mControllerWelcome.bindView(viewMvcMain);
-        setContentView(viewMvcMain.getRootView());
+        mControllerInvestigate.bindView(viewMvcInvestigate);
+        setContentView(viewMvcInvestigate.getRootView());
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        mControllerWelcome.onStart();
+        mControllerInvestigate.onStart();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        mControllerWelcome.onStop();
+        mControllerInvestigate.onStop();
     }
 }
