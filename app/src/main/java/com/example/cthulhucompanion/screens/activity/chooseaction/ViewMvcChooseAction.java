@@ -11,6 +11,9 @@ public interface ViewMvcChooseAction extends ObservableViewMvc<ViewMvcChooseActi
     interface Listener{
         void OnContinueClicked();
         void onMoveButtonClicked();
+        void onAttackButtonClicked();
+        void onRestButtonClicked();
+        void onTradeButtonClicked();
     }
 
 

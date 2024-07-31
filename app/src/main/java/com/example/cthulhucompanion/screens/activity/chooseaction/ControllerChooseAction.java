@@ -49,4 +49,19 @@ public class ControllerChooseAction implements ViewMvcChooseAction.Listener{
     public void onMoveButtonClicked() {
         mFragmentNavigator.displayFragmentMove(null);
     }
+
+    @Override
+    public void onAttackButtonClicked() {
+        mFragmentNavigator.displayFragmentAttack(null);
+    }
+
+    @Override
+    public void onRestButtonClicked() {
+        mFragmentNavigator.displayFragmentRest(null);
+    }
+
+    @Override
+    public void onTradeButtonClicked() {
+        mFragmentNavigator.displayFragmentTrade(null);
+    }
 }

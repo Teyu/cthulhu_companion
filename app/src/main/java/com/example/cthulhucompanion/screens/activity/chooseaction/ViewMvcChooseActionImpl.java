@@ -23,15 +23,7 @@ public class ViewMvcChooseActionImpl extends BaseObservableViewMvc<ViewMvcChoose
     private final Toolbar mToolbar;
     private final ViewMvcToolbarAllPlayerInfo mToolbarViewMvc;
     private final Button mButtonContinue;
-    private final ViewMvcMove mMoveViewMvc;
-    private final ImageButton mButtonMove;
-    private final FrameLayout mFrameInclude;
-
-    /*private final PopUpViewMvc mPlayerInfoViewMvc;
-    private final ImageButton mButtonPlayerInfo;
-
-    private final ImageButton mAttackButton, mRestButton, mTradeButton, mMoveButton;
-    private final PopUpViewMvc mAttackViewMvc, mRestViewMvc, mTradeViewMvc, mMoveViewMvc;*/
+    private final ImageButton mButtonAttack, mButtonMove, mButtonRest, mButtonTrade;
 
     public ViewMvcChooseActionImpl(LayoutInflater inflater, ViewGroup parent, ViewMvcFactory viewMvcFactory){
         setRootView(inflater.inflate(R.layout.activity_choose_action, parent, false));
@@ -50,14 +42,32 @@ public class ViewMvcChooseActionImpl extends BaseObservableViewMvc<ViewMvcChoose
             }
         });
 
+        mButtonAttack = this.findViewById(R.id.attack_btn);
+        mButtonAttack.setOnClickListener(v -> {
+            for (Listener listener : getListeners()) {
+                listener.onAttackButtonClicked();
+            }
+        });
+
+        mButtonRest = this.findViewById(R.id.rest_btn);
+        mButtonRest.setOnClickListener(v -> {
+            for (Listener listener : getListeners()){
+                listener.onRestButtonClicked();
+            }
+        });
+
+        mButtonTrade = this.findViewById(R.id.trade_btn);
+        mButtonTrade.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (Listener listener : getListeners()){
+                    listener.onTradeButtonClicked();
+                }
+            }
+        });
+
         mToolbar = this.findViewById(R.id.toolbar);
         mToolbarViewMvc = viewMvcFactory.getViewMvcToolbarAllPlayerInfo(mToolbar);
         mToolbar.addView(mToolbarViewMvc.getRootView());
-
-        mFrameInclude = this.findViewById(R.id.include);
-        mMoveViewMvc = viewMvcFactory.getViewMvcMove(mFrameInclude);
-        mFrameInclude.addView(mMoveViewMvc.getRootView());
-
-
     }
 }

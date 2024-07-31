@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.cthulhucompanion.screens.common.fragmentnavigator.FragmentFrameWrapper;
 import com.example.cthulhucompanion.screens.common.fragmentnavigator.FragmentNavigator;
+import com.example.cthulhucompanion.screens.fragments.attack.ControllerAttack;
 import com.example.cthulhucompanion.screens.fragments.move.ControllerMove;
 import com.example.cthulhucompanion.screens.activity.chooseaction.ControllerChooseAction;
 import com.example.cthulhucompanion.screens.activity.endofround.ControllerEndOfRound;
@@ -21,6 +22,8 @@ import com.example.cthulhucompanion.screens.activity.mythosphase.ControllerMytho
 import com.example.cthulhucompanion.screens.activity.setup.ControllerSetUp;
 import com.example.cthulhucompanion.screens.common.ViewMvcFactory;
 import com.example.cthulhucompanion.screens.common.screensnavigator.ScreensNavigator;
+import com.example.cthulhucompanion.screens.fragments.rest.ControllerRest;
+import com.example.cthulhucompanion.screens.fragments.trade.ControllerTrade;
 
 public class ControllerCompositionRoot {
 
@@ -52,6 +55,10 @@ public class ControllerCompositionRoot {
 
     public ScreensNavigator getScreensNavigator() {
         return new ScreensNavigator(getContext());
+    }
+
+    public FragmentNavigator getFragmentNavigator() {
+        return new FragmentNavigator(getFragmentManager(), (FragmentFrameWrapper) getActivity());
     }
 
     public FragmentManager getFragmentManager() {
@@ -88,8 +95,16 @@ public class ControllerCompositionRoot {
         return new ControllerMove(getContext());
     }
 
-    public FragmentNavigator getFragmentNavigator() {
-        return new FragmentNavigator(getActivity().getSupportFragmentManager(), (FragmentFrameWrapper) getActivity());
+    public ControllerAttack getControllerAttack() {
+        return new ControllerAttack(getContext());
+    }
+
+    public ControllerRest getControllerRest() {
+        return new ControllerRest(getContext());
+    }
+
+    public ControllerTrade getControllerTrade() {
+        return new ControllerTrade(getContext());
     }
 
     /* ------------------------------------- use cases ------------------------------------- **/
