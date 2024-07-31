@@ -10,7 +10,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".screens.setup.ActivitySetUp">
+    tools:context=".screens.activity.setup.ActivitySetUp">
 
     <include layout="@layout/element_all_players_info_toolbar"
         android:layout_width="match_parent"

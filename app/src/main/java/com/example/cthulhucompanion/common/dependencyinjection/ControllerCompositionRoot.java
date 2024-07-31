@@ -8,13 +8,15 @@ import android.content.Context;
 import android.view.LayoutInflater;
 
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
-import com.example.cthulhucompanion.screens.chooseaction.ControllerChooseAction;
-import com.example.cthulhucompanion.screens.endofround.ControllerEndOfRound;
-import com.example.cthulhucompanion.screens.fight.ControllerFight;
-import com.example.cthulhucompanion.screens.investigate.ControllerInvestigate;
-import com.example.cthulhucompanion.screens.mythosphase.ControllerMythosPhase;
-import com.example.cthulhucompanion.screens.setup.ControllerSetUp;
+import com.example.cthulhucompanion.screens.fragments.move.ControllerMove;
+import com.example.cthulhucompanion.screens.activity.chooseaction.ControllerChooseAction;
+import com.example.cthulhucompanion.screens.activity.endofround.ControllerEndOfRound;
+import com.example.cthulhucompanion.screens.activity.fight.ControllerFight;
+import com.example.cthulhucompanion.screens.activity.investigate.ControllerInvestigate;
+import com.example.cthulhucompanion.screens.activity.mythosphase.ControllerMythosPhase;
+import com.example.cthulhucompanion.screens.activity.setup.ControllerSetUp;
 import com.example.cthulhucompanion.screens.common.ViewMvcFactory;
 import com.example.cthulhucompanion.screens.common.screensnavigator.ScreensNavigator;
 
@@ -50,6 +52,10 @@ public class ControllerCompositionRoot {
         return new ScreensNavigator(getContext());
     }
 
+    public FragmentManager getFragmentManager() {
+        return getActivity().getSupportFragmentManager();
+    }
+
     /** ------------------------------------- controllers ------------------------------------- **/
 
     public ControllerSetUp getControllerSetUp(ScreensNavigator screensNavigator){
@@ -74,6 +80,10 @@ public class ControllerCompositionRoot {
 
     public ControllerMythosPhase getControllerMythosPhase(ScreensNavigator screensNavigator) {
         return new ControllerMythosPhase(screensNavigator, getContext());
+    }
+
+    public ControllerMove getControllerMove() {
+        return new ControllerMove(getContext());
     }
 
     /* ------------------------------------- use cases ------------------------------------- **/

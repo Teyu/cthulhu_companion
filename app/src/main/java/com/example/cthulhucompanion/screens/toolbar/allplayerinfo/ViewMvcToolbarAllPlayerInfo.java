@@ -9,15 +9,15 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import com.example.cthulhucompanion.R;
-import com.example.cthulhucompanion.screens.chooseaction.ViewMvcChooseAction;
+import com.example.cthulhucompanion.screens.activity.chooseaction.ViewMvcChooseAction;
 import com.example.cthulhucompanion.screens.common.ViewMvcFactory;
 import com.example.cthulhucompanion.screens.common.mvcviews.observable.BaseObservableViewMvc;
-import com.example.cthulhucompanion.screens.common.mvcviews.popup.PopUpViewMvc;
+import com.example.cthulhucompanion.screens.popup.common.ViewMvc;
 
 public class ViewMvcToolbarAllPlayerInfo extends BaseObservableViewMvc<ViewMvcChooseAction.Listener> implements ViewMvcChooseAction {
 
     private final ImageButton mPlayerInfoButton1, mPlayerInfoButton2, mPlayerInfoButton3, mPlayerInfoButton4;
-    private final PopUpViewMvc mPlayerInfoViewMvc;
+    private final ViewMvc mPlayerInfoViewMvc;
 
     public ViewMvcToolbarAllPlayerInfo(LayoutInflater inflater, ViewGroup parent, ViewMvcFactory viewMvcFactory){
         setRootView(inflater.inflate(R.layout.toolbar_all_players_info, parent, false));

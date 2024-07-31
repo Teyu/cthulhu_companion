@@ -9,11 +9,11 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 
-import com.example.cthulhucompanion.screens.chooseaction.ActivityChooseAction;
-import com.example.cthulhucompanion.screens.endofround.ActivityEndOfRound;
-import com.example.cthulhucompanion.screens.fight.ActivityFight;
-import com.example.cthulhucompanion.screens.investigate.ActivityInvestigate;
-import com.example.cthulhucompanion.screens.mythosphase.ActivityMythosPhase;
+import com.example.cthulhucompanion.screens.activity.chooseaction.ActivityChooseAction;
+import com.example.cthulhucompanion.screens.activity.endofround.ActivityEndOfRound;
+import com.example.cthulhucompanion.screens.activity.fight.ActivityFight;
+import com.example.cthulhucompanion.screens.activity.investigate.ActivityInvestigate;
+import com.example.cthulhucompanion.screens.activity.mythosphase.ActivityMythosPhase;
 
 public class ScreensNavigator {
 

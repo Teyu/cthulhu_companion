@@ -4,9 +4,9 @@ import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 
 import com.example.cthulhucompanion.R;
-import com.example.cthulhucompanion.screens.common.mvcviews.popup.BasePopUpViewMvc;
+import com.example.cthulhucompanion.screens.popup.common.BaseViewMvc;
 
-public class ViewMvcCardsImpl extends BasePopUpViewMvc {
+public class ViewMvcCardsImpl extends BaseViewMvc {
 
     @SuppressLint("InflateParams")
     public ViewMvcCardsImpl(LayoutInflater inflater){

@@ -1,17 +1,12 @@
-package com.example.cthulhucompanion.screens.settings;
+package com.example.cthulhucompanion.screens.popup.common;
 
-import android.view.LayoutInflater;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupWindow;
 
-import com.example.cthulhucompanion.screens.common.mvcviews.BaseViewMvc;
+public class BaseViewMvc extends com.example.cthulhucompanion.screens.common.mvcviews.BaseViewMvc implements ViewMvc {
 
-public class ViewMvcSettingsImpl extends BaseViewMvc implements ViewMvcSettings {
-
-    public ViewMvcSettingsImpl(LayoutInflater inflater){
-        //setRootView(inflater.inflate(R.layout.settings, null, false));
-    }
     @Override
     public void bindAnchorView(View view) {
         view.setOnClickListener(v -> {
@@ -21,7 +16,7 @@ public class ViewMvcSettingsImpl extends BaseViewMvc implements ViewMvcSettings 
                     ViewGroup.LayoutParams.WRAP_CONTENT);
             popupWindow.setOutsideTouchable(true);
             popupWindow.setFocusable(true);
-            //popupWindow.showAsDropDown(view);
+            popupWindow.showAtLocation(getRootView(), Gravity.CENTER, 0, 0);
         });
     }
 }

@@ -8,17 +8,18 @@ import android.view.*;
 
 import androidx.annotation.Nullable;
 
-import com.example.cthulhucompanion.screens.chooseaction.ViewMvcChooseAction;
-import com.example.cthulhucompanion.screens.chooseaction.ViewMvcChooseActionImpl;
-import com.example.cthulhucompanion.screens.common.mvcviews.popup.PopUpViewMvc;
-import com.example.cthulhucompanion.screens.endofround.ViewMvcEndOfRound;
-import com.example.cthulhucompanion.screens.endofround.ViewMvcEndOfRoundImpl;
-import com.example.cthulhucompanion.screens.fight.ViewMvcFight;
-import com.example.cthulhucompanion.screens.fight.ViewMvcFightImpl;
-import com.example.cthulhucompanion.screens.investigate.ViewMvcInvestigate;
-import com.example.cthulhucompanion.screens.investigate.ViewMvcInvestigateImpl;
-import com.example.cthulhucompanion.screens.mythosphase.ViewMvcMythosPhase;
-import com.example.cthulhucompanion.screens.mythosphase.ViewMvcMythosPhaseImpl;
+import com.example.cthulhucompanion.screens.fragments.move.ViewMvcMove;
+import com.example.cthulhucompanion.screens.activity.chooseaction.ViewMvcChooseAction;
+import com.example.cthulhucompanion.screens.activity.chooseaction.ViewMvcChooseActionImpl;
+import com.example.cthulhucompanion.screens.popup.common.ViewMvc;
+import com.example.cthulhucompanion.screens.activity.endofround.ViewMvcEndOfRound;
+import com.example.cthulhucompanion.screens.activity.endofround.ViewMvcEndOfRoundImpl;
+import com.example.cthulhucompanion.screens.activity.fight.ViewMvcFight;
+import com.example.cthulhucompanion.screens.activity.fight.ViewMvcFightImpl;
+import com.example.cthulhucompanion.screens.activity.investigate.ViewMvcInvestigate;
+import com.example.cthulhucompanion.screens.activity.investigate.ViewMvcInvestigateImpl;
+import com.example.cthulhucompanion.screens.activity.mythosphase.ViewMvcMythosPhase;
+import com.example.cthulhucompanion.screens.activity.mythosphase.ViewMvcMythosPhaseImpl;
 import com.example.cthulhucompanion.screens.popup.ViewMvcAddPlayerImpl;
 import com.example.cthulhucompanion.screens.popup.ViewMvcAttackImpl;
 import com.example.cthulhucompanion.screens.popup.ViewMvcCardsImpl;
@@ -27,7 +28,7 @@ import com.example.cthulhucompanion.screens.popup.ViewMvcPlayerInfoImpl;
 import com.example.cthulhucompanion.screens.popup.ViewMvcRestImpl;
 import com.example.cthulhucompanion.screens.popup.ViewMvcSummonEnemyImpl;
 import com.example.cthulhucompanion.screens.popup.ViewMvcTradeImpl;
-import com.example.cthulhucompanion.screens.setup.ViewMvcSetUpImpl;
+import com.example.cthulhucompanion.screens.activity.setup.ViewMvcSetUpImpl;
 import com.example.cthulhucompanion.screens.toolbar.allplayerinfo.ViewMvcToolbarAllPlayerInfo;
 import com.example.cthulhucompanion.screens.toolbar.main.ViewMvcToolbarMain;
 
@@ -71,35 +72,39 @@ public class ViewMvcFactory {
         return new ViewMvcToolbarAllPlayerInfo(mLayoutInflater, parent, this);
     }
 
-    public PopUpViewMvc getViewMvcAddPlayer() {
+    public ViewMvc getViewMvcAddPlayer() {
         return new ViewMvcAddPlayerImpl(mLayoutInflater);
     }
 
-    public PopUpViewMvc getViewMvcPlayerInfo() {
+    public ViewMvc getViewMvcPlayerInfo() {
         return new ViewMvcPlayerInfoImpl(mLayoutInflater, this);
     }
 
-    public PopUpViewMvc getViewMvcCards() {
+    public ViewMvc getViewMvcCards() {
         return new ViewMvcCardsImpl(mLayoutInflater);
     }
 
-    public PopUpViewMvc getViewMvcAttack() {
+    public ViewMvc getViewMvcAttack() {
         return new ViewMvcAttackImpl(mLayoutInflater);
     }
 
-    public PopUpViewMvc getViewMvcRest() {
+    public ViewMvc getViewMvcRest() {
         return new ViewMvcRestImpl(mLayoutInflater);
     }
 
-    public PopUpViewMvc getViewMvcTrade() {
+    public ViewMvc getViewMvcTrade() {
         return new ViewMvcTradeImpl(mLayoutInflater);
     }
 
-    public PopUpViewMvc getViewMvcMove() {
+    public ViewMvc getViewMvcPopupMove() {
         return new ViewMvcMoveImpl(mLayoutInflater);
     }
 
-    public PopUpViewMvc getViewMvcSummonEnemy() {
+    public ViewMvcMove getViewMvcMove(ViewGroup parent) {
+        return new com.example.cthulhucompanion.screens.fragments.move.ViewMvcMoveImpl(mLayoutInflater, parent, this);
+    }
+
+    public ViewMvc getViewMvcSummonEnemy() {
         return new ViewMvcSummonEnemyImpl(mLayoutInflater);
     }
 }

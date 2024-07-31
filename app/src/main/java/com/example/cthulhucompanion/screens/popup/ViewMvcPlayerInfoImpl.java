@@ -1,23 +1,18 @@
 package com.example.cthulhucompanion.screens.popup;
 
 import android.annotation.SuppressLint;
-import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.PopupWindow;
 
 import com.example.cthulhucompanion.R;
 import com.example.cthulhucompanion.screens.common.ViewMvcFactory;
-import com.example.cthulhucompanion.screens.common.mvcviews.BaseViewMvc;
-import com.example.cthulhucompanion.screens.common.mvcviews.popup.BasePopUpViewMvc;
-import com.example.cthulhucompanion.screens.common.mvcviews.popup.PopUpViewMvc;
+import com.example.cthulhucompanion.screens.popup.common.BaseViewMvc;
+import com.example.cthulhucompanion.screens.popup.common.ViewMvc;
 
-public class ViewMvcPlayerInfoImpl extends BasePopUpViewMvc {
+public class ViewMvcPlayerInfoImpl extends BaseViewMvc {
 
     private final ImageButton mViewCardsButton;
-    private final PopUpViewMvc mCardsViewMvc;
+    private final ViewMvc mCardsViewMvc;
 
     @SuppressLint("InflateParams")
     public ViewMvcPlayerInfoImpl(LayoutInflater inflater, ViewMvcFactory viewMvcFactory){
