@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.cthulhucompanion.screens.common.fragmentnavigator.FragmentFrameWrapper;
+import com.example.cthulhucompanion.screens.common.fragmentnavigator.FragmentNavigator;
 import com.example.cthulhucompanion.screens.fragments.move.ControllerMove;
 import com.example.cthulhucompanion.screens.activity.chooseaction.ControllerChooseAction;
 import com.example.cthulhucompanion.screens.activity.endofround.ControllerEndOfRound;
@@ -62,8 +64,8 @@ public class ControllerCompositionRoot {
         return new ControllerSetUp(screensNavigator, getContext());
     }
 
-    public ControllerChooseAction getControllerChooseAction(ScreensNavigator screensNavigator) {
-        return new ControllerChooseAction(screensNavigator, getContext());
+    public ControllerChooseAction getControllerChooseAction(ScreensNavigator screensNavigator, FragmentNavigator fragmentNavigator) {
+        return new ControllerChooseAction(screensNavigator, fragmentNavigator, getContext());
     }
 
     public ControllerEndOfRound getControllerEndOfRound(ScreensNavigator screensNavigator) {
@@ -84,6 +86,10 @@ public class ControllerCompositionRoot {
 
     public ControllerMove getControllerMove() {
         return new ControllerMove(getContext());
+    }
+
+    public FragmentNavigator getFragmentNavigator() {
+        return new FragmentNavigator(getActivity().getSupportFragmentManager(), (FragmentFrameWrapper) getActivity());
     }
 
     /* ------------------------------------- use cases ------------------------------------- **/

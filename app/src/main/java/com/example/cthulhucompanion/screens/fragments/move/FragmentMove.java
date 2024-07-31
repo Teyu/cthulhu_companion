@@ -6,12 +6,9 @@ package com.example.cthulhucompanion.screens.fragments.move;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import androidx.annotation.*;
 
 import com.example.cthulhucompanion.screens.fragments.common.BaseFragment;
 
@@ -20,17 +17,6 @@ import java.util.Objects;
 public class FragmentMove extends BaseFragment {
 
     private ControllerMove mControllerMove;
-
-    public static FragmentMove getInstance(Object arg) {
-        /* example:
-        Bundle args = new Bundle();
-        int id_constant = 123; //replace!!
-        args.put ... (id_constant, arg); */
-        FragmentMove fragment = FragmentMove.getInstance(null);
-        //fragment.setArguments(args); --> arguments can be accessed via getArguments;
-        return fragment;
-    }
-
 
     @Nullable
     @Override
@@ -60,5 +46,4 @@ public class FragmentMove extends BaseFragment {
         super.onStop();
         mControllerMove.onStop();
     }
-
 }

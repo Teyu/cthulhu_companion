@@ -181,7 +181,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/fight_finish_round_btn"
+        android:id="@+id/mythos_phase_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/navigate_to_mythos_phase" />

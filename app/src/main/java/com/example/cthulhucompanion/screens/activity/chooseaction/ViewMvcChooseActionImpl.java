@@ -5,9 +5,11 @@
 package com.example.cthulhucompanion.screens.activity.chooseaction;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.Toolbar;
 
 import com.example.cthulhucompanion.R;
@@ -22,6 +24,7 @@ public class ViewMvcChooseActionImpl extends BaseObservableViewMvc<ViewMvcChoose
     private final ViewMvcToolbarAllPlayerInfo mToolbarViewMvc;
     private final Button mButtonContinue;
     private final ViewMvcMove mMoveViewMvc;
+    private final ImageButton mButtonMove;
     private final FrameLayout mFrameInclude;
 
     /*private final PopUpViewMvc mPlayerInfoViewMvc;
@@ -33,10 +36,17 @@ public class ViewMvcChooseActionImpl extends BaseObservableViewMvc<ViewMvcChoose
     public ViewMvcChooseActionImpl(LayoutInflater inflater, ViewGroup parent, ViewMvcFactory viewMvcFactory){
         setRootView(inflater.inflate(R.layout.activity_choose_action, parent, false));
 
-        mButtonContinue = this.findViewById(R.id.fight_finish_round_btn);
+        mButtonContinue = this.findViewById(R.id.mythos_phase_btn);
         mButtonContinue.setOnClickListener(v -> {
             for (Listener listener : getListeners()){
                 listener.OnContinueClicked();
+            }
+        });
+
+        mButtonMove = this.findViewById(R.id.move_btn);
+        mButtonMove.setOnClickListener(v -> {
+            for (Listener listener : getListeners()){
+                listener.onMoveButtonClicked();
             }
         });
 
@@ -48,23 +58,6 @@ public class ViewMvcChooseActionImpl extends BaseObservableViewMvc<ViewMvcChoose
         mMoveViewMvc = viewMvcFactory.getViewMvcMove(mFrameInclude);
         mFrameInclude.addView(mMoveViewMvc.getRootView());
 
-        /*mButtonPlayerInfo = this.findViewById(R.id.avatar_btn);
-        mPlayerInfoViewMvc = viewMvcFactory.getViewMvcPlayerInfo();
-        mPlayerInfoViewMvc.bindAnchorView(mButtonPlayerInfo);
 
-        mAttackButton = this.findViewById(R.id.attack_btn);
-        mRestButton = this.findViewById(R.id.rest_btn);
-        mTradeButton = this.findViewById(R.id.trade_btn);
-        mMoveButton = this.findViewById(R.id.move_btn);
-
-        mAttackViewMvc = viewMvcFactory.getViewMvcAttack();
-        mRestViewMvc = viewMvcFactory.getViewMvcRest();
-        mTradeViewMvc = viewMvcFactory.getViewMvcTrade();
-        mMoveViewMvc = viewMvcFactory.getViewMvcMove();
-
-        mAttackViewMvc.bindAnchorView(mAttackButton);
-        mRestViewMvc.bindAnchorView(mRestButton);
-        mTradeViewMvc.bindAnchorView(mTradeButton);
-        mMoveViewMvc.bindAnchorView(mMoveButton);*/
     }
 }

@@ -22,7 +22,7 @@ public class ViewMvcFightImpl extends BaseObservableViewMvc<ViewMvcFight.Listene
     public ViewMvcFightImpl(LayoutInflater inflater, ViewGroup parent, ViewMvcFactory viewMvcFactory){
         setRootView(inflater.inflate(R.layout.activity_fight, parent, false));
 
-        this.mButtonContinue = findViewById(R.id.fight_finish_round_btn);
+        this.mButtonContinue = findViewById(R.id.mythos_phase_btn);
         mButtonContinue.setOnClickListener(v -> {
             for (Listener listener : getListeners()) {
                 listener.OnContinueClicked();

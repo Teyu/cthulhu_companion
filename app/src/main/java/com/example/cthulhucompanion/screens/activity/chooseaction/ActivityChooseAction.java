@@ -6,33 +6,37 @@ package com.example.cthulhucompanion.screens.activity.chooseaction;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.FrameLayout;
 
 import com.example.cthulhucompanion.R;
 import com.example.cthulhucompanion.screens.common.BaseActivity;
+import com.example.cthulhucompanion.screens.common.fragmentnavigator.FragmentFrameWrapper;
 
 import java.util.Objects;
 
 
-public class ActivityChooseAction extends BaseActivity {
+public class ActivityChooseAction extends BaseActivity implements FragmentFrameWrapper {
 
     private ControllerChooseAction mControllerChooseAction;
+    private ViewMvcChooseAction mViewMvcChooseAction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_action);
 
-        ViewMvcChooseAction viewMvcChooseAction = getCompositionRoot().getViewMvcFactory().getViewMvcChooseAction(null);
+        mViewMvcChooseAction = getCompositionRoot().getViewMvcFactory().getViewMvcChooseAction(null);
 
         try {
             mControllerChooseAction = getCompositionRoot().getControllerChooseAction(
-                    getCompositionRoot().getScreensNavigator());
+                    getCompositionRoot().getScreensNavigator(),
+                    getCompositionRoot().getFragmentNavigator());
         } catch (Exception e) {
             Log.i("ERROR", Objects.requireNonNull(e.getMessage()));
         }
 
-        mControllerChooseAction.bindView(viewMvcChooseAction);
-        setContentView(viewMvcChooseAction.getRootView());
+        mControllerChooseAction.bindView(mViewMvcChooseAction);
+        setContentView(mViewMvcChooseAction.getRootView());
     }
 
     @Override
@@ -45,5 +49,10 @@ public class ActivityChooseAction extends BaseActivity {
     protected void onStop() {
         super.onStop();
         mControllerChooseAction.onStop();
+    }
+
+    @Override
+    public FrameLayout getFragmentFrame() {
+        return (FrameLayout) mViewMvcChooseAction.getRootView().findViewById(R.id.include);
     }
 }
