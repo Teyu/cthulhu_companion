@@ -9,21 +9,22 @@ import android.content.Context;
 import com.example.cthulhucompanion.screens.common.fragmentnavigator.FragmentNavigator;
 import com.example.cthulhucompanion.screens.common.screensnavigator.ScreensNavigator;
 import com.example.cthulhucompanion.screens.fragments.move.ControllerMove;
-import com.example.cthulhucompanion.screens.fragments.move.ViewMvcMove;
+
+import java.io.Serializable;
 
 public class ControllerChooseAction implements ViewMvcChooseAction.Listener{
-
+    private SavedState mScreenState;
     private final ScreensNavigator mScreensNavigator;
     private final FragmentNavigator mFragmentNavigator;
     private final Context mContext;
 
     private ViewMvcChooseAction mViewMvcChooseAction;
-    private ControllerMove mControllerMove;
 
     public ControllerChooseAction(ScreensNavigator screensNavigator, FragmentNavigator fragmentNavigator, Context context) {
         this.mScreensNavigator = screensNavigator;
         this.mContext = context;
         this.mFragmentNavigator = fragmentNavigator;
+        this.mScreenState = new SavedState();
     }
 
     void onStart() {
@@ -70,6 +71,31 @@ public class ControllerChooseAction implements ViewMvcChooseAction.Listener{
         //TODO: confirm action
         if (mViewMvcChooseAction.canAddFloatingActionButton()) {
             mViewMvcChooseAction.addFloatingActionButton();
+
+            switch(mScreenState.getState()){
+                case ONE_ACTION_BUTTON_SHOWN:
+                    mScreenState.setState(SavedState.ScreenState.TWO_ACTION_BUTTONS_SHOWN);
+                    break;
+                case TWO_ACTION_BUTTONS_SHOWN:
+                    mScreenState.setState(SavedState.ScreenState.THREE_ACTION_BUTTONS_SHOWN);
+                    break;
+            }
+        }
+    }
+
+    public Serializable getScreenState() {
+        return mScreenState;
+    }
+
+    public void restoreScreenState(Serializable screenState) {
+        mScreenState = (SavedState) screenState;
+        switch (mScreenState.getState()){
+            case ONE_ACTION_BUTTON_SHOWN:
+                break;
+            case TWO_ACTION_BUTTONS_SHOWN:
+                mViewMvcChooseAction.addFloatingActionButton();
+            case THREE_ACTION_BUTTONS_SHOWN:
+                mViewMvcChooseAction.addFloatingActionButton();
         }
     }
 }

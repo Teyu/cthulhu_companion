@@ -31,17 +31,6 @@
     <include layout="@layout/display_great_old_info_immutable"/>
     <include layout="@layout/list_enemy_immutable"/>
 
-    <include layout="@layout/display_player_info_immutable" />
-
-    <TextView
-        android:id="@+id/attack_info_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/enemies_attack_reminder" />
-
-    <include layout="@layout/list_enemy_immutable" />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -54,6 +43,15 @@
             android:orientation="vertical">
 
             <!-- clicking on an enemy will display the appropriate content down below -->
+
+            <TextView
+                android:id="@+id/attack_info_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/enemies_attack_reminder" />
+
+            <include layout="@layout/list_enemy_immutable" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/dice_list"

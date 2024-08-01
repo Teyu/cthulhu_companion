@@ -19,16 +19,16 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
 
     private final Toolbar mToolbar;
     private final ViewMvcToolbarMain mToolbarViewMvc;
-    private final ViewMvc mAddPlayerViewMvc;
-    private final ImageButton mAddPlayerButton;
+    //private final ViewMvc mAddPlayerViewMvc;
+    //private final ImageButton mAddPlayerButton;
     private final Button mButtonContinue;
 
     public ViewMvcSetUpImpl(LayoutInflater inflater, ViewGroup parent, ViewMvcFactory viewMvcFactory){
         setRootView(inflater.inflate(R.layout.activity_set_up, parent, false));
 
-        mAddPlayerButton = this.findViewById(R.id.add_player_btn);
+        /*mAddPlayerButton = this.findViewById(R.id.add_player_btn);
         mAddPlayerViewMvc = viewMvcFactory.getViewMvcAddPlayer();
-        mAddPlayerViewMvc.bindAnchorView(mAddPlayerButton);
+        mAddPlayerViewMvc.bindAnchorView(mAddPlayerButton);*/
 
         mButtonContinue = this.findViewById(R.id.continue_btn);
         mButtonContinue.setOnClickListener(v -> {

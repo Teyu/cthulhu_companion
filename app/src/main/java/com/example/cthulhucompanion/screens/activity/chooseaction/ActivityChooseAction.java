@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.FrameLayout;
 
+import androidx.annotation.NonNull;
+
 import com.example.cthulhucompanion.R;
 import com.example.cthulhucompanion.screens.common.BaseActivity;
 import com.example.cthulhucompanion.screens.common.fragmentnavigator.FragmentFrameWrapper;
@@ -16,6 +18,8 @@ import java.util.Objects;
 
 
 public class ActivityChooseAction extends BaseActivity implements FragmentFrameWrapper {
+
+    private static final String ARG_SCREEN_STATE = "screen_state";
 
     private ControllerChooseAction mControllerChooseAction;
     private ViewMvcChooseAction mViewMvcChooseAction;
@@ -37,6 +41,15 @@ public class ActivityChooseAction extends BaseActivity implements FragmentFrameW
 
         mControllerChooseAction.bindView(mViewMvcChooseAction);
         setContentView(mViewMvcChooseAction.getRootView());
+
+        if(savedInstanceState != null){
+            mControllerChooseAction.restoreScreenState(savedInstanceState.getSerializable(ARG_SCREEN_STATE));
+        }
+    }
+
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable(ARG_SCREEN_STATE,mControllerChooseAction.getScreenState());
     }
 
     @Override
@@ -53,6 +66,6 @@ public class ActivityChooseAction extends BaseActivity implements FragmentFrameW
 
     @Override
     public FrameLayout getFragmentFrame() {
-        return (FrameLayout) mViewMvcChooseAction.getRootView().findViewById(R.id.include);
+        return mViewMvcChooseAction.getRootView().findViewById(R.id.include);
     }
 }
