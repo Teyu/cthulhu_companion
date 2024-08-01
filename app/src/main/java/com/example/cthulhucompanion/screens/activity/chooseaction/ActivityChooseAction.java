@@ -19,7 +19,7 @@ import java.util.Objects;
 
 public class ActivityChooseAction extends BaseActivity implements FragmentFrameWrapper {
 
-    private static final String ARG_SCREEN_STATE = "screen_state";
+    private static final String ARG_SAVED_STATE = "saved_state";
 
     private ControllerChooseAction mControllerChooseAction;
     private ViewMvcChooseAction mViewMvcChooseAction;
@@ -43,13 +43,13 @@ public class ActivityChooseAction extends BaseActivity implements FragmentFrameW
         setContentView(mViewMvcChooseAction.getRootView());
 
         if(savedInstanceState != null){
-            mControllerChooseAction.restoreScreenState(savedInstanceState.getSerializable(ARG_SCREEN_STATE));
+            mControllerChooseAction.restoreSavedState(savedInstanceState.getSerializable(ARG_SAVED_STATE));
         }
     }
 
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putSerializable(ARG_SCREEN_STATE,mControllerChooseAction.getScreenState());
+        outState.putSerializable(ARG_SAVED_STATE,mControllerChooseAction.getSavedState());
     }
 
     @Override

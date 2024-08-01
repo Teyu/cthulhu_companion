@@ -8,12 +8,12 @@ import android.content.Context;
 
 import com.example.cthulhucompanion.screens.common.fragmentnavigator.FragmentNavigator;
 import com.example.cthulhucompanion.screens.common.screensnavigator.ScreensNavigator;
-import com.example.cthulhucompanion.screens.fragments.move.ControllerMove;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.Serializable;
 
 public class ControllerChooseAction implements ViewMvcChooseAction.Listener{
-    private SavedState mScreenState;
+    private SavedState mSavedState;
     private final ScreensNavigator mScreensNavigator;
     private final FragmentNavigator mFragmentNavigator;
     private final Context mContext;
@@ -24,7 +24,7 @@ public class ControllerChooseAction implements ViewMvcChooseAction.Listener{
         this.mScreensNavigator = screensNavigator;
         this.mContext = context;
         this.mFragmentNavigator = fragmentNavigator;
-        this.mScreenState = new SavedState();
+        this.mSavedState = new SavedState();
     }
 
     void onStart() {
@@ -49,53 +49,76 @@ public class ControllerChooseAction implements ViewMvcChooseAction.Listener{
     @Override
     public void onMoveButtonClicked() {
         mFragmentNavigator.displayFragmentMove(null);
+        mSavedState.setFragmentState(SavedState.FragmentState.MOVE_SHOWN);
+        mViewMvcChooseAction.bindMovePopupToLastActionButton();
     }
 
     @Override
     public void onAttackButtonClicked() {
         mFragmentNavigator.displayFragmentAttack(null);
+        mSavedState.setFragmentState(SavedState.FragmentState.ATTACK_SHOWN);
+        mViewMvcChooseAction.bindAttackPopupToLastActionButton();
     }
 
     @Override
     public void onRestButtonClicked() {
         mFragmentNavigator.displayFragmentRest(null);
+        mSavedState.setFragmentState(SavedState.FragmentState.REST_SHOWN);
+        mViewMvcChooseAction.bindRestPopupToLastActionButton();
     }
 
     @Override
     public void onTradeButtonClicked() {
         mFragmentNavigator.displayFragmentTrade(null);
+        mSavedState.setFragmentState(SavedState.FragmentState.TRADE_SHOWN);
+        mViewMvcChooseAction.bindTradePopupToLastActionButton();
     }
 
     @Override
     public void onLastActionButtonClicked() {
-        //TODO: confirm action
+        //TODO: on confirm
         if (mViewMvcChooseAction.canAddFloatingActionButton()) {
             mViewMvcChooseAction.addFloatingActionButton();
 
-            switch(mScreenState.getState()){
+            switch(mSavedState.getScreenState()){
                 case ONE_ACTION_BUTTON_SHOWN:
-                    mScreenState.setState(SavedState.ScreenState.TWO_ACTION_BUTTONS_SHOWN);
+                    mSavedState.setScreenState(SavedState.ScreenState.TWO_ACTION_BUTTONS_SHOWN);
                     break;
                 case TWO_ACTION_BUTTONS_SHOWN:
-                    mScreenState.setState(SavedState.ScreenState.THREE_ACTION_BUTTONS_SHOWN);
+                    mSavedState.setScreenState(SavedState.ScreenState.THREE_ACTION_BUTTONS_SHOWN);
                     break;
             }
         }
     }
 
-    public Serializable getScreenState() {
-        return mScreenState;
+    public Serializable getSavedState() {
+        return mSavedState;
     }
 
-    public void restoreScreenState(Serializable screenState) {
-        mScreenState = (SavedState) screenState;
-        switch (mScreenState.getState()){
+    public void restoreSavedState(Serializable screenState) {
+        mSavedState = (SavedState) screenState;
+        switch (mSavedState.getScreenState()){
             case ONE_ACTION_BUTTON_SHOWN:
                 break;
             case TWO_ACTION_BUTTONS_SHOWN:
                 mViewMvcChooseAction.addFloatingActionButton();
             case THREE_ACTION_BUTTONS_SHOWN:
                 mViewMvcChooseAction.addFloatingActionButton();
+        }
+
+        switch (mSavedState.getFragmentState()){
+            case ATTACK_SHOWN:
+                mFragmentNavigator.displayFragmentAttack(null);
+                break;
+            case TRADE_SHOWN:
+                mFragmentNavigator.displayFragmentTrade(null);
+                break;
+            case REST_SHOWN:
+                mFragmentNavigator.displayFragmentRest(null);
+                break;
+            case MOVE_SHOWN:
+                mFragmentNavigator.displayFragmentMove(null);
+                break;
         }
     }
 }

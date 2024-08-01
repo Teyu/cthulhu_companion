@@ -75,6 +75,22 @@ public class ViewMvcFactory {
         return new ViewMvcToolbarAllPlayerInfo(mLayoutInflater, parent, this);
     }
 
+    public ViewMvc getViewMvcConfirmAttack(){
+        return new com.example.cthulhucompanion.screens.popup.ViewMvcAttackImpl(mLayoutInflater);
+    }
+
+    public ViewMvc getViewMvcConfirmMove(){
+        return new ViewMvcMoveImpl(mLayoutInflater);
+    }
+
+    public ViewMvc getViewMvcConfirmRest(){
+        return new com.example.cthulhucompanion.screens.popup.ViewMvcRestImpl(mLayoutInflater);
+    }
+
+    public ViewMvc getViewMvcConfirmTrade(){
+        return new com.example.cthulhucompanion.screens.popup.ViewMvcTradeImpl(mLayoutInflater);
+    }
+
     public ViewMvc getViewMvcAddPlayer() {
         return new ViewMvcAddPlayerImpl(mLayoutInflater);
     }
