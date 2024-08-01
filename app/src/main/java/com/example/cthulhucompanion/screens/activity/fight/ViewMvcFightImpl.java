@@ -18,12 +18,12 @@ public class ViewMvcFightImpl extends BaseObservableViewMvc<ViewMvcFight.Listene
 
     private final Toolbar mToolbar;
     private final ViewMvcToolbarAllPlayerInfo mToolbarViewMvc;
-    private final Button mButtonContinue;
+    private final Button mButtonEndOfRound;
     public ViewMvcFightImpl(LayoutInflater inflater, ViewGroup parent, ViewMvcFactory viewMvcFactory){
         setRootView(inflater.inflate(R.layout.activity_fight, parent, false));
 
-        this.mButtonContinue = findViewById(R.id.mythos_phase_btn);
-        mButtonContinue.setOnClickListener(v -> {
+        this.mButtonEndOfRound = findViewById(R.id.end_of_round_btn);
+        mButtonEndOfRound.setOnClickListener(v -> {
             for (Listener listener : getListeners()) {
                 listener.OnContinueClicked();
             }

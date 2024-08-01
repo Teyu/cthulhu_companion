@@ -9,7 +9,7 @@ import com.example.cthulhucompanion.screens.common.mvcviews.observable.Observabl
 public interface ViewMvcChooseAction extends ObservableViewMvc<ViewMvcChooseAction.Listener> {
 
     interface Listener{
-        void OnContinueClicked();
+        void OnMythosPhaseClicked();
         void onMoveButtonClicked();
         void onAttackButtonClicked();
         void onRestButtonClicked();

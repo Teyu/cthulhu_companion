@@ -23,7 +23,7 @@ public class ViewMvcEndOfRoundImpl extends BaseObservableViewMvc<ViewMvcEndOfRou
     public ViewMvcEndOfRoundImpl(LayoutInflater inflater, ViewGroup parent, ViewMvcFactory viewMvcFactory){
         setRootView(inflater.inflate(R.layout.activity_end_of_round, parent, false));
 
-        mButtonContinue = this.findViewById(R.id.next_player_btn);
+        mButtonContinue = this.findViewById(R.id.imvestigate_btn);
         mButtonContinue.setOnClickListener(v -> {
             for (Listener listener : getListeners()){
                 listener.OnNextPlayerClicked();

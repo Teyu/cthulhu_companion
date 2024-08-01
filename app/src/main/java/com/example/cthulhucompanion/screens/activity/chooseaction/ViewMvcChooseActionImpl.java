@@ -8,14 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.Toolbar;
 
 import com.example.cthulhucompanion.R;
 import com.example.cthulhucompanion.screens.common.ViewMvcFactory;
 import com.example.cthulhucompanion.screens.common.mvcviews.observable.BaseObservableViewMvc;
-import com.example.cthulhucompanion.screens.fragments.move.ViewMvcMove;
 import com.example.cthulhucompanion.screens.toolbar.allplayerinfo.ViewMvcToolbarAllPlayerInfo;
 
 public class ViewMvcChooseActionImpl extends BaseObservableViewMvc<ViewMvcChooseAction.Listener> implements ViewMvcChooseAction {
@@ -31,7 +29,7 @@ public class ViewMvcChooseActionImpl extends BaseObservableViewMvc<ViewMvcChoose
         mButtonContinue = this.findViewById(R.id.mythos_phase_btn);
         mButtonContinue.setOnClickListener(v -> {
             for (Listener listener : getListeners()){
-                listener.OnContinueClicked();
+                listener.OnMythosPhaseClicked();
             }
         });
 
@@ -57,12 +55,9 @@ public class ViewMvcChooseActionImpl extends BaseObservableViewMvc<ViewMvcChoose
         });
 
         mButtonTrade = this.findViewById(R.id.trade_btn);
-        mButtonTrade.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for (Listener listener : getListeners()){
-                    listener.onTradeButtonClicked();
-                }
+        mButtonTrade.setOnClickListener(v -> {
+            for (Listener listener : getListeners()){
+                listener.onTradeButtonClicked();
             }
         });
 

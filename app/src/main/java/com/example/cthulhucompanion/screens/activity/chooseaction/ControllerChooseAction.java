@@ -41,7 +41,7 @@ public class ControllerChooseAction implements ViewMvcChooseAction.Listener{
     }
 
     @Override
-    public void OnContinueClicked() {
+    public void OnMythosPhaseClicked() {
         mScreensNavigator.toActivityMythosPhase(null);
     }
 

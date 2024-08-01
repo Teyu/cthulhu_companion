@@ -35,7 +35,7 @@ public class ViewMvcMythosPhaseImpl extends BaseObservableViewMvc<ViewMvcMythosP
             }
         });
 
-        mButtonInvestigate = this.findViewById(R.id.next_player_btn);
+        mButtonInvestigate = this.findViewById(R.id.investigate_btn);
         mButtonInvestigate.setOnClickListener(v -> {
             for (Listener listener : getListeners()){
                 listener.OnInvestigateClicked();
