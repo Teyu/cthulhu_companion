@@ -14,7 +14,9 @@ public interface ViewMvcChooseAction extends ObservableViewMvc<ViewMvcChooseActi
         void onAttackButtonClicked();
         void onRestButtonClicked();
         void onTradeButtonClicked();
+        void onLastActionButtonClicked();
     }
 
-
+    void addFloatingActionButton();
+    boolean canAddFloatingActionButton();
 }

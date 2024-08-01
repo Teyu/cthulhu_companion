@@ -64,4 +64,12 @@ public class ControllerChooseAction implements ViewMvcChooseAction.Listener{
     public void onTradeButtonClicked() {
         mFragmentNavigator.displayFragmentTrade(null);
     }
+
+    @Override
+    public void onLastActionButtonClicked() {
+        //TODO: confirm action
+        if (mViewMvcChooseAction.canAddFloatingActionButton()) {
+            mViewMvcChooseAction.addFloatingActionButton();
+        }
+    }
 }

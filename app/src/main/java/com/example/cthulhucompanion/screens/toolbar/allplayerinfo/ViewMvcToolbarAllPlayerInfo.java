@@ -11,10 +11,11 @@ import android.widget.ImageButton;
 import com.example.cthulhucompanion.R;
 import com.example.cthulhucompanion.screens.activity.chooseaction.ViewMvcChooseAction;
 import com.example.cthulhucompanion.screens.common.ViewMvcFactory;
+import com.example.cthulhucompanion.screens.common.mvcviews.BaseViewMvc;
 import com.example.cthulhucompanion.screens.common.mvcviews.observable.BaseObservableViewMvc;
 import com.example.cthulhucompanion.screens.popup.common.ViewMvc;
 
-public class ViewMvcToolbarAllPlayerInfo extends BaseObservableViewMvc<ViewMvcChooseAction.Listener> implements ViewMvcChooseAction {
+public class ViewMvcToolbarAllPlayerInfo extends BaseViewMvc {
 
     private final ImageButton mPlayerInfoButton1, mPlayerInfoButton2, mPlayerInfoButton3, mPlayerInfoButton4;
     private final ViewMvc mPlayerInfoViewMvc;
