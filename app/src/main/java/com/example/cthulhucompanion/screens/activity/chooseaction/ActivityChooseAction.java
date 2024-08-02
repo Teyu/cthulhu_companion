@@ -49,7 +49,7 @@ public class ActivityChooseAction extends BaseActivity implements FragmentFrameW
 
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putSerializable(ARG_SAVED_STATE,mControllerChooseAction.getSavedState());
+        outState.putSerializable(ARG_SAVED_STATE, mControllerChooseAction.getSavedState());
     }
 
     @Override

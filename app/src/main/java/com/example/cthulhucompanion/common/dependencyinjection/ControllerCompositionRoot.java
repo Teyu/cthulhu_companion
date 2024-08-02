@@ -49,6 +49,10 @@ public class ControllerCompositionRoot {
         return mActivity;
     }
 
+    private FragmentManager getFragmentManager() {
+        return getActivity().getSupportFragmentManager();
+    }
+
     public ViewMvcFactory getViewMvcFactory() {
         return new ViewMvcFactory(getLayoutInflater());
     }
@@ -61,17 +65,14 @@ public class ControllerCompositionRoot {
         return new FragmentNavigator(getFragmentManager(), (FragmentFrameWrapper) getActivity());
     }
 
-    public FragmentManager getFragmentManager() {
-        return getActivity().getSupportFragmentManager();
-    }
-
     /** ------------------------------------- controllers ------------------------------------- **/
 
     public ControllerSetUp getControllerSetUp(ScreensNavigator screensNavigator){
         return new ControllerSetUp(screensNavigator, getContext());
     }
 
-    public ControllerChooseAction getControllerChooseAction(ScreensNavigator screensNavigator, FragmentNavigator fragmentNavigator) {
+    public ControllerChooseAction getControllerChooseAction(ScreensNavigator screensNavigator,
+                                                            FragmentNavigator fragmentNavigator) {
         return new ControllerChooseAction(screensNavigator, fragmentNavigator, getContext());
     }
 

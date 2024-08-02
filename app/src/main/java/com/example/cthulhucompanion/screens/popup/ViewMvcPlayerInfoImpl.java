@@ -6,10 +6,10 @@ import android.widget.ImageButton;
 
 import com.example.cthulhucompanion.R;
 import com.example.cthulhucompanion.screens.common.ViewMvcFactory;
-import com.example.cthulhucompanion.screens.popup.common.BaseViewMvc;
+import com.example.cthulhucompanion.screens.popup.common.BasePopupViewMvc;
 import com.example.cthulhucompanion.screens.popup.common.ViewMvc;
 
-public class ViewMvcPlayerInfoImpl extends BaseViewMvc {
+public class ViewMvcPlayerInfoImpl extends BasePopupViewMvc {
 
     private final ImageButton mViewCardsButton;
     private final ViewMvc mCardsViewMvc;

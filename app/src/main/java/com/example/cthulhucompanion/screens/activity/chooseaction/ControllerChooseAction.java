@@ -8,33 +8,31 @@ import android.content.Context;
 
 import com.example.cthulhucompanion.screens.common.fragmentnavigator.FragmentNavigator;
 import com.example.cthulhucompanion.screens.common.screensnavigator.ScreensNavigator;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.example.cthulhucompanion.screens.popup.move.ViewMvcPopupMove;
 
 import java.io.Serializable;
 
-public class ControllerChooseAction implements ViewMvcChooseAction.Listener{
+public class ControllerChooseAction implements ViewMvcChooseAction.Listener {
     private SavedState mSavedState;
     private final ScreensNavigator mScreensNavigator;
     private final FragmentNavigator mFragmentNavigator;
-    private final Context mContext;
 
     private ViewMvcChooseAction mViewMvcChooseAction;
 
-    public ControllerChooseAction(ScreensNavigator screensNavigator, FragmentNavigator fragmentNavigator, Context context) {
+    public ControllerChooseAction(ScreensNavigator screensNavigator,
+                                  FragmentNavigator fragmentNavigator,
+                                  Context context) {
         this.mScreensNavigator = screensNavigator;
-        this.mContext = context;
         this.mFragmentNavigator = fragmentNavigator;
         this.mSavedState = new SavedState();
     }
 
     void onStart() {
         mViewMvcChooseAction.registerListener(this);
-        /*mExample.registerListener(this);*/
     }
 
     void onStop() {
         mViewMvcChooseAction.unregisterListener(this);
-        /*mExample.unregisterListener(this);*/
     }
 
     void bindView (ViewMvcChooseAction viewMvcChooseAction) {
@@ -76,7 +74,6 @@ public class ControllerChooseAction implements ViewMvcChooseAction.Listener{
 
     @Override
     public void onLastActionButtonClicked() {
-        //TODO: on confirm
         if (mViewMvcChooseAction.canAddFloatingActionButton()) {
             mViewMvcChooseAction.addFloatingActionButton();
 
@@ -118,6 +115,24 @@ public class ControllerChooseAction implements ViewMvcChooseAction.Listener{
                 break;
             case MOVE_SHOWN:
                 mFragmentNavigator.displayFragmentMove(null);
+                break;
+        }
+    }
+
+    public void onPopupConfirmButtonClicked() {
+
+        //log action:
+        switch (mSavedState.getScreenState()){
+            case ONE_ACTION_BUTTON_SHOWN:
+                mViewMvcChooseAction.addFloatingActionButton();
+                mSavedState.setScreenState(SavedState.ScreenState.TWO_ACTION_BUTTONS_SHOWN);
+                break;
+            case TWO_ACTION_BUTTONS_SHOWN:
+                mViewMvcChooseAction.addFloatingActionButton();
+                mSavedState.setScreenState(SavedState.ScreenState.THREE_ACTION_BUTTONS_SHOWN);
+                break;
+            case THREE_ACTION_BUTTONS_SHOWN:
+                mScreensNavigator.toActivityMythosPhase(null);
                 break;
         }
     }

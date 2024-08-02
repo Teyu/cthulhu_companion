@@ -7,7 +7,7 @@ import android.widget.PopupWindow;
 
 import androidx.annotation.NonNull;
 
-public class BaseViewMvc extends com.example.cthulhucompanion.screens.common.mvcviews.BaseViewMvc implements ViewMvc {
+public class BasePopupViewMvc extends com.example.cthulhucompanion.screens.common.mvcviews.BaseViewMvc implements ViewMvc {
 
     @Override
     public void bindAnchorView(@NonNull View view) {

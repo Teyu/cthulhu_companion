@@ -28,10 +28,11 @@ import com.example.cthulhucompanion.screens.activity.mythosphase.ViewMvcMythosPh
 import com.example.cthulhucompanion.screens.activity.mythosphase.ViewMvcMythosPhaseImpl;
 import com.example.cthulhucompanion.screens.popup.ViewMvcAddPlayerImpl;
 import com.example.cthulhucompanion.screens.popup.ViewMvcCardsImpl;
-import com.example.cthulhucompanion.screens.popup.ViewMvcMoveImpl;
+import com.example.cthulhucompanion.screens.popup.move.PopupViewMvcMoveImpl;
 import com.example.cthulhucompanion.screens.popup.ViewMvcPlayerInfoImpl;
 import com.example.cthulhucompanion.screens.popup.ViewMvcSummonEnemyImpl;
 import com.example.cthulhucompanion.screens.activity.setup.ViewMvcSetUpImpl;
+import com.example.cthulhucompanion.screens.popup.move.ViewMvcPopupMove;
 import com.example.cthulhucompanion.screens.toolbar.allplayerinfo.ViewMvcToolbarAllPlayerInfo;
 import com.example.cthulhucompanion.screens.toolbar.main.ViewMvcToolbarMain;
 
@@ -75,19 +76,19 @@ public class ViewMvcFactory {
         return new ViewMvcToolbarAllPlayerInfo(mLayoutInflater, parent, this);
     }
 
-    public ViewMvc getViewMvcConfirmAttack(){
+    public ViewMvc getViewMvcPopupAttack(){
         return new com.example.cthulhucompanion.screens.popup.ViewMvcAttackImpl(mLayoutInflater);
     }
 
-    public ViewMvc getViewMvcConfirmMove(){
-        return new ViewMvcMoveImpl(mLayoutInflater);
+    public ViewMvcPopupMove getViewMvcPopupMove(){
+        return new PopupViewMvcMoveImpl(mLayoutInflater);
     }
 
-    public ViewMvc getViewMvcConfirmRest(){
+    public ViewMvc getViewMvcPopupRest(){
         return new com.example.cthulhucompanion.screens.popup.ViewMvcRestImpl(mLayoutInflater);
     }
 
-    public ViewMvc getViewMvcConfirmTrade(){
+    public ViewMvc getViewMvcPopupTrade(){
         return new com.example.cthulhucompanion.screens.popup.ViewMvcTradeImpl(mLayoutInflater);
     }
 

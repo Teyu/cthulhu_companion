@@ -64,4 +64,10 @@
 
     <include layout="@layout/frame_move" />
 
+    <Button
+        android:id="@+id/popup_move_confirm_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bestätigen" />
+
 </LinearLayout>
