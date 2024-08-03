@@ -26,15 +26,16 @@ import com.example.cthulhucompanion.screens.activity.investigate.ViewMvcInvestig
 import com.example.cthulhucompanion.screens.activity.investigate.ViewMvcInvestigateImpl;
 import com.example.cthulhucompanion.screens.activity.mythosphase.ViewMvcMythosPhase;
 import com.example.cthulhucompanion.screens.activity.mythosphase.ViewMvcMythosPhaseImpl;
-import com.example.cthulhucompanion.screens.popup.PopUpViewMvcAttackImpl;
-import com.example.cthulhucompanion.screens.popup.PopUpViewMvcCardsImpl;
+import com.example.cthulhucompanion.screens.popup.attack.PopUpViewMvcAttack;
+import com.example.cthulhucompanion.screens.popup.attack.PopUpViewMvcAttackImpl;
 import com.example.cthulhucompanion.screens.popup.move.PopUpViewMvcMove;
 import com.example.cthulhucompanion.screens.popup.move.PopUpViewMvcMoveImpl;
 import com.example.cthulhucompanion.screens.popup.PopUpViewMvcPlayerInfoImpl;
-import com.example.cthulhucompanion.screens.popup.PopUpViewMvcRestImpl;
-import com.example.cthulhucompanion.screens.popup.PopUpViewMvcSummonEnemyImpl;
+import com.example.cthulhucompanion.screens.popup.rest.PopUpViewMvcRest;
+import com.example.cthulhucompanion.screens.popup.rest.PopUpViewMvcRestImpl;
 import com.example.cthulhucompanion.screens.activity.setup.ViewMvcSetUpImpl;
-import com.example.cthulhucompanion.screens.popup.PopUpViewMvcTradeImpl;
+import com.example.cthulhucompanion.screens.popup.trade.PopUpViewMvcTrade;
+import com.example.cthulhucompanion.screens.popup.trade.PopUpViewMvcTradeImpl;
 import com.example.cthulhucompanion.screens.toolbar.allplayerinfo.ViewMvcToolbarAllPlayerInfo;
 import com.example.cthulhucompanion.screens.toolbar.main.ViewMvcToolbarMain;
 
@@ -78,7 +79,7 @@ public class ViewMvcFactory {
         return new ViewMvcToolbarAllPlayerInfo(mLayoutInflater, parent, this);
     }
 
-    public com.example.cthulhucompanion.screens.common.mvcviews.ViewMvc getViewMvcPopupAttack(){
+    public PopUpViewMvcAttack getViewMvcPopupAttack(){
         return new PopUpViewMvcAttackImpl(mLayoutInflater);
     }
 
@@ -86,20 +87,16 @@ public class ViewMvcFactory {
         return new PopUpViewMvcMoveImpl(mLayoutInflater);
     }
 
-    public ViewMvc getViewMvcPopupRest(){
+    public PopUpViewMvcRest getViewMvcPopupRest(){
         return new PopUpViewMvcRestImpl(mLayoutInflater);
     }
 
-    public ViewMvc getViewMvcPopupTrade(){
+    public PopUpViewMvcTrade getViewMvcPopupTrade(){
         return new PopUpViewMvcTradeImpl(mLayoutInflater);
     }
 
     public ViewMvc getViewMvcPlayerInfo() {
         return new PopUpViewMvcPlayerInfoImpl(mLayoutInflater, this);
-    }
-
-    public ViewMvc getViewMvcCards() {
-        return new PopUpViewMvcCardsImpl(mLayoutInflater);
     }
 
     public ViewMvcAttack getViewMvcAttack(ViewGroup parent) {
@@ -108,10 +105,6 @@ public class ViewMvcFactory {
 
     public ViewMvcMove getViewMvcMove(ViewGroup parent) {
         return new com.example.cthulhucompanion.screens.fragments.move.ViewMvcMoveImpl(mLayoutInflater, parent, this);
-    }
-
-    public ViewMvc getViewMvcSummonEnemy() {
-        return new PopUpViewMvcSummonEnemyImpl(mLayoutInflater);
     }
 
     public ViewMvcRest getViewMvcRest(ViewGroup parent) {

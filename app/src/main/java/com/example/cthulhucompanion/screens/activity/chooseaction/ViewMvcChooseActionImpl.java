@@ -86,7 +86,7 @@ public class ViewMvcChooseActionImpl extends BaseObservableViewMvc<ViewMvcChoose
     }
 
     @Override
-    public void addActionButton() {
+    public void addConfirmActionButton() {
         if (canAddActionButton()){
             for (FloatingActionButton confirmActionButton : mButtonsConfirmAction){
                 confirmActionButton.setOnClickListener(null);
@@ -109,7 +109,14 @@ public class ViewMvcChooseActionImpl extends BaseObservableViewMvc<ViewMvcChoose
     }
 
     @Override
-    public View getLastActionButton() {
+    public View getLastConfirmActionButton() {
         return mButtonConfirmLastAction;
+    }
+
+    @Override
+    public void disableAllConfirmActionButtons() {
+        for (FloatingActionButton confirmActionButton : mButtonsConfirmAction){
+            confirmActionButton.setEnabled(false);
+        }
     }
 }

@@ -9,11 +9,16 @@ import android.content.Context;
 import com.example.cthulhucompanion.screens.common.fragmentnavigator.FragmentNavigator;
 import com.example.cthulhucompanion.screens.common.popupmanager.PopUpManager;
 import com.example.cthulhucompanion.screens.common.screensnavigator.ScreensNavigator;
+import com.example.cthulhucompanion.screens.popup.attack.PopUpViewMvcAttack;
 import com.example.cthulhucompanion.screens.popup.move.PopUpViewMvcMove;
+import com.example.cthulhucompanion.screens.popup.rest.PopUpViewMvcRest;
+import com.example.cthulhucompanion.screens.popup.trade.PopUpViewMvcTrade;
 
 import java.io.Serializable;
 
 public class ControllerChooseAction implements ViewMvcChooseAction.Listener {
+
+    private static final int MAX_NUM_LOGGABLE_ACTIONS = 3;
     private SavedState mSavedState;
     private final ScreensNavigator mScreensNavigator;
     private final FragmentNavigator mFragmentNavigator;
@@ -21,6 +26,7 @@ public class ControllerChooseAction implements ViewMvcChooseAction.Listener {
     private final PopUpListener mPopUpListener;
 
     private ViewMvcChooseAction mViewMvcChooseAction;
+    private int mNumLoggedActions = 0;
 
     public ControllerChooseAction(ScreensNavigator screensNavigator,
                                   FragmentNavigator fragmentNavigator,
@@ -54,28 +60,28 @@ public class ControllerChooseAction implements ViewMvcChooseAction.Listener {
     public void onMoveButtonClicked() {
         mFragmentNavigator.displayFragmentMove(null);
         mSavedState.setFragmentState(SavedState.FragmentState.MOVE_SHOWN);
-        mPopUpManager.anchorPopUpMoveAndNotify(mViewMvcChooseAction.getLastActionButton(), mPopUpListener);
+        mPopUpManager.anchorPopUpMoveAndNotify(mViewMvcChooseAction.getLastConfirmActionButton(), mPopUpListener);
     }
 
     @Override
     public void onAttackButtonClicked() {
         mFragmentNavigator.displayFragmentAttack(null);
         mSavedState.setFragmentState(SavedState.FragmentState.ATTACK_SHOWN);
-        mPopUpManager.anchorPopUpAttack(mViewMvcChooseAction.getLastActionButton());
+        mPopUpManager.anchorPopUpAttackAndNotify(mViewMvcChooseAction.getLastConfirmActionButton(), mPopUpListener);
     }
 
     @Override
     public void onRestButtonClicked() {
         mFragmentNavigator.displayFragmentRest(null);
         mSavedState.setFragmentState(SavedState.FragmentState.REST_SHOWN);
-        mPopUpManager.anchorPopUpRest(mViewMvcChooseAction.getLastActionButton());
+        mPopUpManager.anchorPopUpRest(mViewMvcChooseAction.getLastConfirmActionButton(), mPopUpListener);
     }
 
     @Override
     public void onTradeButtonClicked() {
         mFragmentNavigator.displayFragmentTrade(null);
         mSavedState.setFragmentState(SavedState.FragmentState.TRADE_SHOWN);
-        mPopUpManager.anchorPopUpTrade(mViewMvcChooseAction.getLastActionButton());
+        mPopUpManager.anchorPopUpTrade(mViewMvcChooseAction.getLastConfirmActionButton(), mPopUpListener);
     }
 
     public Serializable getSavedState() {
@@ -88,9 +94,9 @@ public class ControllerChooseAction implements ViewMvcChooseAction.Listener {
             case ONE_ACTION_BUTTON_SHOWN:
                 break;
             case TWO_ACTION_BUTTONS_SHOWN:
-                mViewMvcChooseAction.addActionButton();
+                mViewMvcChooseAction.addConfirmActionButton();
             case THREE_ACTION_BUTTONS_SHOWN:
-                mViewMvcChooseAction.addActionButton();
+                mViewMvcChooseAction.addConfirmActionButton();
         }
 
         switch (mSavedState.getFragmentState()){
@@ -109,17 +115,51 @@ public class ControllerChooseAction implements ViewMvcChooseAction.Listener {
         }
     }
 
-    public class PopUpListener implements PopUpViewMvcMove.Listener{
+    public class PopUpListener implements PopUpViewMvcMove.Listener, PopUpViewMvcAttack.Listener, PopUpViewMvcRest.Listener, PopUpViewMvcTrade.Listener {
 
         @Override
         public void onConfirmButtonClicked() {
 
             //log action:
+            if (mNumLoggedActions < MAX_NUM_LOGGABLE_ACTIONS - 1) {
+                mNumLoggedActions++;
+            } else {
+                mViewMvcChooseAction.disableAllConfirmActionButtons();
+            }
 
             if (mViewMvcChooseAction.canAddActionButton()) {
-                mViewMvcChooseAction.addActionButton();
-                mPopUpManager.dismissPopUpMove();
-                mPopUpManager.anchorPopUpMoveAndNotify(mViewMvcChooseAction.getLastActionButton(), this);
+                mViewMvcChooseAction.addConfirmActionButton();
+            }
+
+                switch (mSavedState.getFragmentState()){
+                    case MOVE_SHOWN:
+                        if (mPopUpManager.isPopUpMoveShowing()) {
+                            mPopUpManager.dismissPopUpMove();
+                        }
+
+                        mPopUpManager.anchorPopUpMoveAndNotify(mViewMvcChooseAction.getLastConfirmActionButton(), this);
+                        break;
+                    case REST_SHOWN:
+                        if (mPopUpManager.isPopUpRestShowing()) {
+                            mPopUpManager.dismissPopUpRest();
+                        }
+
+                        mPopUpManager.anchorPopUpRest(mViewMvcChooseAction.getLastConfirmActionButton(), this);
+                        break;
+                    case TRADE_SHOWN:
+                        if (mPopUpManager.isPopUpTradeShowing()) {
+                            mPopUpManager.dismissPopUpTrade();
+                        }
+
+                        mPopUpManager.anchorPopUpTrade(mViewMvcChooseAction.getLastConfirmActionButton(), this);
+                        break;
+                    case ATTACK_SHOWN:
+                        if (mPopUpManager.isPopUpAttackShowing()){
+                            mPopUpManager.dismissPopUpAttack();
+                        }
+                        mPopUpManager.anchorPopUpAttackAndNotify(mViewMvcChooseAction.getLastConfirmActionButton(), this);
+                        break;
+                }
 
                 switch(mSavedState.getScreenState()){
                     case ONE_ACTION_BUTTON_SHOWN:
@@ -130,6 +170,6 @@ public class ControllerChooseAction implements ViewMvcChooseAction.Listener {
                         break;
                 }
             }
-        }
+
     }
 }

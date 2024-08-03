@@ -14,4 +14,10 @@
 
     <include layout="@layout/frame_save_rest" />
 
+    <Button
+        android:id="@+id/popup_rest_confirm_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bestätigen" />
+
 </LinearLayout>

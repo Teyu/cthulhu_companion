@@ -14,4 +14,10 @@
     <include layout="@layout/list_enemy_immutable" />
 
     <include layout="@layout/frame_attack" />
+
+    <Button
+        android:id="@+id/popup_attack_confirm_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bestätigen" />
 </LinearLayout>

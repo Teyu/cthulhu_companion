@@ -18,7 +18,8 @@ public interface ViewMvcChooseAction extends ObservableViewMvc<ViewMvcChooseActi
         void onTradeButtonClicked();
     }
 
-    void addActionButton();
+    void addConfirmActionButton();
     boolean canAddActionButton();
-    View getLastActionButton();
+    View getLastConfirmActionButton();
+    void disableAllConfirmActionButtons();
 }
