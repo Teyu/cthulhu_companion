@@ -118,6 +118,8 @@ public class ControllerChooseAction implements ViewMvcChooseAction.Listener {
 
             if (mViewMvcChooseAction.canAddActionButton()) {
                 mViewMvcChooseAction.addActionButton();
+                mPopUpManager.dismissPopUpMove();
+                mPopUpManager.anchorPopUpMoveAndNotify(mViewMvcChooseAction.getLastActionButton(), this);
 
                 switch(mSavedState.getScreenState()){
                     case ONE_ACTION_BUTTON_SHOWN:
@@ -128,8 +130,6 @@ public class ControllerChooseAction implements ViewMvcChooseAction.Listener {
                         break;
                 }
             }
-
-            mPopUpManager.dismissPopUpMove();
         }
     }
 }
