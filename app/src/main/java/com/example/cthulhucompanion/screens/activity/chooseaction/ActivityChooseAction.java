@@ -34,7 +34,8 @@ public class ActivityChooseAction extends BaseActivity implements FragmentFrameW
         try {
             mControllerChooseAction = getCompositionRoot().getControllerChooseAction(
                     getCompositionRoot().getScreensNavigator(),
-                    getCompositionRoot().getFragmentNavigator());
+                    getCompositionRoot().getFragmentNavigator(),
+                    getCompositionRoot().getPopUpNavigator());
         } catch (Exception e) {
             Log.i("ERROR", Objects.requireNonNull(e.getMessage()));
         }

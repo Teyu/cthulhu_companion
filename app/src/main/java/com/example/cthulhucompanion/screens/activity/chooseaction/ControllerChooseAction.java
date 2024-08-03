@@ -7,23 +7,27 @@ package com.example.cthulhucompanion.screens.activity.chooseaction;
 import android.content.Context;
 
 import com.example.cthulhucompanion.screens.common.fragmentnavigator.FragmentNavigator;
+import com.example.cthulhucompanion.screens.common.popupnavigator.PopUpNavigator;
 import com.example.cthulhucompanion.screens.common.screensnavigator.ScreensNavigator;
-import com.example.cthulhucompanion.screens.popup.move.ViewMvcPopupMove;
+import com.example.cthulhucompanion.screens.popup.move.PopUpViewMvcMove;
 
 import java.io.Serializable;
 
-public class ControllerChooseAction implements ViewMvcChooseAction.Listener {
+public class ControllerChooseAction implements ViewMvcChooseAction.Listener, PopUpViewMvcMove.Listener {
     private SavedState mSavedState;
     private final ScreensNavigator mScreensNavigator;
     private final FragmentNavigator mFragmentNavigator;
+    private final PopUpNavigator mPopUpNavigator;
 
     private ViewMvcChooseAction mViewMvcChooseAction;
 
     public ControllerChooseAction(ScreensNavigator screensNavigator,
                                   FragmentNavigator fragmentNavigator,
+                                  PopUpNavigator popUpNavigator,
                                   Context context) {
         this.mScreensNavigator = screensNavigator;
         this.mFragmentNavigator = fragmentNavigator;
+        this.mPopUpNavigator = popUpNavigator;
         this.mSavedState = new SavedState();
     }
 
@@ -48,32 +52,33 @@ public class ControllerChooseAction implements ViewMvcChooseAction.Listener {
     public void onMoveButtonClicked() {
         mFragmentNavigator.displayFragmentMove(null);
         mSavedState.setFragmentState(SavedState.FragmentState.MOVE_SHOWN);
-        mViewMvcChooseAction.bindMovePopupToLastActionButton();
+        mPopUpNavigator.anchorPopUpMove(mViewMvcChooseAction.getLastActionButton(), this);
     }
 
     @Override
     public void onAttackButtonClicked() {
         mFragmentNavigator.displayFragmentAttack(null);
         mSavedState.setFragmentState(SavedState.FragmentState.ATTACK_SHOWN);
-        mViewMvcChooseAction.bindAttackPopupToLastActionButton();
+        mPopUpNavigator.anchorPopUpAttack(mViewMvcChooseAction.getLastActionButton());
     }
 
     @Override
     public void onRestButtonClicked() {
         mFragmentNavigator.displayFragmentRest(null);
         mSavedState.setFragmentState(SavedState.FragmentState.REST_SHOWN);
-        mViewMvcChooseAction.bindRestPopupToLastActionButton();
+        mPopUpNavigator.anchorPopUpRest(mViewMvcChooseAction.getLastActionButton());
     }
 
     @Override
     public void onTradeButtonClicked() {
         mFragmentNavigator.displayFragmentTrade(null);
         mSavedState.setFragmentState(SavedState.FragmentState.TRADE_SHOWN);
-        mViewMvcChooseAction.bindTradePopupToLastActionButton();
+        mPopUpNavigator.anchorPopUpTrade(mViewMvcChooseAction.getLastActionButton());
     }
 
     @Override
     public void onLastActionButtonClicked() {
+        //TODO: delete
         if (mViewMvcChooseAction.canAddFloatingActionButton()) {
             mViewMvcChooseAction.addFloatingActionButton();
 
@@ -120,6 +125,26 @@ public class ControllerChooseAction implements ViewMvcChooseAction.Listener {
     }
 
     public void onPopupConfirmButtonClicked() {
+
+        //log action:
+        switch (mSavedState.getScreenState()){
+            case ONE_ACTION_BUTTON_SHOWN:
+                mViewMvcChooseAction.addFloatingActionButton();
+                mSavedState.setScreenState(SavedState.ScreenState.TWO_ACTION_BUTTONS_SHOWN);
+                break;
+            case TWO_ACTION_BUTTONS_SHOWN:
+                mViewMvcChooseAction.addFloatingActionButton();
+                mSavedState.setScreenState(SavedState.ScreenState.THREE_ACTION_BUTTONS_SHOWN);
+                break;
+            case THREE_ACTION_BUTTONS_SHOWN:
+                mScreensNavigator.toActivityMythosPhase(null);
+                break;
+        }
+    }
+
+    //TODO: nested controller??
+    @Override
+    public void onConfirmButtonClicked() {
 
         //log action:
         switch (mSavedState.getScreenState()){

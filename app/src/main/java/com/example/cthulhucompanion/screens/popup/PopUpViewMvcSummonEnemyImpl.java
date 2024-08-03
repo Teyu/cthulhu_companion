@@ -3,11 +3,11 @@ package com.example.cthulhucompanion.screens.popup;
 import android.view.LayoutInflater;
 
 import com.example.cthulhucompanion.R;
-import com.example.cthulhucompanion.screens.popup.common.BasePopupViewMvc;
+import com.example.cthulhucompanion.screens.common.mvcviews.BaseViewMvc;
 
-public class ViewMvcSummonEnemyImpl extends BasePopupViewMvc {
+public class PopUpViewMvcSummonEnemyImpl extends BaseViewMvc {
 
-    public ViewMvcSummonEnemyImpl(LayoutInflater inflater){
+    public PopUpViewMvcSummonEnemyImpl(LayoutInflater inflater){
         setRootView(inflater.inflate(R.layout.popup_summon_enemy, null, false));
     }
 }

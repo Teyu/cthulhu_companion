@@ -4,12 +4,12 @@ import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 
 import com.example.cthulhucompanion.R;
-import com.example.cthulhucompanion.screens.popup.common.BasePopupViewMvc;
+import com.example.cthulhucompanion.screens.common.mvcviews.BaseViewMvc;
 
-public class ViewMvcEpisodeActionImpl extends BasePopupViewMvc {
+public class PopUpViewMvcEpisodeActionImpl extends BaseViewMvc {
 
     @SuppressLint("InflateParams")
-    public ViewMvcEpisodeActionImpl(LayoutInflater inflater){
+    public PopUpViewMvcEpisodeActionImpl(LayoutInflater inflater){
         setRootView(inflater.inflate(R.layout.popup_episode_action, null, false));
     }
 }

@@ -15,13 +15,12 @@ import android.widget.Toolbar;
 
 import com.example.cthulhucompanion.R;
 import com.example.cthulhucompanion.screens.common.ViewMvcFactory;
-import com.example.cthulhucompanion.screens.popup.common.ViewMvc;
 import com.example.cthulhucompanion.screens.common.mvcviews.observable.BaseObservableViewMvc;
-import com.example.cthulhucompanion.screens.popup.move.ViewMvcPopupMove;
+import com.example.cthulhucompanion.screens.popup.move.PopUpViewMvcMove;
 import com.example.cthulhucompanion.screens.toolbar.allplayerinfo.ViewMvcToolbarAllPlayerInfo;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class ViewMvcChooseActionImpl extends BaseObservableViewMvc<ViewMvcChooseAction.Listener> implements ViewMvcChooseAction, ViewMvcPopupMove.Listener {
+public class ViewMvcChooseActionImpl extends BaseObservableViewMvc<ViewMvcChooseAction.Listener> implements ViewMvcChooseAction, PopUpViewMvcMove.Listener {
 
     private final Toolbar mToolbar;
     private final ViewMvcToolbarAllPlayerInfo mToolbarViewMvc;
@@ -30,8 +29,6 @@ public class ViewMvcChooseActionImpl extends BaseObservableViewMvc<ViewMvcChoose
     private final FloatingActionButton mButtonConfirmAction1, mButtonConfirmAction2, mButtonConfirmAction3, mButtonConfirmActionExtra;
     private FloatingActionButton mButtonConfirmLastAction;
     private final ImageButton mButtonAttack, mButtonMove, mButtonRest, mButtonTrade;
-    private final ViewMvcPopupMove mPopupMoveViewMvc;
-    private final ViewMvc mPopupAttackViewMvc, mPopupRestViewMvc, mPopupTradeViewMvc;
 
     public ViewMvcChooseActionImpl(LayoutInflater inflater, ViewGroup parent, ViewMvcFactory viewMvcFactory){
         setRootView(inflater.inflate(R.layout.activity_choose_action, parent, false));
@@ -92,11 +89,6 @@ public class ViewMvcChooseActionImpl extends BaseObservableViewMvc<ViewMvcChoose
 
         mButtonConfirmActionExtra = this.findViewById(R.id.confirm_extra_action_button);
         mButtonConfirmActionExtra.setVisibility(GONE);
-
-        mPopupAttackViewMvc = viewMvcFactory.getViewMvcPopupAttack();
-        mPopupMoveViewMvc = viewMvcFactory.getViewMvcPopupMove();
-        mPopupRestViewMvc = viewMvcFactory.getViewMvcPopupRest();
-        mPopupTradeViewMvc = viewMvcFactory.getViewMvcPopupTrade();
     }
 
     @Override
@@ -132,24 +124,8 @@ public class ViewMvcChooseActionImpl extends BaseObservableViewMvc<ViewMvcChoose
     }
 
     @Override
-    public void bindAttackPopupToLastActionButton() {
-        mPopupAttackViewMvc.bindAnchorView(mButtonConfirmLastAction);
-    }
-
-    @Override
-    public void bindMovePopupToLastActionButton() {
-        mPopupMoveViewMvc.bindAnchorView(mButtonConfirmLastAction);
-        mPopupMoveViewMvc.registerListener(this);
-    }
-
-    @Override
-    public void bindRestPopupToLastActionButton() {
-        mPopupRestViewMvc.bindAnchorView(mButtonConfirmLastAction);
-    }
-
-    @Override
-    public void bindTradePopupToLastActionButton() {
-        mPopupTradeViewMvc.bindAnchorView(mButtonConfirmLastAction);
+    public FloatingActionButton getLastActionButton() {
+        return mButtonConfirmLastAction;
     }
 
     @Override

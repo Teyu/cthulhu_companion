@@ -6,13 +6,11 @@ package com.example.cthulhucompanion.screens.activity.setup;
 
 import android.view.*;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.Toolbar;
 
 import com.example.cthulhucompanion.R;
 import com.example.cthulhucompanion.screens.common.ViewMvcFactory;
 import com.example.cthulhucompanion.screens.common.mvcviews.observable.BaseObservableViewMvc;
-import com.example.cthulhucompanion.screens.popup.common.ViewMvc;
 import com.example.cthulhucompanion.screens.toolbar.main.ViewMvcToolbarMain;
 
 public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listener> implements ViewMvcSetUp {
