@@ -12,7 +12,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.cthulhucompanion.screens.common.fragmentnavigator.FragmentFrameWrapper;
 import com.example.cthulhucompanion.screens.common.fragmentnavigator.FragmentNavigator;
-import com.example.cthulhucompanion.screens.common.popupnavigator.PopUpNavigator;
+import com.example.cthulhucompanion.screens.common.popupmanager.PopUpManager;
 import com.example.cthulhucompanion.screens.fragments.attack.ControllerAttack;
 import com.example.cthulhucompanion.screens.fragments.move.ControllerMove;
 import com.example.cthulhucompanion.screens.activity.chooseaction.ControllerChooseAction;
@@ -66,8 +66,8 @@ public class ControllerCompositionRoot {
         return new FragmentNavigator(getFragmentManager(), (FragmentFrameWrapper) getActivity());
     }
 
-    public PopUpNavigator getPopUpNavigator() {
-        return new PopUpNavigator(getViewMvcFactory());
+    public PopUpManager getPopUpNavigator() {
+        return new PopUpManager(getViewMvcFactory());
     }
 
     /** ------------------------------------- controllers ------------------------------------- **/
@@ -78,8 +78,8 @@ public class ControllerCompositionRoot {
 
     public ControllerChooseAction getControllerChooseAction(ScreensNavigator screensNavigator,
                                                             FragmentNavigator fragmentNavigator,
-                                                            PopUpNavigator popUpNavigator) {
-        return new ControllerChooseAction(screensNavigator, fragmentNavigator, popUpNavigator, getContext());
+                                                            PopUpManager popUpManager) {
+        return new ControllerChooseAction(screensNavigator, fragmentNavigator, popUpManager, getContext());
     }
 
     public ControllerEndOfRound getControllerEndOfRound(ScreensNavigator screensNavigator) {

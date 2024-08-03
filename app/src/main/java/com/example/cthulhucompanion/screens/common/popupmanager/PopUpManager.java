@@ -1,4 +1,4 @@
-package com.example.cthulhucompanion.screens.common.popupnavigator;
+package com.example.cthulhucompanion.screens.common.popupmanager;
 
 import android.view.Gravity;
 import android.view.View;
@@ -13,11 +13,12 @@ import com.example.cthulhucompanion.screens.common.mvcviews.observable.Observabl
 import com.example.cthulhucompanion.screens.popup.move.PopUpViewMvcMove;
 
 
-public class PopUpNavigator {
+public class PopUpManager {
 
     ViewMvcFactory mViewMvcFactory;
+    PopupWindow mPopUpWindowMove;
 
-    public PopUpNavigator(ViewMvcFactory viewMvcFactory) {
+    public PopUpManager(ViewMvcFactory viewMvcFactory) {
         this.mViewMvcFactory = viewMvcFactory;
     }
 
@@ -27,7 +28,17 @@ public class PopUpNavigator {
 
     public void anchorPopUpMoveAndNotify(@NonNull final View anchorView, PopUpViewMvcMove.Listener listener){
         PopUpViewMvcMove viewMvcMove = mViewMvcFactory.getViewMvcPopupMove();
-        anchorPopUpToView(viewMvcMove, anchorView, listener);
+
+        mPopUpWindowMove = new PopupWindow(
+                viewMvcMove.getRootView(),
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        anchorPopUpToView(viewMvcMove, anchorView, listener, mPopUpWindowMove);
+    }
+
+    public void dismissPopUpMove(){
+        mPopUpWindowMove.dismiss();
     }
 
     public void anchorPopUpRest(@NonNull final View anchorView){
@@ -51,12 +62,10 @@ public class PopUpNavigator {
         });
     }
 
-    private <ListenerType> void anchorPopUpToView(@NonNull ObservableViewMvc<ListenerType> popUpViewMvc, @NonNull View anchorView, @NonNull ListenerType listener){
-
-        PopupWindow popupWindow = new PopupWindow(
-                popUpViewMvc.getRootView(),
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT);
+    private <ListenerType> void anchorPopUpToView(@NonNull ObservableViewMvc<ListenerType> popUpViewMvc,
+                                                  @NonNull View anchorView,
+                                                  @NonNull ListenerType listener,
+                                                  @NonNull final PopupWindow popupWindow){
 
         anchorView.setOnClickListener(v -> {
             popupWindow.setOutsideTouchable(true);

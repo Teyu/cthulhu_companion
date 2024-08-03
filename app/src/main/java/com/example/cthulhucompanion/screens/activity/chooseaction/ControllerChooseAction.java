@@ -7,7 +7,7 @@ package com.example.cthulhucompanion.screens.activity.chooseaction;
 import android.content.Context;
 
 import com.example.cthulhucompanion.screens.common.fragmentnavigator.FragmentNavigator;
-import com.example.cthulhucompanion.screens.common.popupnavigator.PopUpNavigator;
+import com.example.cthulhucompanion.screens.common.popupmanager.PopUpManager;
 import com.example.cthulhucompanion.screens.common.screensnavigator.ScreensNavigator;
 import com.example.cthulhucompanion.screens.popup.move.PopUpViewMvcMove;
 
@@ -17,18 +17,18 @@ public class ControllerChooseAction implements ViewMvcChooseAction.Listener {
     private SavedState mSavedState;
     private final ScreensNavigator mScreensNavigator;
     private final FragmentNavigator mFragmentNavigator;
-    private final PopUpNavigator mPopUpNavigator;
+    private final PopUpManager mPopUpManager;
     private final PopUpListener mPopUpListener;
 
     private ViewMvcChooseAction mViewMvcChooseAction;
 
     public ControllerChooseAction(ScreensNavigator screensNavigator,
                                   FragmentNavigator fragmentNavigator,
-                                  PopUpNavigator popUpNavigator,
+                                  PopUpManager popUpManager,
                                   Context context) {
         this.mScreensNavigator = screensNavigator;
         this.mFragmentNavigator = fragmentNavigator;
-        this.mPopUpNavigator = popUpNavigator;
+        this.mPopUpManager = popUpManager;
         this.mPopUpListener = new PopUpListener();
         this.mSavedState = new SavedState();
     }
@@ -54,28 +54,28 @@ public class ControllerChooseAction implements ViewMvcChooseAction.Listener {
     public void onMoveButtonClicked() {
         mFragmentNavigator.displayFragmentMove(null);
         mSavedState.setFragmentState(SavedState.FragmentState.MOVE_SHOWN);
-        mPopUpNavigator.anchorPopUpMoveAndNotify(mViewMvcChooseAction.getLastActionButton(), mPopUpListener);
+        mPopUpManager.anchorPopUpMoveAndNotify(mViewMvcChooseAction.getLastActionButton(), mPopUpListener);
     }
 
     @Override
     public void onAttackButtonClicked() {
         mFragmentNavigator.displayFragmentAttack(null);
         mSavedState.setFragmentState(SavedState.FragmentState.ATTACK_SHOWN);
-        mPopUpNavigator.anchorPopUpAttack(mViewMvcChooseAction.getLastActionButton());
+        mPopUpManager.anchorPopUpAttack(mViewMvcChooseAction.getLastActionButton());
     }
 
     @Override
     public void onRestButtonClicked() {
         mFragmentNavigator.displayFragmentRest(null);
         mSavedState.setFragmentState(SavedState.FragmentState.REST_SHOWN);
-        mPopUpNavigator.anchorPopUpRest(mViewMvcChooseAction.getLastActionButton());
+        mPopUpManager.anchorPopUpRest(mViewMvcChooseAction.getLastActionButton());
     }
 
     @Override
     public void onTradeButtonClicked() {
         mFragmentNavigator.displayFragmentTrade(null);
         mSavedState.setFragmentState(SavedState.FragmentState.TRADE_SHOWN);
-        mPopUpNavigator.anchorPopUpTrade(mViewMvcChooseAction.getLastActionButton());
+        mPopUpManager.anchorPopUpTrade(mViewMvcChooseAction.getLastActionButton());
     }
 
     public Serializable getSavedState() {
@@ -128,6 +128,8 @@ public class ControllerChooseAction implements ViewMvcChooseAction.Listener {
                         break;
                 }
             }
+
+            mPopUpManager.dismissPopUpMove();
         }
     }
 }
