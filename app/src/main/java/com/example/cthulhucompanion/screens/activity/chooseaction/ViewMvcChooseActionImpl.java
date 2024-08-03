@@ -19,13 +19,14 @@ import com.example.cthulhucompanion.screens.common.mvcviews.observable.BaseObser
 import com.example.cthulhucompanion.screens.toolbar.allplayerinfo.ViewMvcToolbarAllPlayerInfo;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+
 public class ViewMvcChooseActionImpl extends BaseObservableViewMvc<ViewMvcChooseAction.Listener> implements ViewMvcChooseAction {
 
     private final Toolbar mToolbar;
     private final ViewMvcToolbarAllPlayerInfo mToolbarViewMvc;
     private final Button mButtonContinue;
-    //TODO: use arraylist:
-    private final FloatingActionButton mButtonConfirmAction1, mButtonConfirmAction2, mButtonConfirmAction3, mButtonConfirmActionExtra;
+    private final ArrayList<FloatingActionButton> mButtonsConfirmAction = new ArrayList<>();
     private FloatingActionButton mButtonConfirmLastAction;
     private final ImageButton mButtonAttack, mButtonMove, mButtonRest, mButtonTrade;
 
@@ -71,44 +72,44 @@ public class ViewMvcChooseActionImpl extends BaseObservableViewMvc<ViewMvcChoose
         mToolbarViewMvc = viewMvcFactory.getViewMvcToolbarAllPlayerInfo(mToolbar);
         mToolbar.addView(mToolbarViewMvc.getRootView());
 
-        mButtonConfirmAction1 = this.findViewById(R.id.confirm_action1_button);
-        mButtonConfirmAction1.setVisibility(View.VISIBLE);
-        mButtonConfirmLastAction = mButtonConfirmAction1;
+        FloatingActionButton buttonConfirmAction1 = this.findViewById(R.id.confirm_action1_button);
+        buttonConfirmAction1.setVisibility(View.VISIBLE);
+        mButtonConfirmLastAction = buttonConfirmAction1;
+        FloatingActionButton buttonConfirmAction2 = this.findViewById(R.id.confirm_action2_button);
+        buttonConfirmAction2.setVisibility(GONE);
+        FloatingActionButton buttonConfirmAction3 = this.findViewById(R.id.confirm_action3_button);
+        buttonConfirmAction3.setVisibility(GONE);
 
-        mButtonConfirmAction2 = this.findViewById(R.id.confirm_action2_button);
-        mButtonConfirmAction2.setVisibility(GONE);
-
-        mButtonConfirmAction3 = this.findViewById(R.id.confirm_action3_button);
-        mButtonConfirmAction3.setVisibility(GONE);
-
-        mButtonConfirmActionExtra = this.findViewById(R.id.confirm_extra_action_button);
-        mButtonConfirmActionExtra.setVisibility(GONE);
+        mButtonsConfirmAction.add(buttonConfirmAction1);
+        mButtonsConfirmAction.add(buttonConfirmAction2);
+        mButtonsConfirmAction.add(buttonConfirmAction3);
     }
 
     @Override
-    public void addFloatingActionButton() {
-        if (canAddFloatingActionButton()){
-            mButtonConfirmAction1.setOnClickListener(null);
-            mButtonConfirmAction2.setOnClickListener(null);
-            mButtonConfirmAction3.setOnClickListener(null);
+    public void addActionButton() {
+        if (canAddActionButton()){
+            for (FloatingActionButton confirmActionButton : mButtonsConfirmAction){
+                confirmActionButton.setOnClickListener(null);
+            }
 
-            if (mButtonConfirmAction2.getVisibility() == GONE) {
-                mButtonConfirmAction2.setVisibility(View.VISIBLE);
-                mButtonConfirmLastAction = mButtonConfirmAction2;
-            } else if (mButtonConfirmAction3.getVisibility() == GONE){
-                mButtonConfirmAction3.setVisibility(View.VISIBLE);
-                mButtonConfirmLastAction = mButtonConfirmAction3;
+            for (int i = 1; i < mButtonsConfirmAction.size(); i++){
+                if (mButtonsConfirmAction.get(i).getVisibility() == GONE) {
+                    mButtonsConfirmAction.get(i).setVisibility(View.VISIBLE);
+                    mButtonConfirmLastAction = mButtonsConfirmAction.get(i);
+                    break;
+                }
             }
         }
     }
 
     @Override
-    public boolean canAddFloatingActionButton() {
-        return mButtonConfirmAction3.getVisibility() == GONE;
+    public boolean canAddActionButton() {
+        int indexOfLast = mButtonsConfirmAction.size()-1;
+        return mButtonsConfirmAction.get(indexOfLast).getVisibility() == GONE;
     }
 
     @Override
-    public View getLogActionView() {
+    public View getLastActionButton() {
         return mButtonConfirmLastAction;
     }
 }

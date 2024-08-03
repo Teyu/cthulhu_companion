@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 
 import com.example.cthulhucompanion.screens.common.ViewMvcFactory;
 import com.example.cthulhucompanion.screens.common.mvcviews.ViewMvc;
+import com.example.cthulhucompanion.screens.common.mvcviews.observable.ObservableViewMvc;
 import com.example.cthulhucompanion.screens.popup.move.PopUpViewMvcMove;
 
 
@@ -24,10 +25,9 @@ public class PopUpNavigator {
         anchorPopUpToView(mViewMvcFactory.getViewMvcPopupAttack(), anchorView);
     }
 
-    public void anchorPopUpMove(@NonNull final View anchorView, PopUpViewMvcMove.Listener listener){
+    public void anchorPopUpMoveAndNotify(@NonNull final View anchorView, PopUpViewMvcMove.Listener listener){
         PopUpViewMvcMove viewMvcMove = mViewMvcFactory.getViewMvcPopupMove();
-        anchorPopUpToView(viewMvcMove, anchorView);
-        viewMvcMove.registerListener(listener);
+        anchorPopUpToView(viewMvcMove, anchorView, listener);
     }
 
     public void anchorPopUpRest(@NonNull final View anchorView){
@@ -37,16 +37,35 @@ public class PopUpNavigator {
     public void anchorPopUpTrade(@NonNull final View anchorView){
         anchorPopUpToView(mViewMvcFactory.getViewMvcPopupTrade(), anchorView);
     }
+    private void anchorPopUpToView(@NonNull ViewMvc popUpViewMvc, @NonNull View anchorView){
 
-    private void anchorPopUpToView(ViewMvc popUpViewMvc, View anchorView){
+        PopupWindow popupWindow = new PopupWindow(
+                popUpViewMvc.getRootView(),
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+
         anchorView.setOnClickListener(v -> {
-            PopupWindow popupWindow = new PopupWindow(
-                    popUpViewMvc.getRootView(),
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT);
             popupWindow.setOutsideTouchable(true);
             popupWindow.setFocusable(true);
             popupWindow.showAtLocation(popUpViewMvc.getRootView(), Gravity.CENTER, 0, 0);
         });
+    }
+
+    private <ListenerType> void anchorPopUpToView(@NonNull ObservableViewMvc<ListenerType> popUpViewMvc, @NonNull View anchorView, @NonNull ListenerType listener){
+
+        PopupWindow popupWindow = new PopupWindow(
+                popUpViewMvc.getRootView(),
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        anchorView.setOnClickListener(v -> {
+            popupWindow.setOutsideTouchable(true);
+            popupWindow.setFocusable(true);
+            popupWindow.showAtLocation(popUpViewMvc.getRootView(), Gravity.CENTER, 0, 0);
+
+            popUpViewMvc.registerListener(listener);
+        });
+
+        popupWindow.setOnDismissListener(() -> popUpViewMvc.unregisterListener(listener));
     }
 }
