@@ -16,11 +16,10 @@ import android.widget.Toolbar;
 import com.example.cthulhucompanion.R;
 import com.example.cthulhucompanion.screens.common.ViewMvcFactory;
 import com.example.cthulhucompanion.screens.common.mvcviews.observable.BaseObservableViewMvc;
-import com.example.cthulhucompanion.screens.popup.move.PopUpViewMvcMove;
 import com.example.cthulhucompanion.screens.toolbar.allplayerinfo.ViewMvcToolbarAllPlayerInfo;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class ViewMvcChooseActionImpl extends BaseObservableViewMvc<ViewMvcChooseAction.Listener> implements ViewMvcChooseAction, PopUpViewMvcMove.Listener {
+public class ViewMvcChooseActionImpl extends BaseObservableViewMvc<ViewMvcChooseAction.Listener> implements ViewMvcChooseAction {
 
     private final Toolbar mToolbar;
     private final ViewMvcToolbarAllPlayerInfo mToolbarViewMvc;
@@ -74,11 +73,6 @@ public class ViewMvcChooseActionImpl extends BaseObservableViewMvc<ViewMvcChoose
 
         mButtonConfirmAction1 = this.findViewById(R.id.confirm_action1_button);
         mButtonConfirmAction1.setVisibility(View.VISIBLE);
-        mButtonConfirmAction1.setOnClickListener(v -> {
-            for (Listener listener : getListeners()){
-                listener.onLastActionButtonClicked();
-            }
-        });
         mButtonConfirmLastAction = mButtonConfirmAction1;
 
         mButtonConfirmAction2 = this.findViewById(R.id.confirm_action2_button);
@@ -100,19 +94,9 @@ public class ViewMvcChooseActionImpl extends BaseObservableViewMvc<ViewMvcChoose
 
             if (mButtonConfirmAction2.getVisibility() == GONE) {
                 mButtonConfirmAction2.setVisibility(View.VISIBLE);
-                mButtonConfirmAction2.setOnClickListener(v -> {
-                    for (Listener listener : getListeners()){
-                        listener.onLastActionButtonClicked();
-                    }
-                });
                 mButtonConfirmLastAction = mButtonConfirmAction2;
             } else if (mButtonConfirmAction3.getVisibility() == GONE){
                 mButtonConfirmAction3.setVisibility(View.VISIBLE);
-                mButtonConfirmAction3.setOnClickListener(v -> {
-                    for (Listener listener : getListeners()){
-                        listener.onLastActionButtonClicked();
-                    }
-                });
                 mButtonConfirmLastAction = mButtonConfirmAction3;
             }
         }
@@ -124,14 +108,7 @@ public class ViewMvcChooseActionImpl extends BaseObservableViewMvc<ViewMvcChoose
     }
 
     @Override
-    public FloatingActionButton getLastActionButton() {
+    public View getLogActionView() {
         return mButtonConfirmLastAction;
-    }
-
-    @Override
-    public void onConfirmButtonClicked() {
-        for (Listener listener : getListeners()){
-            listener.onPopupConfirmButtonClicked();
-        }
     }
 }

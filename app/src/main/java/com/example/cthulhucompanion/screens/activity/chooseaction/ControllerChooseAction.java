@@ -52,45 +52,28 @@ public class ControllerChooseAction implements ViewMvcChooseAction.Listener, Pop
     public void onMoveButtonClicked() {
         mFragmentNavigator.displayFragmentMove(null);
         mSavedState.setFragmentState(SavedState.FragmentState.MOVE_SHOWN);
-        mPopUpNavigator.anchorPopUpMove(mViewMvcChooseAction.getLastActionButton(), this);
+        mPopUpNavigator.anchorPopUpMove(mViewMvcChooseAction.getLogActionView(), this);
     }
 
     @Override
     public void onAttackButtonClicked() {
         mFragmentNavigator.displayFragmentAttack(null);
         mSavedState.setFragmentState(SavedState.FragmentState.ATTACK_SHOWN);
-        mPopUpNavigator.anchorPopUpAttack(mViewMvcChooseAction.getLastActionButton());
+        mPopUpNavigator.anchorPopUpAttack(mViewMvcChooseAction.getLogActionView());
     }
 
     @Override
     public void onRestButtonClicked() {
         mFragmentNavigator.displayFragmentRest(null);
         mSavedState.setFragmentState(SavedState.FragmentState.REST_SHOWN);
-        mPopUpNavigator.anchorPopUpRest(mViewMvcChooseAction.getLastActionButton());
+        mPopUpNavigator.anchorPopUpRest(mViewMvcChooseAction.getLogActionView());
     }
 
     @Override
     public void onTradeButtonClicked() {
         mFragmentNavigator.displayFragmentTrade(null);
         mSavedState.setFragmentState(SavedState.FragmentState.TRADE_SHOWN);
-        mPopUpNavigator.anchorPopUpTrade(mViewMvcChooseAction.getLastActionButton());
-    }
-
-    @Override
-    public void onLastActionButtonClicked() {
-        //TODO: delete
-        if (mViewMvcChooseAction.canAddFloatingActionButton()) {
-            mViewMvcChooseAction.addFloatingActionButton();
-
-            switch(mSavedState.getScreenState()){
-                case ONE_ACTION_BUTTON_SHOWN:
-                    mSavedState.setScreenState(SavedState.ScreenState.TWO_ACTION_BUTTONS_SHOWN);
-                    break;
-                case TWO_ACTION_BUTTONS_SHOWN:
-                    mSavedState.setScreenState(SavedState.ScreenState.THREE_ACTION_BUTTONS_SHOWN);
-                    break;
-            }
-        }
+        mPopUpNavigator.anchorPopUpTrade(mViewMvcChooseAction.getLogActionView());
     }
 
     public Serializable getSavedState() {
@@ -124,30 +107,24 @@ public class ControllerChooseAction implements ViewMvcChooseAction.Listener, Pop
         }
     }
 
-    public void onPopupConfirmButtonClicked() {
-
-        //log action:
-        switch (mSavedState.getScreenState()){
-            case ONE_ACTION_BUTTON_SHOWN:
-                mViewMvcChooseAction.addFloatingActionButton();
-                mSavedState.setScreenState(SavedState.ScreenState.TWO_ACTION_BUTTONS_SHOWN);
-                break;
-            case TWO_ACTION_BUTTONS_SHOWN:
-                mViewMvcChooseAction.addFloatingActionButton();
-                mSavedState.setScreenState(SavedState.ScreenState.THREE_ACTION_BUTTONS_SHOWN);
-                break;
-            case THREE_ACTION_BUTTONS_SHOWN:
-                mScreensNavigator.toActivityMythosPhase(null);
-                break;
-        }
-    }
-
     //TODO: nested controller??
     @Override
     public void onConfirmButtonClicked() {
-
         //log action:
-        switch (mSavedState.getScreenState()){
+
+        if (mViewMvcChooseAction.canAddFloatingActionButton()) {
+            mViewMvcChooseAction.addFloatingActionButton();
+
+            switch(mSavedState.getScreenState()){
+                case ONE_ACTION_BUTTON_SHOWN:
+                    mSavedState.setScreenState(SavedState.ScreenState.TWO_ACTION_BUTTONS_SHOWN);
+                    break;
+                case TWO_ACTION_BUTTONS_SHOWN:
+                    mSavedState.setScreenState(SavedState.ScreenState.THREE_ACTION_BUTTONS_SHOWN);
+                    break;
+            }
+        }
+        /*switch (mSavedState.getScreenState()){
             case ONE_ACTION_BUTTON_SHOWN:
                 mViewMvcChooseAction.addFloatingActionButton();
                 mSavedState.setScreenState(SavedState.ScreenState.TWO_ACTION_BUTTONS_SHOWN);
@@ -159,6 +136,6 @@ public class ControllerChooseAction implements ViewMvcChooseAction.Listener, Pop
             case THREE_ACTION_BUTTONS_SHOWN:
                 mScreensNavigator.toActivityMythosPhase(null);
                 break;
-        }
+        }*/
     }
 }
