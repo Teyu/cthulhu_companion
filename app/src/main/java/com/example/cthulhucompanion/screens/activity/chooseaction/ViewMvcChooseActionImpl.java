@@ -13,7 +13,11 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Toolbar;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.cthulhucompanion.R;
+import com.example.cthulhucompanion.screens.activity.chooseaction.recyclerview.enemyinfo.EnemyRecyclerViewAdapter;
 import com.example.cthulhucompanion.screens.common.ViewMvcFactory;
 import com.example.cthulhucompanion.screens.common.mvcviews.observable.BaseObservableViewMvc;
 import com.example.cthulhucompanion.screens.toolbar.allplayerinfo.ViewMvcToolbarAllPlayerInfo;
@@ -83,6 +87,15 @@ public class ViewMvcChooseActionImpl extends BaseObservableViewMvc<ViewMvcChoose
         mButtonsConfirmAction.add(buttonConfirmAction1);
         mButtonsConfirmAction.add(buttonConfirmAction2);
         mButtonsConfirmAction.add(buttonConfirmAction3);
+
+        //Sample:
+        String[] dataSet = {"hallo", "welt"};
+        EnemyRecyclerViewAdapter sample = new EnemyRecyclerViewAdapter(dataSet /*some data set*/);
+
+        RecyclerView recyclerView = findViewById(R.id.enemy_list_immutable);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
+        recyclerView.setAdapter(sample);
+
     }
 
     @Override

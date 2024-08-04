@@ -6,6 +6,7 @@ package com.example.cthulhucompanion.screens.activity.chooseaction;
 
 import android.content.Context;
 
+import com.example.cthulhucompanion.screens.activity.chooseaction.savedstate.SavedState;
 import com.example.cthulhucompanion.screens.common.fragmentnavigator.FragmentNavigator;
 import com.example.cthulhucompanion.screens.common.popupmanager.PopUpManager;
 import com.example.cthulhucompanion.screens.common.screensnavigator.ScreensNavigator;

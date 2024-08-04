@@ -1,4 +1,4 @@
-package com.example.cthulhucompanion.screens.activity.chooseaction;
+package com.example.cthulhucompanion.screens.activity.chooseaction.savedstate;
 
 import java.io.Serializable;
 
