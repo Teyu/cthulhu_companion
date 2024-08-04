@@ -15,17 +15,11 @@ import java.util.List;
 public class ControllerSetUp implements ViewMvcSetUp.Listener{
 
     private final ScreensNavigator mScreensNavigator;
-    private final PopUpManager mPopUpManager;
-    private final Context mContext;
 
     private ViewMvcSetUp mViewMvcSetUp;
 
-    public ControllerSetUp(ScreensNavigator screensNavigator,
-                           PopUpManager popUpManager,
-                           Context context) {
+    public ControllerSetUp(ScreensNavigator screensNavigator) {
         this.mScreensNavigator = screensNavigator;
-        this.mPopUpManager = popUpManager;
-        this.mContext = context;
     }
 
     void onStart() {

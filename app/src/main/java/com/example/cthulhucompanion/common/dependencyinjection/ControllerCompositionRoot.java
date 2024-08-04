@@ -72,8 +72,8 @@ public class ControllerCompositionRoot {
 
     /** ------------------------------------- controllers ------------------------------------- **/
 
-    public ControllerSetUp getControllerSetUp(ScreensNavigator screensNavigator, PopUpManager popUpManager){
-        return new ControllerSetUp(screensNavigator, popUpManager, getContext());
+    public ControllerSetUp getControllerSetUp(ScreensNavigator screensNavigator){
+        return new ControllerSetUp(screensNavigator);
     }
 
     public ControllerChooseAction getControllerChooseAction(ScreensNavigator screensNavigator,
