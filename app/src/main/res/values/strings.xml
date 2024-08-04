@@ -52,4 +52,5 @@
     <string name="choose_player_color">Wähle Spielerfarbe</string>
     <string name="choose_new_location">Wähle neuen Ort:</string>
     <string name="choose_enemy">Wähle Gegner</string>
+    <string name="confirm">Bestätigen</string>
 </resources>

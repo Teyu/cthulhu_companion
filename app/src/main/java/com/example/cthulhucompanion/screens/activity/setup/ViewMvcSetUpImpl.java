@@ -12,6 +12,8 @@ import android.widget.Toolbar;
 import com.example.cthulhucompanion.R;
 import com.example.cthulhucompanion.screens.common.ViewMvcFactory;
 import com.example.cthulhucompanion.screens.common.mvcviews.observable.BaseObservableViewMvc;
+import com.example.cthulhucompanion.screens.common.popupmanager.PopUpManager;
+import com.example.cthulhucompanion.screens.popup.addplayer.PopUpViewMvcAddPlayer;
 import com.example.cthulhucompanion.screens.toolbar.main.ViewMvcToolbarMain;
 
 import java.util.ArrayList;
@@ -24,11 +26,14 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
     private final ViewMvcToolbarMain mToolbarViewMvc;
     private final ArrayList<ImageButton> mChoosePlayerColorButtons = new ArrayList<>();
     private final Button mButtonContinue;
+    private final ViewMvcFactory mViewMvcFactory;
+    private ArrayList<PopUpManager> mAddPlayerPopUpManagers = new ArrayList<>();
 
     public ViewMvcSetUpImpl(LayoutInflater inflater,
                             ViewGroup parent,
                             ViewMvcFactory viewMvcFactory){
         setRootView(inflater.inflate(R.layout.activity_set_up, parent, false));
+        this.mViewMvcFactory = viewMvcFactory;
 
         ImageButton PlayerColorButton1 = findViewById(R.id.player1_color_btn);
         PlayerColorButton1.setOnClickListener(v -> {
@@ -62,6 +67,14 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
         });
         mChoosePlayerColorButtons.add(PlayerColorButton4);
 
+        ImageButton PlayerColorButton5 = findViewById(R.id.player5_color_btn);
+        PlayerColorButton4.setOnClickListener(v -> {
+            for (Listener listener : getListeners()){
+                listener.onPlayerColorButtonClicked(4);
+            }
+        });
+        mChoosePlayerColorButtons.add(PlayerColorButton5);
+
         mButtonContinue = this.findViewById(R.id.continue_btn);
         mButtonContinue.setOnClickListener(v -> {
             for (Listener listener : getListeners()){
@@ -76,9 +89,23 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
     }
 
     @Override
-    public List<View> getAllPlayerChooseColorButtons() {
-        View[] buttonsArray = new View[mChoosePlayerColorButtons.size()];
-        buttonsArray = mChoosePlayerColorButtons.toArray(buttonsArray);
-        return Arrays.asList(buttonsArray);
+    public void bindAddPlayerPopUpsToPlayerColorButtons() {
+        for (ImageButton choosePlayerColorButton : mChoosePlayerColorButtons){
+            PopUpManager popUpManager = new PopUpManager(mViewMvcFactory);
+            popUpManager.anchorPopUpAddPlayer(choosePlayerColorButton, () -> {
+                for (Listener listener : getListeners()){
+                    listener.onPopUpAddPlayerConfirmButtonClicked();
+                }
+            });
+
+            mAddPlayerPopUpManagers.add(popUpManager);
+        }
+    }
+
+    @Override
+    public void dismissAddPlayerPopUp() {
+        for (PopUpManager popUpManager : mAddPlayerPopUpManagers){
+            popUpManager.dismissPopUpAddPlayer();
+        }
     }
 }
