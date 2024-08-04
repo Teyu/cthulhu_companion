@@ -4,11 +4,18 @@
 
 package com.example.cthulhucompanion.screens.activity.setup;
 
+import android.view.View;
+
 import com.example.cthulhucompanion.screens.common.mvcviews.observable.ObservableViewMvc;
+
+import java.util.List;
 
 public interface ViewMvcSetUp extends ObservableViewMvc<ViewMvcSetUp.Listener> {
 
     interface Listener{
         void OnFinishSetUp();
+        void onPlayerColorButtonClicked(int position);
     }
+
+    List<View> getAllPlayerChooseColorButtons();
 }

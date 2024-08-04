@@ -62,7 +62,7 @@
                     android:layout_height="match_parent">
 
                     <ImageButton
-                        android:id="@+id/player1_img"
+                        android:id="@+id/player1_color_btn"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_weight="1"
@@ -82,7 +82,7 @@
                     android:layout_height="match_parent">
 
                     <ImageButton
-                        android:id="@+id/player2_img"
+                        android:id="@+id/player2_color_btn"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_weight="1"
@@ -102,7 +102,7 @@
                     android:layout_height="match_parent">
 
                     <ImageButton
-                        android:id="@+id/player3_img"
+                        android:id="@+id/player3_color_btn"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_weight="1"
@@ -122,7 +122,7 @@
                     android:layout_height="match_parent">
 
                     <ImageButton
-                        android:id="@+id/player4_img"
+                        android:id="@+id/player4_color_btn"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_weight="1"

@@ -26,6 +26,8 @@ import com.example.cthulhucompanion.screens.activity.investigate.ViewMvcInvestig
 import com.example.cthulhucompanion.screens.activity.investigate.ViewMvcInvestigateImpl;
 import com.example.cthulhucompanion.screens.activity.mythosphase.ViewMvcMythosPhase;
 import com.example.cthulhucompanion.screens.activity.mythosphase.ViewMvcMythosPhaseImpl;
+import com.example.cthulhucompanion.screens.popup.addplayer.PopUpViewMvcAddPlayer;
+import com.example.cthulhucompanion.screens.popup.addplayer.PopUpViewMvcAddPlayerImpl;
 import com.example.cthulhucompanion.screens.popup.attack.PopUpViewMvcAttack;
 import com.example.cthulhucompanion.screens.popup.attack.PopUpViewMvcAttackImpl;
 import com.example.cthulhucompanion.screens.popup.move.PopUpViewMvcMove;
@@ -113,5 +115,9 @@ public class ViewMvcFactory {
 
     public ViewMvcTrade getViewMvcTrade(ViewGroup parent) {
         return new ViewMvcTradeImpl(mLayoutInflater, parent, this);
+    }
+
+    public PopUpViewMvcAddPlayer getViewMvcPopupAddPlayer() {
+        return new PopUpViewMvcAddPlayerImpl(mLayoutInflater);
     }
 }

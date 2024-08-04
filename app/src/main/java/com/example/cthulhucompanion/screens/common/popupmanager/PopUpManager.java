@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 
 import com.example.cthulhucompanion.screens.common.ViewMvcFactory;
 import com.example.cthulhucompanion.screens.common.mvcviews.observable.ObservableViewMvc;
+import com.example.cthulhucompanion.screens.popup.addplayer.PopUpViewMvcAddPlayer;
 import com.example.cthulhucompanion.screens.popup.attack.PopUpViewMvcAttack;
 import com.example.cthulhucompanion.screens.popup.move.PopUpViewMvcMove;
 import com.example.cthulhucompanion.screens.popup.rest.PopUpViewMvcRest;
@@ -19,6 +20,7 @@ public class PopUpManager {
 
     ViewMvcFactory mViewMvcFactory;
     PopupWindow mPopUpWindowMove, mPopUpWindowAttack, mPopUpWindowRest, mPopUpWindowTrade;
+    PopupWindow mPopUpWindowAddPlayer;
 
     public PopUpManager(ViewMvcFactory viewMvcFactory) {
         this.mViewMvcFactory = viewMvcFactory;
@@ -114,5 +116,17 @@ public class PopUpManager {
         });
 
         popupWindow.setOnDismissListener(() -> popUpViewMvc.unregisterListener(listener));
+    }
+
+    public void anchorPopUpAddPlayer(@NonNull final View anchorView, PopUpViewMvcAddPlayer.Listener listener) {
+
+        PopUpViewMvcAddPlayer viewMvcAddPlayer = mViewMvcFactory.getViewMvcPopupAddPlayer();
+
+        mPopUpWindowTrade = new PopupWindow(
+                viewMvcAddPlayer.getRootView(),
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        anchorPopUpToView(viewMvcAddPlayer, anchorView, listener, mPopUpWindowTrade);
     }
 }

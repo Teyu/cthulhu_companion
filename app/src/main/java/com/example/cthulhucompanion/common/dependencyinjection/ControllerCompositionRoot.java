@@ -66,14 +66,14 @@ public class ControllerCompositionRoot {
         return new FragmentNavigator(getFragmentManager(), (FragmentFrameWrapper) getActivity());
     }
 
-    public PopUpManager getPopUpNavigator() {
+    public PopUpManager getPopUpManager() {
         return new PopUpManager(getViewMvcFactory());
     }
 
     /** ------------------------------------- controllers ------------------------------------- **/
 
-    public ControllerSetUp getControllerSetUp(ScreensNavigator screensNavigator){
-        return new ControllerSetUp(screensNavigator, getContext());
+    public ControllerSetUp getControllerSetUp(ScreensNavigator screensNavigator, PopUpManager popUpManager){
+        return new ControllerSetUp(screensNavigator, popUpManager, getContext());
     }
 
     public ControllerChooseAction getControllerChooseAction(ScreensNavigator screensNavigator,
