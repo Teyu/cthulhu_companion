@@ -46,7 +46,7 @@ public class ControllerSetUp implements ViewMvcSetUp.Listener{
     }
 
     @Override
-    public void onPopUpAddPlayerConfirmButtonClicked() {
+    public void onCharacterAvatarClicked() {
         mViewMvcSetUp.dismissAddPlayerPopUp();
     }
 }

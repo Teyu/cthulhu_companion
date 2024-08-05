@@ -4,7 +4,7 @@ import com.example.cthulhucompanion.screens.common.mvcviews.observable.Observabl
 import com.example.cthulhucompanion.screens.popup.PopUpConfirmListener;
 
 public interface PopUpViewMvcAddPlayer extends ObservableViewMvc<PopUpViewMvcAddPlayer.Listener> {
-    interface Listener extends PopUpConfirmListener{
-
+    interface Listener{
+        void onAvatarClicked();
     }
 }

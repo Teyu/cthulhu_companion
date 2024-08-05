@@ -94,7 +94,7 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
             PopUpManager popUpManager = new PopUpManager(mViewMvcFactory);
             popUpManager.anchorPopUpAddPlayer(choosePlayerColorButton, () -> {
                 for (Listener listener : getListeners()){
-                    listener.onPopUpAddPlayerConfirmButtonClicked();
+                    listener.onCharacterAvatarClicked();
                 }
             });
 

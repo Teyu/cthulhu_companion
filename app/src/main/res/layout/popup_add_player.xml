@@ -34,8 +34,6 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -44,7 +42,7 @@
                 tools:src="@tools:sample/avatars">
 
                 <ImageButton
-                    android:id="@+id/empty_avatar_btn"
+                    android:id="@+id/avatar_the_kid_btn"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_weight="1"
@@ -56,7 +54,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:src="@tools:sample/avatars" />
+                    tools:src="@drawable/avatar_the_kid" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -286,7 +284,7 @@
                 tools:src="@tools:sample/avatars">
 
                 <ImageButton
-                    android:id="@+id/avatar_the_kid_btn"
+                    android:id="@+id/delete_avatar_btn"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_weight="1"
@@ -298,7 +296,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:src="@drawable/avatar_the_kid" />
+                    tools:src="@android:drawable/ic_menu_delete" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -325,12 +323,5 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </TableRow>
     </TableLayout>
-
-    <Button
-        android:id="@+id/confirm_player_color_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/confirm" />
 
 </LinearLayout>

@@ -15,7 +15,8 @@ public interface ViewMvcSetUp extends ObservableViewMvc<ViewMvcSetUp.Listener> {
     interface Listener{
         void OnFinishSetUp();
         void onPlayerColorButtonClicked(int position);
-        void onPopUpAddPlayerConfirmButtonClicked();
+
+        void onCharacterAvatarClicked();
     }
 
     void bindAddPlayerPopUpsToPlayerColorButtons();
