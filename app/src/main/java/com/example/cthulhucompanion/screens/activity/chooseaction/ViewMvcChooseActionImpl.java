@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toolbar;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,6 +34,7 @@ public class ViewMvcChooseActionImpl extends BaseObservableViewMvc<ViewMvcChoose
     private final ArrayList<FloatingActionButton> mButtonsConfirmAction = new ArrayList<>();
     private FloatingActionButton mButtonConfirmLastAction;
     private final ImageButton mButtonAttack, mButtonMove, mButtonRest, mButtonTrade;
+    private final TextView mExample;
 
     public ViewMvcChooseActionImpl(LayoutInflater inflater, ViewGroup parent, ViewMvcFactory viewMvcFactory){
         setRootView(inflater.inflate(R.layout.activity_choose_action, parent, false));
@@ -96,6 +98,8 @@ public class ViewMvcChooseActionImpl extends BaseObservableViewMvc<ViewMvcChoose
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
         recyclerView.setAdapter(sample);
 
+        //TODO: test
+        mExample = findViewById(R.id.episode_tv);
     }
 
     @Override
@@ -131,5 +135,10 @@ public class ViewMvcChooseActionImpl extends BaseObservableViewMvc<ViewMvcChoose
         for (FloatingActionButton confirmActionButton : mButtonsConfirmAction){
             confirmActionButton.setEnabled(false);
         }
+    }
+
+    @Override
+    public void setEpisodeText(String text) {
+        mExample.setText(text);
     }
 }

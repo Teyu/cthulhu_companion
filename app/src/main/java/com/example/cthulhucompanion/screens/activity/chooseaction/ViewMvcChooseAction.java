@@ -22,4 +22,6 @@ public interface ViewMvcChooseAction extends ObservableViewMvc<ViewMvcChooseActi
     boolean canAddActionButton();
     View getLastConfirmActionButton();
     void disableAllConfirmActionButtons();
+
+    void setEpisodeText(String text);
 }
