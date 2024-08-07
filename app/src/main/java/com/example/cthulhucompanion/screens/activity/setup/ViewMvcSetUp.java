@@ -4,11 +4,11 @@
 
 package com.example.cthulhucompanion.screens.activity.setup;
 
-import android.view.View;
+import android.util.Pair;
 
 import com.example.cthulhucompanion.screens.common.mvcviews.observable.ObservableViewMvc;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public interface ViewMvcSetUp extends ObservableViewMvc<ViewMvcSetUp.Listener> {
 
@@ -22,4 +22,5 @@ public interface ViewMvcSetUp extends ObservableViewMvc<ViewMvcSetUp.Listener> {
     void bindAddPlayerPopUpsToPlayerColorButtons();
 
     void dismissAddPlayerPopUp();
+    void setEpisodeList(final ArrayList<Pair<String, Integer>> titleAndCountPairs);
 }

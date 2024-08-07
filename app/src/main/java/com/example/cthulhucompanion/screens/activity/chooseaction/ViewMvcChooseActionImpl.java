@@ -136,9 +136,4 @@ public class ViewMvcChooseActionImpl extends BaseObservableViewMvc<ViewMvcChoose
             confirmActionButton.setEnabled(false);
         }
     }
-
-    @Override
-    public void setEpisodeText(String text) {
-        mExample.setText(text);
-    }
 }

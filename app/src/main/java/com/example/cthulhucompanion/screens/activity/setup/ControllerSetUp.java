@@ -5,21 +5,26 @@
 package com.example.cthulhucompanion.screens.activity.setup;
 
 import android.content.Context;
-import android.view.View;
+import android.util.Pair;
 
-import com.example.cthulhucompanion.screens.common.popupmanager.PopUpManager;
+import com.example.cthulhucompanion.database.episodes.DataBaseEpisodes;
+import com.example.cthulhucompanion.database.episodes.WrapperEpisodeEntry;
 import com.example.cthulhucompanion.screens.common.screensnavigator.ScreensNavigator;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class ControllerSetUp implements ViewMvcSetUp.Listener{
 
     private final ScreensNavigator mScreensNavigator;
 
     private ViewMvcSetUp mViewMvcSetUp;
+    private final DataBaseEpisodes mDataBaseEpisodes;
+    private final Context mContext;
 
-    public ControllerSetUp(ScreensNavigator screensNavigator) {
+    public ControllerSetUp(ScreensNavigator screensNavigator, Context context) {
         this.mScreensNavigator = screensNavigator;
+        this.mDataBaseEpisodes = new DataBaseEpisodes();
+        this.mContext = context;
     }
 
     void onStart() {
@@ -34,6 +39,17 @@ public class ControllerSetUp implements ViewMvcSetUp.Listener{
         mViewMvcSetUp = viewMvcSetUp;
 
         mViewMvcSetUp.bindAddPlayerPopUpsToPlayerColorButtons();
+
+        mDataBaseEpisodes.readData(mContext);
+        initializeFromDataBase();
+    }
+
+    private void initializeFromDataBase() {
+        ArrayList<Pair<String, Integer>> episodesTitleAndCount = new ArrayList<>();
+        for (WrapperEpisodeEntry episodeEntry : mDataBaseEpisodes.access()) {
+            episodesTitleAndCount.add(new Pair<>(episodeEntry.getTitle(), episodeEntry.getCount()));
+        }
+        mViewMvcSetUp.setEpisodeList(episodesTitleAndCount);
     }
 
     @Override

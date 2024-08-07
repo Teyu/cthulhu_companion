@@ -4,21 +4,21 @@
 
 package com.example.cthulhucompanion.screens.activity.setup;
 
+import android.util.Pair;
 import android.view.*;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.Toolbar;
 
 import com.example.cthulhucompanion.R;
 import com.example.cthulhucompanion.screens.common.ViewMvcFactory;
 import com.example.cthulhucompanion.screens.common.mvcviews.observable.BaseObservableViewMvc;
 import com.example.cthulhucompanion.screens.common.popupmanager.PopUpManager;
-import com.example.cthulhucompanion.screens.popup.addplayer.PopUpViewMvcAddPlayer;
 import com.example.cthulhucompanion.screens.toolbar.main.ViewMvcToolbarMain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listener> implements ViewMvcSetUp {
 
@@ -28,6 +28,8 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
     private final Button mButtonContinue;
     private final ViewMvcFactory mViewMvcFactory;
     private ArrayList<PopUpManager> mAddPlayerPopUpManagers = new ArrayList<>();
+
+    private Spinner mSpinnerChooseEpisode;
 
     public ViewMvcSetUpImpl(LayoutInflater inflater,
                             ViewGroup parent,
@@ -86,6 +88,16 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
         mToolbar = this.findViewById(R.id.toolbar);
         mToolbarViewMvc = viewMvcFactory.getViewMvcToolbarMain(mToolbar);
         mToolbar.addView(mToolbarViewMvc.getRootView());
+
+        String[] spinnerArray = {"Hallo"};
+        mSpinnerChooseEpisode = findViewById(R.id.choose_episode_list);
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(
+                this.getContext(),
+                android.R.layout.simple_spinner_dropdown_item,
+                spinnerArray);
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout
+                .simple_spinner_dropdown_item);
+        mSpinnerChooseEpisode.setAdapter(spinnerArrayAdapter);
     }
 
     @Override
@@ -107,5 +119,22 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
         for (PopUpManager popUpManager : mAddPlayerPopUpManagers){
             popUpManager.dismissPopUpAddPlayer();
         }
+    }
+
+    @Override
+    public void setEpisodeList(final ArrayList<Pair<String, Integer>> titleAndCountPairs) {
+
+        ArrayList<String> spinnerArray = new ArrayList<>();
+        for (Pair<String, Integer> titleAndCount : titleAndCountPairs){
+            spinnerArray.add("Episode " + titleAndCount.second + ": " + titleAndCount.first);
+        }
+
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(
+                this.getContext(),
+                android.R.layout.simple_spinner_dropdown_item,
+                spinnerArray);
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout
+                .simple_spinner_dropdown_item);
+        mSpinnerChooseEpisode.setAdapter(spinnerArrayAdapter);
     }
 }

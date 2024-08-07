@@ -6,8 +6,7 @@ package com.example.cthulhucompanion.screens.activity.chooseaction;
 
 import android.content.Context;
 
-import com.example.cthulhucompanion.database.ExampleAccess;
-import com.example.cthulhucompanion.database.helper.FeedReaderSQLHelper;
+import com.example.cthulhucompanion.database.episodes.DataBaseEpisodes;
 import com.example.cthulhucompanion.screens.activity.chooseaction.savedstate.SavedState;
 import com.example.cthulhucompanion.screens.common.fragmentnavigator.FragmentNavigator;
 import com.example.cthulhucompanion.screens.common.popupmanager.PopUpManager;
@@ -18,7 +17,6 @@ import com.example.cthulhucompanion.screens.popup.rest.PopUpViewMvcRest;
 import com.example.cthulhucompanion.screens.popup.trade.PopUpViewMvcTrade;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class ControllerChooseAction implements ViewMvcChooseAction.Listener {
 
@@ -32,10 +30,6 @@ public class ControllerChooseAction implements ViewMvcChooseAction.Listener {
     private ViewMvcChooseAction mViewMvcChooseAction;
     private int mNumLoggedActions = 0;
 
-    //TODO
-    private final ExampleAccess mExample;
-    private final Context mContext;
-
     public ControllerChooseAction(ScreensNavigator screensNavigator,
                                   FragmentNavigator fragmentNavigator,
                                   PopUpManager popUpManager,
@@ -45,9 +39,6 @@ public class ControllerChooseAction implements ViewMvcChooseAction.Listener {
         this.mPopUpManager = popUpManager;
         this.mPopUpListener = new PopUpListener();
         this.mSavedState = new SavedState();
-
-        this.mExample = new ExampleAccess();
-        this.mContext = context;
     }
 
     void onStart() {
@@ -60,9 +51,6 @@ public class ControllerChooseAction implements ViewMvcChooseAction.Listener {
 
     void bindView (ViewMvcChooseAction viewMvcChooseAction) {
         mViewMvcChooseAction = viewMvcChooseAction;
-
-        List<Long> ids =mExample.readData(mContext);
-        mViewMvcChooseAction.setEpisodeText((ids.get(0)).toString());
     }
 
     @Override

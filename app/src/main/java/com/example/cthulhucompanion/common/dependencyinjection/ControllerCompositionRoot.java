@@ -73,7 +73,7 @@ public class ControllerCompositionRoot {
     /** ------------------------------------- controllers ------------------------------------- **/
 
     public ControllerSetUp getControllerSetUp(ScreensNavigator screensNavigator){
-        return new ControllerSetUp(screensNavigator);
+        return new ControllerSetUp(screensNavigator, getContext());
     }
 
     public ControllerChooseAction getControllerChooseAction(ScreensNavigator screensNavigator,
