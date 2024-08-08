@@ -23,4 +23,6 @@ public interface ViewMvcSetUp extends ObservableViewMvc<ViewMvcSetUp.Listener> {
 
     void dismissAddPlayerPopUp();
     void setEpisodeList(final ArrayList<Pair<String, Integer>> titleAndCountPairs);
+
+    void setGreatOldOnesList(final ArrayList<String> names);
 }

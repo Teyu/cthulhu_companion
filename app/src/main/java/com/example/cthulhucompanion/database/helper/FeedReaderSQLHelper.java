@@ -1,9 +1,12 @@
 package com.example.cthulhucompanion.database.helper;
 
-import static com.example.cthulhucompanion.database.episodes.FeedReaderContract.EpisodesFeedEntry.COLUMN_NAME_SUBTITLE;
-import static com.example.cthulhucompanion.database.episodes.FeedReaderContract.EpisodesFeedEntry.COLUMN_NAME_TITLE;
-import static com.example.cthulhucompanion.database.episodes.FeedReaderContract.EpisodesFeedEntry.TABLE_NAME;
-import static com.example.cthulhucompanion.database.episodes.FeedReaderContract.SQL_CREATE_ENTRIES;
+import static com.example.cthulhucompanion.database.episodes.FeedReaderContract.EpisodesFeedEntry.COLUMN_COUNT;
+import static com.example.cthulhucompanion.database.episodes.FeedReaderContract.EpisodesFeedEntry.COLUMN_TITLE;
+import static com.example.cthulhucompanion.database.episodes.FeedReaderContract.EpisodesFeedEntry.TABLE_EPISODES;
+import static com.example.cthulhucompanion.database.episodes.FeedReaderContract.SQL_CREATE_EPISODE_ENTRIES;
+import static com.example.cthulhucompanion.database.greatoldone.FeedReaderContract.GreatOldOneEntry.COLUMN_NAME;
+import static com.example.cthulhucompanion.database.greatoldone.FeedReaderContract.GreatOldOneEntry.TABLE_GREAT_OLD_ONES;
+import static com.example.cthulhucompanion.database.greatoldone.FeedReaderContract.SQL_CREATE_GREAT_OLD_ENTRIES;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -22,8 +25,10 @@ public class FeedReaderSQLHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " + TABLE_NAME + " ( " + COLUMN_NAME_TITLE + " String, " + COLUMN_NAME_SUBTITLE + " Integer )");
-        db.execSQL(SQL_CREATE_ENTRIES);
+        db.execSQL("CREATE TABLE " + TABLE_EPISODES + " ( " + COLUMN_TITLE + " String, " + COLUMN_COUNT + " Integer )");
+        db.execSQL(SQL_CREATE_EPISODE_ENTRIES);
+        db.execSQL("CREATE TABLE " + TABLE_GREAT_OLD_ONES + " ( " + COLUMN_NAME + " String )");
+        db.execSQL(SQL_CREATE_GREAT_OLD_ENTRIES);
     }
 
     @Override

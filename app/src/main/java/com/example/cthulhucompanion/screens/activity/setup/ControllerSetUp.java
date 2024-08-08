@@ -9,6 +9,8 @@ import android.util.Pair;
 
 import com.example.cthulhucompanion.database.episodes.DataBaseEpisodes;
 import com.example.cthulhucompanion.database.episodes.WrapperEpisodeEntry;
+import com.example.cthulhucompanion.database.greatoldone.DataBaseGreatOldOnes;
+import com.example.cthulhucompanion.database.greatoldone.WrapperGreatOldOneEntry;
 import com.example.cthulhucompanion.screens.common.screensnavigator.ScreensNavigator;
 
 import java.util.ArrayList;
@@ -19,11 +21,13 @@ public class ControllerSetUp implements ViewMvcSetUp.Listener{
 
     private ViewMvcSetUp mViewMvcSetUp;
     private final DataBaseEpisodes mDataBaseEpisodes;
+    private final DataBaseGreatOldOnes mDataBaseGreatOldOnes;
     private final Context mContext;
 
     public ControllerSetUp(ScreensNavigator screensNavigator, Context context) {
         this.mScreensNavigator = screensNavigator;
         this.mDataBaseEpisodes = new DataBaseEpisodes();
+        this.mDataBaseGreatOldOnes = new DataBaseGreatOldOnes();
         this.mContext = context;
     }
 
@@ -40,16 +44,24 @@ public class ControllerSetUp implements ViewMvcSetUp.Listener{
 
         mViewMvcSetUp.bindAddPlayerPopUpsToPlayerColorButtons();
 
-        mDataBaseEpisodes.readData(mContext);
         initializeFromDataBase();
     }
 
     private void initializeFromDataBase() {
+
+        mDataBaseEpisodes.readData(mContext);
         ArrayList<Pair<String, Integer>> episodesTitleAndCount = new ArrayList<>();
         for (WrapperEpisodeEntry episodeEntry : mDataBaseEpisodes.access()) {
             episodesTitleAndCount.add(new Pair<>(episodeEntry.getTitle(), episodeEntry.getCount()));
         }
         mViewMvcSetUp.setEpisodeList(episodesTitleAndCount);
+
+        mDataBaseGreatOldOnes.readData(mContext);
+        ArrayList<String> greatOldOnes = new ArrayList<>();
+        for (WrapperGreatOldOneEntry greatOldOneEntry : mDataBaseGreatOldOnes.access()){
+            greatOldOnes.add(greatOldOneEntry.getName());
+        }
+        mViewMvcSetUp.setGreatOldOnesList(greatOldOnes);
     }
 
     @Override

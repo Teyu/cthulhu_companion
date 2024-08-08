@@ -30,6 +30,7 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
     private ArrayList<PopUpManager> mAddPlayerPopUpManagers = new ArrayList<>();
 
     private Spinner mSpinnerChooseEpisode;
+    private Spinner mSpinnerChooseGreatOldOne;
 
     public ViewMvcSetUpImpl(LayoutInflater inflater,
                             ViewGroup parent,
@@ -89,15 +90,9 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
         mToolbarViewMvc = viewMvcFactory.getViewMvcToolbarMain(mToolbar);
         mToolbar.addView(mToolbarViewMvc.getRootView());
 
-        String[] spinnerArray = {"Hallo"};
         mSpinnerChooseEpisode = findViewById(R.id.choose_episode_list);
-        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(
-                this.getContext(),
-                android.R.layout.simple_spinner_dropdown_item,
-                spinnerArray);
-        spinnerArrayAdapter.setDropDownViewResource(android.R.layout
-                .simple_spinner_dropdown_item);
-        mSpinnerChooseEpisode.setAdapter(spinnerArrayAdapter);
+
+        mSpinnerChooseGreatOldOne = findViewById(R.id.choose_great_old_list);
     }
 
     @Override
@@ -136,5 +131,17 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout
                 .simple_spinner_dropdown_item);
         mSpinnerChooseEpisode.setAdapter(spinnerArrayAdapter);
+    }
+
+    @Override
+    public void setGreatOldOnesList(ArrayList<String> names) {
+
+        ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<>(
+                this.getContext(),
+                android.R.layout.simple_spinner_dropdown_item,
+                names);
+        spinnerArrayAdapter.setDropDownViewResource(android.R.layout
+                .simple_spinner_dropdown_item);
+        mSpinnerChooseGreatOldOne.setAdapter(spinnerArrayAdapter);
     }
 }

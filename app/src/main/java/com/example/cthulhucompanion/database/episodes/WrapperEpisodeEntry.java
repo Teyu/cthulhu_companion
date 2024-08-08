@@ -5,7 +5,7 @@ public class WrapperEpisodeEntry {
     private final String mTitle;
     private final int mCount;
 
-    WrapperEpisodeEntry(String title, int count){
+    public WrapperEpisodeEntry(String title, int count){
         this.mTitle = title;
         this.mCount = count;
     }

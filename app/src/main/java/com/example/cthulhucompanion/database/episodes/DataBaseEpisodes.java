@@ -21,30 +21,26 @@ public class DataBaseEpisodes {
         SQLiteDatabase db = helper.getReadableDatabase();
 
         String[] projection = { // specifies which columns from the database you will actually use after this query.
-                FeedReaderContract.EpisodesFeedEntry.COLUMN_NAME_TITLE,
-                FeedReaderContract.EpisodesFeedEntry.COLUMN_NAME_SUBTITLE
+                FeedReaderContract.EpisodesFeedEntry.COLUMN_TITLE,
+                FeedReaderContract.EpisodesFeedEntry.COLUMN_COUNT
         };
 
         Cursor cursor = db.query(
-                FeedReaderContract.EpisodesFeedEntry.TABLE_NAME,
+                FeedReaderContract.EpisodesFeedEntry.TABLE_EPISODES,
                 projection,
                 null, //selection
                 null, //selectionArgs
                 null,null,null
         );
 
-        List<Long> itemIds = new ArrayList<>();
         while(cursor.moveToNext()) {
-            long itemId = cursor.getLong(
-                    cursor.getColumnIndexOrThrow(FeedReaderContract.EpisodesFeedEntry.COLUMN_NAME_SUBTITLE));
-            itemIds.add(itemId);
 
             String title = cursor.getString( cursor.getColumnIndex(
-                    FeedReaderContract.EpisodesFeedEntry.COLUMN_NAME_TITLE)
+                    FeedReaderContract.EpisodesFeedEntry.COLUMN_TITLE)
             );
 
             int count = cursor.getInt( cursor.getColumnIndex(
-                    FeedReaderContract.EpisodesFeedEntry.COLUMN_NAME_SUBTITLE)
+                    FeedReaderContract.EpisodesFeedEntry.COLUMN_COUNT)
             );
 
             mEntries.add(new WrapperEpisodeEntry(title, count));
