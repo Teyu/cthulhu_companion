@@ -5,6 +5,7 @@
 package com.example.cthulhucompanion.screens.activity.setup;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.util.Pair;
 
 import com.example.cthulhucompanion.database.episodes.DataBaseEpisodes;
@@ -20,14 +21,16 @@ public class ControllerSetUp implements ViewMvcSetUp.Listener{
     private final ScreensNavigator mScreensNavigator;
 
     private ViewMvcSetUp mViewMvcSetUp;
-    private final DataBaseEpisodes mDataBaseEpisodes;
+    private final SQLiteDatabase mReadableDataBase;
     private final DataBaseGreatOldOnes mDataBaseGreatOldOnes;
+    private final DataBaseEpisodes mDataBaseEpisodes;
     private final Context mContext;
 
-    public ControllerSetUp(ScreensNavigator screensNavigator, Context context) {
+    public ControllerSetUp(ScreensNavigator screensNavigator, SQLiteDatabase readableDataBase, Context context) {
         this.mScreensNavigator = screensNavigator;
-        this.mDataBaseEpisodes = new DataBaseEpisodes();
+        this.mReadableDataBase = readableDataBase;
         this.mDataBaseGreatOldOnes = new DataBaseGreatOldOnes();
+        this.mDataBaseEpisodes = new DataBaseEpisodes();
         this.mContext = context;
     }
 
@@ -49,16 +52,14 @@ public class ControllerSetUp implements ViewMvcSetUp.Listener{
 
     private void initializeFromDataBase() {
 
-        mDataBaseEpisodes.readData(mContext);
         ArrayList<Pair<String, Integer>> episodesTitleAndCount = new ArrayList<>();
-        for (WrapperEpisodeEntry episodeEntry : mDataBaseEpisodes.access()) {
+        for (WrapperEpisodeEntry episodeEntry : mDataBaseEpisodes.readData(mReadableDataBase)) {
             episodesTitleAndCount.add(new Pair<>(episodeEntry.getTitle(), episodeEntry.getCount()));
         }
         mViewMvcSetUp.setEpisodeList(episodesTitleAndCount);
 
-        mDataBaseGreatOldOnes.readData(mContext);
         ArrayList<String> greatOldOnes = new ArrayList<>();
-        for (WrapperGreatOldOneEntry greatOldOneEntry : mDataBaseGreatOldOnes.access()){
+        for (WrapperGreatOldOneEntry greatOldOneEntry : mDataBaseGreatOldOnes.readData(mReadableDataBase)){
             greatOldOnes.add(greatOldOneEntry.getName());
         }
         mViewMvcSetUp.setGreatOldOnesList(greatOldOnes);

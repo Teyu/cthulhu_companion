@@ -5,13 +5,22 @@
 package com.example.cthulhucompanion.common.dependencyinjection;
 
 
-public class CompositionRoot {
-    /*private ExampleGlobal mExampleGlobal;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 
-    public ExampleGlobal getExampleGlobal() {
-        if (mExampleGlobal == null){
-            mExampleGlobal = new ExampleGlobalImpl();
+import androidx.annotation.NonNull;
+
+import com.example.cthulhucompanion.database.FeedReaderSQLHelper;
+
+public class CompositionRoot {
+
+    private FeedReaderSQLHelper mFeedReaderSQlHelper;
+
+    public SQLiteDatabase accessReadableDataBase(@NonNull Context context){
+        if (mFeedReaderSQlHelper == null){
+            mFeedReaderSQlHelper = new FeedReaderSQLHelper(context);
         }
-        return mExampleGlobal;
-    }*/
+
+        return mFeedReaderSQlHelper.getReadableDatabase();
+    }
 }

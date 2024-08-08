@@ -1,4 +1,4 @@
-package com.example.cthulhucompanion.database.helper;
+package com.example.cthulhucompanion.database;
 
 import static com.example.cthulhucompanion.database.episodes.FeedReaderContract.EpisodesFeedEntry.COLUMN_COUNT;
 import static com.example.cthulhucompanion.database.episodes.FeedReaderContract.EpisodesFeedEntry.COLUMN_TITLE;
@@ -27,6 +27,7 @@ public class FeedReaderSQLHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + TABLE_EPISODES + " ( " + COLUMN_TITLE + " String, " + COLUMN_COUNT + " Integer )");
         db.execSQL(SQL_CREATE_EPISODE_ENTRIES);
+
         db.execSQL("CREATE TABLE " + TABLE_GREAT_OLD_ONES + " ( " + COLUMN_NAME + " String )");
         db.execSQL(SQL_CREATE_GREAT_OLD_ENTRIES);
     }

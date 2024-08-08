@@ -1,24 +1,17 @@
 package com.example.cthulhucompanion.database.episodes;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.cthulhucompanion.database.helper.FeedReaderSQLHelper;
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class DataBaseEpisodes {
 
     private final ArrayList<WrapperEpisodeEntry> mEntries = new ArrayList<>();
 
     @SuppressLint("Range")
-    public void readData(Context context) {
-
-        FeedReaderSQLHelper helper = new FeedReaderSQLHelper(context);
-        SQLiteDatabase db = helper.getReadableDatabase();
+    public ArrayList<WrapperEpisodeEntry> readData(SQLiteDatabase db) {
 
         String[] projection = { // specifies which columns from the database you will actually use after this query.
                 FeedReaderContract.EpisodesFeedEntry.COLUMN_TITLE,
@@ -47,14 +40,6 @@ public class DataBaseEpisodes {
         }
         cursor.close();
 
-    }
-
-    public List<WrapperEpisodeEntry> access(){
         return mEntries;
-    }
-
-    private String getSelection(String columnName){ //Example
-        // selectionArgsExample = = { "My Column" }
-        return columnName+ " = ?";
     }
 }

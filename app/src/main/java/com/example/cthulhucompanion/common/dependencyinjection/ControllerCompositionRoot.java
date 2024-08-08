@@ -5,6 +5,7 @@
 package com.example.cthulhucompanion.common.dependencyinjection;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 
 import androidx.fragment.app.FragmentActivity;
@@ -70,10 +71,14 @@ public class ControllerCompositionRoot {
         return new PopUpManager(getViewMvcFactory());
     }
 
+    public SQLiteDatabase accessReadableDataBase(){
+        return mCompositionRoot.accessReadableDataBase(getContext().getApplicationContext());
+    }
+
     /** ------------------------------------- controllers ------------------------------------- **/
 
-    public ControllerSetUp getControllerSetUp(ScreensNavigator screensNavigator){
-        return new ControllerSetUp(screensNavigator, getContext());
+    public ControllerSetUp getControllerSetUp(ScreensNavigator screensNavigator, SQLiteDatabase readableDataBase){
+        return new ControllerSetUp(screensNavigator, readableDataBase, getContext());
     }
 
     public ControllerChooseAction getControllerChooseAction(ScreensNavigator screensNavigator,
