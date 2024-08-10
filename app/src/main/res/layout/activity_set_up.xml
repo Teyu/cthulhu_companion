@@ -59,104 +59,31 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+
+                <include layout="@layout/element_player_avatar1"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    android:layout_weight="1"/>
 
-                    <ImageButton
-                        android:id="@+id/player1_color_btn"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:background="@color/player_violet"
-                        android:baselineAlignBottom="true"
-                        android:contentDescription="@null"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintDimensionRatio="H,1:1"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <include layout="@layout/element_player_avatar2"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    android:layout_weight="1"/>
 
-                    <ImageButton
-                        android:id="@+id/player2_color_btn"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:background="@color/design_default_color_error"
-                        android:baselineAlignBottom="true"
-                        android:contentDescription="@null"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintDimensionRatio="H,1:1"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <include layout="@layout/element_player_avatar3"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    android:layout_weight="1"/>
 
-                    <ImageButton
-                        android:id="@+id/player3_color_btn"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:background="@color/player_green"
-                        android:baselineAlignBottom="true"
-                        android:contentDescription="@null"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintDimensionRatio="H,1:1"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <include layout="@layout/element_player_avatar4"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    android:layout_weight="1"/>
 
-                    <ImageButton
-                        android:id="@+id/player4_color_btn"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:background="@color/player_orange"
-                        android:baselineAlignBottom="true"
-                        android:contentDescription="@null"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintDimensionRatio="H,1:1"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <include layout="@layout/element_player_avatar5"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1">
-
-                    <ImageButton
-                        android:id="@+id/player5_color_btn"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:background="@color/player_blue"
-                        android:baselineAlignBottom="true"
-                        android:contentDescription="@null"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintDimensionRatio="H,1:1"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:layout_weight="1"/>
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout

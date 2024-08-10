@@ -8,6 +8,7 @@ import android.util.Pair;
 import android.view.*;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toolbar;
@@ -16,6 +17,7 @@ import com.example.cthulhucompanion.R;
 import com.example.cthulhucompanion.screens.common.ViewMvcFactory;
 import com.example.cthulhucompanion.screens.common.mvcviews.observable.BaseObservableViewMvc;
 import com.example.cthulhucompanion.screens.common.popupmanager.PopUpManager;
+import com.example.cthulhucompanion.screens.fragments.playeravatar.ViewMvcItemPlayerAvatar;
 import com.example.cthulhucompanion.screens.toolbar.main.ViewMvcToolbarMain;
 
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
 
     private final Toolbar mToolbar;
     private final ViewMvcToolbarMain mToolbarViewMvc;
+    private final ArrayList<FrameLayout> mPlayerAvatars = new ArrayList<>();
     private final ArrayList<ImageButton> mChoosePlayerColorButtons = new ArrayList<>();
     private final Button mButtonContinue;
     private final ViewMvcFactory mViewMvcFactory;
@@ -38,45 +41,25 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
         setRootView(inflater.inflate(R.layout.activity_set_up, parent, false));
         this.mViewMvcFactory = viewMvcFactory;
 
-        ImageButton PlayerColorButton1 = findViewById(R.id.player1_color_btn);
-        PlayerColorButton1.setOnClickListener(v -> {
-            for (Listener listener : getListeners()){
-                listener.onPlayerColorButtonClicked(0);
-            }
-        });
-        mChoosePlayerColorButtons.add(PlayerColorButton1);
+        ArrayList<Integer> RColorsPlayer = new ArrayList<>();
+        mPlayerAvatars.add(this.findViewById(R.id.element_player_avatar1));
+        RColorsPlayer.add(R.color.player_blue);
 
-        ImageButton PlayerColorButton2 = findViewById(R.id.player2_color_btn);
-        PlayerColorButton2.setOnClickListener(v -> {
-            for (Listener listener : getListeners()){
-                listener.onPlayerColorButtonClicked(1);
-            }
-        });
-        mChoosePlayerColorButtons.add(PlayerColorButton2);
+        mPlayerAvatars.add(this.findViewById(R.id.element_player_avatar2));
+        RColorsPlayer.add(R.color.player_green);
+        mPlayerAvatars.add(this.findViewById(R.id.element_player_avatar3));
+        RColorsPlayer.add(R.color.player_violet);
+        mPlayerAvatars.add(this.findViewById(R.id.element_player_avatar4));
+        RColorsPlayer.add(R.color.player_orange);
+        mPlayerAvatars.add(this.findViewById(R.id.element_player_avatar5));
+        RColorsPlayer.add(R.color.player_red);
 
-        ImageButton PlayerColorButton3 = findViewById(R.id.player3_color_btn);
-        PlayerColorButton1.setOnClickListener(v -> {
-            for (Listener listener : getListeners()){
-                listener.onPlayerColorButtonClicked(2);
-            }
-        });
-        mChoosePlayerColorButtons.add(PlayerColorButton3);
-
-        ImageButton PlayerColorButton4 = findViewById(R.id.player4_color_btn);
-        PlayerColorButton4.setOnClickListener(v -> {
-            for (Listener listener : getListeners()){
-                listener.onPlayerColorButtonClicked(3);
-            }
-        });
-        mChoosePlayerColorButtons.add(PlayerColorButton4);
-
-        ImageButton PlayerColorButton5 = findViewById(R.id.player5_color_btn);
-        PlayerColorButton4.setOnClickListener(v -> {
-            for (Listener listener : getListeners()){
-                listener.onPlayerColorButtonClicked(4);
-            }
-        });
-        mChoosePlayerColorButtons.add(PlayerColorButton5);
+        for (int i = 0 ; i < mPlayerAvatars.size(); i++){
+            ViewMvcItemPlayerAvatar playerAvatarViewMvc = new ViewMvcItemPlayerAvatar(inflater, parent, viewMvcFactory);
+            playerAvatarViewMvc.setBackgroundColor(RColorsPlayer.get(i));
+            View view = playerAvatarViewMvc.getRootView();
+            mPlayerAvatars.get(i).addView(view);
+        }
 
         mButtonContinue = this.findViewById(R.id.continue_btn);
         mButtonContinue.setOnClickListener(v -> {
@@ -84,7 +67,6 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
                 listener.OnFinishSetUp();
             }
         });
-        mChoosePlayerColorButtons.add(PlayerColorButton4);
 
         mToolbar = this.findViewById(R.id.toolbar);
         mToolbarViewMvc = viewMvcFactory.getViewMvcToolbarMain(mToolbar);
