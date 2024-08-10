@@ -14,7 +14,7 @@ import com.example.cthulhucompanion.screens.popup.addplayer.PopUpViewMvcAddPlaye
 public class ViewMvcItemPlayerAvatar extends BaseObservableViewMvc<ViewMvcItemPlayerAvatar.Listener> implements PopUpViewMvcAddPlayer.Listener {
 
     public interface Listener{
-        void onAvatarButtonClicked();
+        void onPopUpCharacterButtonClicked(int buttonId);
     }
 
     private final ImageView mPlayerAvatarBackground;
@@ -32,12 +32,6 @@ public class ViewMvcItemPlayerAvatar extends BaseObservableViewMvc<ViewMvcItemPl
         this.mPopUpmanager = new PopUpManager(mViewMvcFactory);
         this.mPopUpViewMvc = viewMvcFactory.getViewMvcPopupAddPlayer();
 
-        mPlayerAvatarButton.setOnClickListener(v -> {
-            for (Listener listener : getListeners()){
-                listener.onAvatarButtonClicked();
-            }
-        });
-
         mPopUpViewMvc.removeDeleteButton();
     }
 
@@ -50,7 +44,11 @@ public class ViewMvcItemPlayerAvatar extends BaseObservableViewMvc<ViewMvcItemPl
     }
 
     public void addCharacterToPopUpSelection(Integer imageResource, Integer buttonId) {
-        mPopUpViewMvc.setAvatarButton(imageResource, buttonId);
+        mPopUpViewMvc.setCharacterButton(imageResource, buttonId);
+    }
+
+    public void removeCharacterFromPopUpSelection(int buttonId) {
+        mPopUpViewMvc.removeCharacterButton(buttonId);
     }
 
     public void setAvatarButtonToEmpty() {
@@ -60,16 +58,29 @@ public class ViewMvcItemPlayerAvatar extends BaseObservableViewMvc<ViewMvcItemPl
     }
 
     @Override
-    public void onCharacterButtonClicked(int imageResource) {
+    public void onCharacterButtonClicked(int imageResource, int buttonId) {
+        for (Listener listener : getListeners()){
+            listener.onPopUpCharacterButtonClicked(buttonId);
+        }
+        //TODO: move up in hierarchy and separate into function calls
         mPlayerAvatarButton.setImageResource(imageResource);
         mPopUpmanager.dismissPopUpAddPlayer();
         mPopUpViewMvc.addDeleteButton();
+        mPopUpViewMvc.removeCharacterButton(buttonId); //TODO: redundant
     }
 
     @Override
-    public void onDeleteButtonClicked() {
+    public void onDeleteButtonClicked() { //TODO: move up..
         mPopUpViewMvc.removeDeleteButton();
+
+        //mPopUpViewMvc.resetCharacterSelection();
+
         setAvatarButtonToEmpty();
         mPopUpmanager.dismissPopUpAddPlayer();
+    }
+
+
+    public void resetCharacterButton(int buttonId) {
+        mPopUpViewMvc.resetCharacterButton(buttonId);
     }
 }

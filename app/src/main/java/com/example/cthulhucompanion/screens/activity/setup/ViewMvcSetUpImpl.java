@@ -87,13 +87,7 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
     public void bindAddCharacterSelectionPopUpToPlayerColorButtons() {
         for (ViewMvcItemPlayerAvatar viewMvcItemPlayerAvatar : mPlayerAvatarViewMvcs){
             viewMvcItemPlayerAvatar.bindAddPlayerPopUpToPlayerAvatarButton();
-        }
-    }
-
-    @Override
-    public void dismissAddPlayerPopUp() {
-        for (PopUpManager popUpManager : mAddPlayerPopUpManagers){
-            popUpManager.dismissPopUpAddPlayer();
+            viewMvcItemPlayerAvatar.registerListener(this);
         }
     }
 
@@ -136,9 +130,9 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
     }
 
     @Override
-    public void onAvatarButtonClicked() {
-        for (Listener listener : getListeners()){
-            listener.onPlayerColorButtonClicked(0);
+    public void onPopUpCharacterButtonClicked(int buttonId) {
+        for (ViewMvcItemPlayerAvatar viewMvcItemPlayerAvatar : mPlayerAvatarViewMvcs){
+            viewMvcItemPlayerAvatar.removeCharacterFromPopUpSelection(buttonId);
         }
     }
 }

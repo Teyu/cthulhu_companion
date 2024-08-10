@@ -79,14 +79,4 @@ public class ControllerSetUp implements ViewMvcSetUp.Listener{
     public void OnFinishSetUp() {
         mScreensNavigator.toActivityChooseAction(null);
     }
-
-    @Override
-    public void onPlayerColorButtonClicked(int position) {
-        // do nothing for now
-    }
-
-    @Override
-    public void onPopUpCharacterAvatarClicked() {
-        mViewMvcSetUp.dismissAddPlayerPopUp();
-    }
 }
