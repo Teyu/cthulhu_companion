@@ -7,7 +7,6 @@ import android.widget.PopupWindow;
 
 import androidx.annotation.NonNull;
 
-import com.example.cthulhucompanion.R;
 import com.example.cthulhucompanion.screens.common.ViewMvcFactory;
 import com.example.cthulhucompanion.screens.common.mvcviews.observable.ObservableViewMvc;
 import com.example.cthulhucompanion.screens.popup.addplayer.PopUpViewMvcAddPlayer;

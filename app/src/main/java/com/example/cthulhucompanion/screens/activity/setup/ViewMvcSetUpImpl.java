@@ -26,7 +26,7 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
     private final Toolbar mToolbar;
     private final ViewMvcToolbarMain mToolbarViewMvc;
     private final ArrayList<FrameLayout> mPlayerAvatars = new ArrayList<>();
-    private final ArrayList<ViewMvcItemPlayerAvatar> mPlayervatarViewMvcs = new ArrayList<>();
+    private final ArrayList<ViewMvcItemPlayerAvatar> mPlayerAvatarViewMvcs = new ArrayList<>();
     private final Button mButtonContinue;
     private ArrayList<PopUpManager> mAddPlayerPopUpManagers = new ArrayList<>();
 
@@ -60,7 +60,11 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
             View view = playerAvatarViewMvc.getRootView();
             mPlayerAvatars.get(i).addView(view);
 
-            mPlayervatarViewMvcs.add(playerAvatarViewMvc);
+            mPlayerAvatarViewMvcs.add(playerAvatarViewMvc);
+        }
+
+        for (ViewMvcItemPlayerAvatar playerAvatarViewMvc : mPlayerAvatarViewMvcs){
+            playerAvatarViewMvc.setAvatarButtonToEmpty();
         }
 
         mButtonContinue = this.findViewById(R.id.continue_btn);
@@ -81,7 +85,7 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
 
     @Override
     public void bindAddCharacterSelectionPopUpToPlayerColorButtons() {
-        for (ViewMvcItemPlayerAvatar viewMvcItemPlayerAvatar : mPlayervatarViewMvcs){
+        for (ViewMvcItemPlayerAvatar viewMvcItemPlayerAvatar : mPlayerAvatarViewMvcs){
             viewMvcItemPlayerAvatar.bindAddPlayerPopUpToPlayerAvatarButton();
         }
     }
@@ -124,9 +128,9 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
 
     @Override
     public void setChooseCharacterPopUpList(ArrayList<Pair<Integer,Integer>> characterIdsImageAndButtons) {
-        for (int i = 0; i < mPlayervatarViewMvcs.size(); i++){
+        for (int i = 0; i < mPlayerAvatarViewMvcs.size(); i++){
             for (Pair<Integer, Integer> characterIdImageButton : characterIdsImageAndButtons){
-                mPlayervatarViewMvcs.get(i).addCharacterToPopUpSelection(characterIdImageButton.first, characterIdImageButton.second);
+                mPlayerAvatarViewMvcs.get(i).addCharacterToPopUpSelection(characterIdImageButton.first, characterIdImageButton.second);
             }
         }
     }

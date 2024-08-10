@@ -4,7 +4,10 @@ import com.example.cthulhucompanion.screens.common.mvcviews.observable.Observabl
 
 public interface PopUpViewMvcAddPlayer extends ObservableViewMvc<PopUpViewMvcAddPlayer.Listener> {
     interface Listener{
-        void onAvatarClicked();
+        void onCharacterButtonClicked(int imageResource);
+        void onDeleteButtonClicked();
     }
     void setAvatarButton(int imageResource, int buttonId);
+    void addDeleteButton();
+    void removeDeleteButton();
 }

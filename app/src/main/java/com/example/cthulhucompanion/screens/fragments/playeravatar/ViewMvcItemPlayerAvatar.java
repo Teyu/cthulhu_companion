@@ -11,7 +11,7 @@ import com.example.cthulhucompanion.screens.common.mvcviews.observable.BaseObser
 import com.example.cthulhucompanion.screens.common.popupmanager.PopUpManager;
 import com.example.cthulhucompanion.screens.popup.addplayer.PopUpViewMvcAddPlayer;
 
-public class ViewMvcItemPlayerAvatar extends BaseObservableViewMvc<ViewMvcItemPlayerAvatar.Listener> {
+public class ViewMvcItemPlayerAvatar extends BaseObservableViewMvc<ViewMvcItemPlayerAvatar.Listener> implements PopUpViewMvcAddPlayer.Listener {
 
     public interface Listener{
         void onAvatarButtonClicked();
@@ -37,10 +37,12 @@ public class ViewMvcItemPlayerAvatar extends BaseObservableViewMvc<ViewMvcItemPl
                 listener.onAvatarButtonClicked();
             }
         });
+
+        mPopUpViewMvc.removeDeleteButton();
     }
 
     public void bindAddPlayerPopUpToPlayerAvatarButton(){
-        mPopUpmanager.anchorPopUpAddPlayer(mPlayerAvatarButton, mPopUpViewMvc, null);
+        mPopUpmanager.anchorPopUpAddPlayer(mPlayerAvatarButton, mPopUpViewMvc, this);
     }
 
     public void setBackgroundColor(int resourceId){
@@ -49,5 +51,25 @@ public class ViewMvcItemPlayerAvatar extends BaseObservableViewMvc<ViewMvcItemPl
 
     public void addCharacterToPopUpSelection(Integer imageResource, Integer buttonId) {
         mPopUpViewMvc.setAvatarButton(imageResource, buttonId);
+    }
+
+    public void setAvatarButtonToEmpty() {
+        mPlayerAvatarButton.setImageResource(android.R.color.transparent);
+        mPlayerAvatarButton.setImageResource(R.color.white);
+        mPlayerAvatarButton.setBackgroundResource(R.color.white);
+    }
+
+    @Override
+    public void onCharacterButtonClicked(int imageResource) {
+        mPlayerAvatarButton.setImageResource(imageResource);
+        mPopUpmanager.dismissPopUpAddPlayer();
+        mPopUpViewMvc.addDeleteButton();
+    }
+
+    @Override
+    public void onDeleteButtonClicked() {
+        mPopUpViewMvc.removeDeleteButton();
+        setAvatarButtonToEmpty();
+        mPopUpmanager.dismissPopUpAddPlayer();
     }
 }
