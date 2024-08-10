@@ -72,10 +72,11 @@ public class ControllerSetUp implements ViewMvcSetUp.Listener{
 
     @Override
     public void onPlayerColorButtonClicked(int position) {
+        // do nothing for now
     }
 
     @Override
-    public void onCharacterAvatarClicked() {
+    public void onPopUpCharacterAvatarClicked() {
         mViewMvcSetUp.dismissAddPlayerPopUp();
     }
 }

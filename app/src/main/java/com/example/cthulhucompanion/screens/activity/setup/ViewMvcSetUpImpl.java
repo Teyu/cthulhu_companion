@@ -22,12 +22,12 @@ import com.example.cthulhucompanion.screens.toolbar.main.ViewMvcToolbarMain;
 
 import java.util.ArrayList;
 
-public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listener> implements ViewMvcSetUp {
+public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listener> implements ViewMvcSetUp, ViewMvcItemPlayerAvatar.Listener {
 
     private final Toolbar mToolbar;
     private final ViewMvcToolbarMain mToolbarViewMvc;
     private final ArrayList<FrameLayout> mPlayerAvatars = new ArrayList<>();
-    private final ArrayList<ImageButton> mChoosePlayerColorButtons = new ArrayList<>();
+    private final ArrayList<ViewMvcItemPlayerAvatar> mPlayervatarViewMvcs = new ArrayList<>();
     private final Button mButtonContinue;
     private final ViewMvcFactory mViewMvcFactory;
     private ArrayList<PopUpManager> mAddPlayerPopUpManagers = new ArrayList<>();
@@ -47,10 +47,13 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
 
         mPlayerAvatars.add(this.findViewById(R.id.element_player_avatar2));
         RColorsPlayer.add(R.color.player_green);
+
         mPlayerAvatars.add(this.findViewById(R.id.element_player_avatar3));
         RColorsPlayer.add(R.color.player_violet);
+
         mPlayerAvatars.add(this.findViewById(R.id.element_player_avatar4));
         RColorsPlayer.add(R.color.player_orange);
+
         mPlayerAvatars.add(this.findViewById(R.id.element_player_avatar5));
         RColorsPlayer.add(R.color.player_red);
 
@@ -59,6 +62,8 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
             playerAvatarViewMvc.setBackgroundColor(RColorsPlayer.get(i));
             View view = playerAvatarViewMvc.getRootView();
             mPlayerAvatars.get(i).addView(view);
+
+            mPlayervatarViewMvcs.add(playerAvatarViewMvc);
         }
 
         mButtonContinue = this.findViewById(R.id.continue_btn);
@@ -79,16 +84,19 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
 
     @Override
     public void bindAddPlayerPopUpsToPlayerColorButtons() {
-        for (ImageButton choosePlayerColorButton : mChoosePlayerColorButtons){
+        for (ViewMvcItemPlayerAvatar viewMvcItemPlayerAvatar : mPlayervatarViewMvcs){
+            viewMvcItemPlayerAvatar.bindAddPlayerPopUpToPlayerAvatarButton();
+        }
+        /*for (ImageButton choosePlayerColorButton : mChoosePlayerColorButtons){
             PopUpManager popUpManager = new PopUpManager(mViewMvcFactory);
             popUpManager.anchorPopUpAddPlayer(choosePlayerColorButton, () -> {
                 for (Listener listener : getListeners()){
-                    listener.onCharacterAvatarClicked();
+                    listener.onPopUpCharacterAvatarClicked();
                 }
             });
 
             mAddPlayerPopUpManagers.add(popUpManager);
-        }
+        }*/
     }
 
     @Override
@@ -125,5 +133,12 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout
                 .simple_spinner_dropdown_item);
         mSpinnerChooseGreatOldOne.setAdapter(spinnerArrayAdapter);
+    }
+
+    @Override
+    public void onAvatarButtonClicked() {
+        for (Listener listener : getListeners()){
+            listener.onPlayerColorButtonClicked(0);
+        }
     }
 }
