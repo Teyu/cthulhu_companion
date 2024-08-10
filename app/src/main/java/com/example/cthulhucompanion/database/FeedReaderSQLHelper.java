@@ -1,5 +1,9 @@
 package com.example.cthulhucompanion.database;
 
+import static com.example.cthulhucompanion.database.characters.FeedReaderContract.CharactersFeedEntry.COLUMN_IMAGE_BUTTON_ID;
+import static com.example.cthulhucompanion.database.characters.FeedReaderContract.CharactersFeedEntry.COLUMN_IMAGE_RESOURCE;
+import static com.example.cthulhucompanion.database.characters.FeedReaderContract.CharactersFeedEntry.TABLE_CHARACTERS;
+import static com.example.cthulhucompanion.database.characters.FeedReaderContract.SQL_CREATE_CHARACTERS_ENTRIES;
 import static com.example.cthulhucompanion.database.episodes.FeedReaderContract.EpisodesFeedEntry.COLUMN_COUNT;
 import static com.example.cthulhucompanion.database.episodes.FeedReaderContract.EpisodesFeedEntry.COLUMN_TITLE;
 import static com.example.cthulhucompanion.database.episodes.FeedReaderContract.EpisodesFeedEntry.TABLE_EPISODES;
@@ -30,6 +34,9 @@ public class FeedReaderSQLHelper extends SQLiteOpenHelper {
 
         db.execSQL("CREATE TABLE " + TABLE_GREAT_OLD_ONES + " ( " + COLUMN_NAME + " String )");
         db.execSQL(SQL_CREATE_GREAT_OLD_ENTRIES);
+
+        db.execSQL("CREATE TABLE " + TABLE_CHARACTERS + " ( " + COLUMN_IMAGE_RESOURCE + " Integer, " + COLUMN_IMAGE_BUTTON_ID + " Integer )");
+        db.execSQL(SQL_CREATE_CHARACTERS_ENTRIES);
     }
 
     @Override

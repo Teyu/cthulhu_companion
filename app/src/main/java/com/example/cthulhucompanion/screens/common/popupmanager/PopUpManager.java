@@ -7,6 +7,7 @@ import android.widget.PopupWindow;
 
 import androidx.annotation.NonNull;
 
+import com.example.cthulhucompanion.R;
 import com.example.cthulhucompanion.screens.common.ViewMvcFactory;
 import com.example.cthulhucompanion.screens.common.mvcviews.observable.ObservableViewMvc;
 import com.example.cthulhucompanion.screens.popup.addplayer.PopUpViewMvcAddPlayer;
@@ -102,9 +103,7 @@ public class PopUpManager {
         mPopUpWindowTrade.dismiss();
     }
 
-    public void anchorPopUpAddPlayer(@NonNull final View anchorView, PopUpViewMvcAddPlayer.Listener listener) {
-
-        PopUpViewMvcAddPlayer viewMvcAddPlayer = mViewMvcFactory.getViewMvcPopupAddPlayer();
+    public void anchorPopUpAddPlayer(@NonNull final View anchorView, PopUpViewMvcAddPlayer viewMvcAddPlayer, PopUpViewMvcAddPlayer.Listener listener) {
 
         mPopUpWindowAddPlayer = new PopupWindow(
                 viewMvcAddPlayer.getRootView(),

@@ -9,7 +9,6 @@ import android.view.*;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toolbar;
 
@@ -29,7 +28,6 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
     private final ArrayList<FrameLayout> mPlayerAvatars = new ArrayList<>();
     private final ArrayList<ViewMvcItemPlayerAvatar> mPlayervatarViewMvcs = new ArrayList<>();
     private final Button mButtonContinue;
-    private final ViewMvcFactory mViewMvcFactory;
     private ArrayList<PopUpManager> mAddPlayerPopUpManagers = new ArrayList<>();
 
     private Spinner mSpinnerChooseEpisode;
@@ -39,7 +37,6 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
                             ViewGroup parent,
                             ViewMvcFactory viewMvcFactory){
         setRootView(inflater.inflate(R.layout.activity_set_up, parent, false));
-        this.mViewMvcFactory = viewMvcFactory;
 
         ArrayList<Integer> RColorsPlayer = new ArrayList<>();
         mPlayerAvatars.add(this.findViewById(R.id.element_player_avatar1));
@@ -83,20 +80,10 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
     }
 
     @Override
-    public void bindAddPlayerPopUpsToPlayerColorButtons() {
+    public void bindAddCharacterSelectionPopUpToPlayerColorButtons() {
         for (ViewMvcItemPlayerAvatar viewMvcItemPlayerAvatar : mPlayervatarViewMvcs){
             viewMvcItemPlayerAvatar.bindAddPlayerPopUpToPlayerAvatarButton();
         }
-        /*for (ImageButton choosePlayerColorButton : mChoosePlayerColorButtons){
-            PopUpManager popUpManager = new PopUpManager(mViewMvcFactory);
-            popUpManager.anchorPopUpAddPlayer(choosePlayerColorButton, () -> {
-                for (Listener listener : getListeners()){
-                    listener.onPopUpCharacterAvatarClicked();
-                }
-            });
-
-            mAddPlayerPopUpManagers.add(popUpManager);
-        }*/
     }
 
     @Override
@@ -133,6 +120,15 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout
                 .simple_spinner_dropdown_item);
         mSpinnerChooseGreatOldOne.setAdapter(spinnerArrayAdapter);
+    }
+
+    @Override
+    public void setChooseCharacterPopUpList(ArrayList<Pair<Integer,Integer>> characterIdsImageAndButtons) {
+        for (int i = 0; i < mPlayervatarViewMvcs.size(); i++){
+            for (Pair<Integer, Integer> characterIdImageButton : characterIdsImageAndButtons){
+                mPlayervatarViewMvcs.get(i).addCharacterToPopUpSelection(characterIdImageButton.first, characterIdImageButton.second);
+            }
+        }
     }
 
     @Override

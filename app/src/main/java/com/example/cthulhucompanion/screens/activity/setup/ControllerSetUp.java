@@ -8,6 +8,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Pair;
 
+import com.example.cthulhucompanion.database.characters.DataBaseCharacters;
+import com.example.cthulhucompanion.database.characters.WrapperCharacterEntry;
 import com.example.cthulhucompanion.database.episodes.DataBaseEpisodes;
 import com.example.cthulhucompanion.database.episodes.WrapperEpisodeEntry;
 import com.example.cthulhucompanion.database.greatoldone.DataBaseGreatOldOnes;
@@ -19,11 +21,11 @@ import java.util.ArrayList;
 public class ControllerSetUp implements ViewMvcSetUp.Listener{
 
     private final ScreensNavigator mScreensNavigator;
-
     private ViewMvcSetUp mViewMvcSetUp;
     private final SQLiteDatabase mReadableDataBase;
     private final DataBaseGreatOldOnes mDataBaseGreatOldOnes;
     private final DataBaseEpisodes mDataBaseEpisodes;
+    private final DataBaseCharacters mDataBaseCharacters;
     private final Context mContext;
 
     public ControllerSetUp(ScreensNavigator screensNavigator, SQLiteDatabase readableDataBase, Context context) {
@@ -31,6 +33,7 @@ public class ControllerSetUp implements ViewMvcSetUp.Listener{
         this.mReadableDataBase = readableDataBase;
         this.mDataBaseGreatOldOnes = new DataBaseGreatOldOnes();
         this.mDataBaseEpisodes = new DataBaseEpisodes();
+        this.mDataBaseCharacters = new DataBaseCharacters();
         this.mContext = context;
     }
 
@@ -45,7 +48,7 @@ public class ControllerSetUp implements ViewMvcSetUp.Listener{
     void bindView (ViewMvcSetUp viewMvcSetUp) {
         mViewMvcSetUp = viewMvcSetUp;
 
-        mViewMvcSetUp.bindAddPlayerPopUpsToPlayerColorButtons();
+        mViewMvcSetUp.bindAddCharacterSelectionPopUpToPlayerColorButtons();
 
         initializeFromDataBase();
     }
@@ -63,6 +66,13 @@ public class ControllerSetUp implements ViewMvcSetUp.Listener{
             greatOldOnes.add(greatOldOneEntry.getName());
         }
         mViewMvcSetUp.setGreatOldOnesList(greatOldOnes);
+
+        ArrayList<Pair<Integer, Integer>> characterIdsImageAndButton = new ArrayList<>();
+        for (WrapperCharacterEntry characterEntry : mDataBaseCharacters.readData(mReadableDataBase)){
+            characterIdsImageAndButton.add(new Pair<>(characterEntry.getImageResource(), characterEntry.getImageButtonId()));
+        }
+
+        mViewMvcSetUp.setChooseCharacterPopUpList(characterIdsImageAndButton);
     }
 
     @Override

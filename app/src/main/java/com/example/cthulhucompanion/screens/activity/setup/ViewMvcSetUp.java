@@ -18,10 +18,12 @@ public interface ViewMvcSetUp extends ObservableViewMvc<ViewMvcSetUp.Listener> {
         void onPopUpCharacterAvatarClicked();
     }
 
-    void bindAddPlayerPopUpsToPlayerColorButtons();
+    void bindAddCharacterSelectionPopUpToPlayerColorButtons();
 
     void dismissAddPlayerPopUp();
     void setEpisodeList(final ArrayList<Pair<String, Integer>> titleAndCountPairs);
 
     void setGreatOldOnesList(final ArrayList<String> names);
+
+    void setChooseCharacterPopUpList(ArrayList<Pair<Integer,Integer>> characterIdsImageAndButton);
 }

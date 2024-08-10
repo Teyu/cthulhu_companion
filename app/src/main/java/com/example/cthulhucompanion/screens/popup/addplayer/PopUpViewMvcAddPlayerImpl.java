@@ -15,7 +15,7 @@ public class PopUpViewMvcAddPlayerImpl extends BaseObservableViewMvc<PopUpViewMv
     public PopUpViewMvcAddPlayerImpl(LayoutInflater inflater){
         setRootView(inflater.inflate(R.layout.popup_add_player, null, false));
 
-        ImageButton avatarAhmedYasinButton = findViewById(R.id.avatar_ahmed_yasin_btn);
+        /*ImageButton avatarAhmedYasinButton = findViewById(R.id.avatar_ahmed_yasin_btn);
         avatarAhmedYasinButton.setImageResource(R.drawable.avatar_ahmed_yasin);
         avatarAhmedYasinButton.setOnClickListener(v -> {
             for (Listener listener : getListeners()){
@@ -98,6 +98,26 @@ public class PopUpViewMvcAddPlayerImpl extends BaseObservableViewMvc<PopUpViewMv
         ImageButton avatarDeleteButton = findViewById(R.id.delete_avatar_btn);
         avatarDeleteButton.setImageResource(R.drawable.icon_delete);
         avatarDeleteButton.setOnClickListener(v -> {
+            for (Listener listener : getListeners()){
+                listener.onAvatarClicked();
+            }
+        });*/
+
+
+        ImageButton avatarDeleteButton = findViewById(R.id.delete_avatar_btn);
+        avatarDeleteButton.setImageResource(R.drawable.icon_delete);
+        avatarDeleteButton.setOnClickListener(v -> {
+            for (Listener listener : getListeners()){
+                listener.onAvatarClicked();
+            }
+        });
+    }
+
+    @Override
+    public void setAvatarButton(int imageResource, int buttonId){
+        ImageButton characterImageButton = findViewById(buttonId);
+        characterImageButton.setImageResource(imageResource);
+        characterImageButton.setOnClickListener(v -> {
             for (Listener listener : getListeners()){
                 listener.onAvatarClicked();
             }
