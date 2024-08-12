@@ -7,20 +7,27 @@ package com.example.cthulhucompanion.screens.activity.setup;
 import android.util.Pair;
 
 import com.example.cthulhucompanion.screens.common.mvcviews.observable.ObservableViewMvc;
+import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacter;
+import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacterImpl;
 
 import java.util.ArrayList;
 
 public interface ViewMvcSetUp extends ObservableViewMvc<ViewMvcSetUp.Listener> {
+    enum PlayerColor{
+        PLAYER_RED,
+        PLAYER_BLUE,
+        PLAYER_ORANGE,
+        PLAYER_VIOLET,
+        PLAYER_GREEN
+    }
 
     interface Listener{
         void OnFinishSetUp();
     }
 
-    void bindAddCharacterSelectionPopUpToPlayerColorButtons();
-
     void setEpisodeList(final ArrayList<Pair<String, Integer>> titleAndCountPairs);
 
     void setGreatOldOnesList(final ArrayList<String> names);
 
-    void setChooseCharacterPopUpList(ArrayList<Pair<Integer,Integer>> characterIdsImageAndButton);
+    void setCharacterSelectionPopUpList(ArrayList<Pair<Integer, PopUpViewMvcSelectCharacterImpl.Character>> characterImages, PopUpViewMvcSelectCharacter.Listener listener);
 }

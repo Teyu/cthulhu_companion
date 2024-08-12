@@ -48,14 +48,14 @@ public class ControllerSetUp implements ViewMvcSetUp.Listener{
     void bindView (ViewMvcSetUp viewMvcSetUp) {
         mViewMvcSetUp = viewMvcSetUp;
 
-        mViewMvcSetUp.bindAddCharacterSelectionPopUpToPlayerColorButtons();
+        //mViewMvcSetUp.bindCharacterSelectionPopUpToPlayerColorButtons();
 
         initializeFromDataBase();
     }
 
     private void initializeFromDataBase() {
 
-        ArrayList<Pair<String, Integer>> episodesTitleAndCount = new ArrayList<>();
+        /*ArrayList<Pair<String, Integer>> episodesTitleAndCount = new ArrayList<>();
         for (WrapperEpisodeEntry episodeEntry : mDataBaseEpisodes.readData(mReadableDataBase)) {
             episodesTitleAndCount.add(new Pair<>(episodeEntry.getTitle(), episodeEntry.getCount()));
         }
@@ -72,7 +72,7 @@ public class ControllerSetUp implements ViewMvcSetUp.Listener{
             characterIdsImageAndButton.add(new Pair<>(characterEntry.getImageResource(), characterEntry.getImageButtonId()));
         }
 
-        mViewMvcSetUp.setChooseCharacterPopUpList(characterIdsImageAndButton);
+        mViewMvcSetUp.setCharacterSelectionPopUpList(characterIdsImageAndButton);*/
     }
 
     @Override

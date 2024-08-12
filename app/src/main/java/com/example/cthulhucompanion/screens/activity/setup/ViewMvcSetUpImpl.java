@@ -4,6 +4,8 @@
 
 package com.example.cthulhucompanion.screens.activity.setup;
 
+import static com.example.cthulhucompanion.screens.activity.setup.ViewMvcSetUp.PlayerColor.*;
+
 import android.util.Pair;
 import android.view.*;
 import android.widget.ArrayAdapter;
@@ -13,23 +15,31 @@ import android.widget.Spinner;
 import android.widget.Toolbar;
 
 import com.example.cthulhucompanion.R;
+import com.example.cthulhucompanion.screens.activity.setup.playeravatar.ViewMvcPlayerAvatar;
 import com.example.cthulhucompanion.screens.common.ViewMvcFactory;
 import com.example.cthulhucompanion.screens.common.mvcviews.observable.BaseObservableViewMvc;
-import com.example.cthulhucompanion.screens.common.popupmanager.PopUpManager;
-import com.example.cthulhucompanion.screens.fragments.playeravatar.ViewMvcItemPlayerAvatar;
+import com.example.cthulhucompanion.screens.activity.setup.playeravatar.ViewMvcPlayerAvatarImpl;
+import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacter;
+import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacterImpl;
 import com.example.cthulhucompanion.screens.toolbar.main.ViewMvcToolbarMain;
 
 import java.util.ArrayList;
 
-public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listener> implements ViewMvcSetUp, ViewMvcItemPlayerAvatar.Listener {
+public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listener> implements ViewMvcSetUp {
 
+    private final Pair<PlayerColor, Integer>
+            mPlayerButtonBlue = new Pair<>(PLAYER_BLUE, R.color.player_blue),
+            mPlayerButtonRed = new Pair<>(PLAYER_RED, R.color.player_red),
+            mPlayerButtonGreen = new Pair<>(PLAYER_GREEN, R.color.player_green),
+            mPlayerButtonOrange = new Pair<>(PLAYER_ORANGE, R.color.player_orange),
+            mPlayerButtonViolet = new Pair<>(PLAYER_VIOLET, R.color.player_violet);
+
+    private final ArrayList<Pair<PlayerColor, Integer>> mPlayerColorButtons= new ArrayList<>();
     private final Toolbar mToolbar;
     private final ViewMvcToolbarMain mToolbarViewMvc;
     private final ArrayList<FrameLayout> mPlayerAvatars = new ArrayList<>();
-    private final ArrayList<ViewMvcItemPlayerAvatar> mPlayerAvatarViewMvcs = new ArrayList<>();
+    private final ArrayList<ViewMvcPlayerAvatar> mPlayerAvatarViewMvcs = new ArrayList<>();
     private final Button mButtonContinue;
-    private ArrayList<PopUpManager> mAddPlayerPopUpManagers = new ArrayList<>();
-
     private Spinner mSpinnerChooseEpisode;
     private Spinner mSpinnerChooseGreatOldOne;
 
@@ -38,33 +48,30 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
                             ViewMvcFactory viewMvcFactory){
         setRootView(inflater.inflate(R.layout.activity_set_up, parent, false));
 
-        ArrayList<Integer> RColorsPlayer = new ArrayList<>();
         mPlayerAvatars.add(this.findViewById(R.id.element_player_avatar1));
-        RColorsPlayer.add(R.color.player_blue);
-
         mPlayerAvatars.add(this.findViewById(R.id.element_player_avatar2));
-        RColorsPlayer.add(R.color.player_green);
-
         mPlayerAvatars.add(this.findViewById(R.id.element_player_avatar3));
-        RColorsPlayer.add(R.color.player_violet);
-
         mPlayerAvatars.add(this.findViewById(R.id.element_player_avatar4));
-        RColorsPlayer.add(R.color.player_orange);
-
         mPlayerAvatars.add(this.findViewById(R.id.element_player_avatar5));
-        RColorsPlayer.add(R.color.player_red);
 
+        mPlayerColorButtons.add(mPlayerButtonBlue);
+        mPlayerColorButtons.add(mPlayerButtonRed);
+        mPlayerColorButtons.add(mPlayerButtonGreen);
+        mPlayerColorButtons.add(mPlayerButtonOrange);
+        mPlayerColorButtons.add(mPlayerButtonViolet);
+
+        //TODO: create a class containing viewmvcs, colorButtons, frameLayouts
         for (int i = 0 ; i < mPlayerAvatars.size(); i++){
-            ViewMvcItemPlayerAvatar playerAvatarViewMvc = new ViewMvcItemPlayerAvatar(inflater, parent, viewMvcFactory);
-            playerAvatarViewMvc.setBackgroundColor(RColorsPlayer.get(i));
+            ViewMvcPlayerAvatarImpl playerAvatarViewMvc = new ViewMvcPlayerAvatarImpl(inflater, parent, viewMvcFactory);
+            playerAvatarViewMvc.setBackgroundColor(mPlayerColorButtons.get(i).second);
             View view = playerAvatarViewMvc.getRootView();
             mPlayerAvatars.get(i).addView(view);
 
             mPlayerAvatarViewMvcs.add(playerAvatarViewMvc);
         }
 
-        for (ViewMvcItemPlayerAvatar playerAvatarViewMvc : mPlayerAvatarViewMvcs){
-            playerAvatarViewMvc.setAvatarButtonToEmpty();
+        for (ViewMvcPlayerAvatar playerAvatarViewMvc : mPlayerAvatarViewMvcs){
+            playerAvatarViewMvc.makeAvatarEmpty();
         }
 
         mButtonContinue = this.findViewById(R.id.continue_btn);
@@ -84,10 +91,14 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
     }
 
     @Override
-    public void bindAddCharacterSelectionPopUpToPlayerColorButtons() {
-        for (ViewMvcItemPlayerAvatar viewMvcItemPlayerAvatar : mPlayerAvatarViewMvcs){
-            viewMvcItemPlayerAvatar.bindAddPlayerPopUpToPlayerAvatarButton();
-            viewMvcItemPlayerAvatar.registerListener(this);
+    public void setCharacterSelectionPopUpList(ArrayList<Pair<Integer, PopUpViewMvcSelectCharacterImpl.Character>> characterImages, PopUpViewMvcSelectCharacter.Listener listener) {
+        for (ViewMvcPlayerAvatar viewMvcPlayerAvatar : mPlayerAvatarViewMvcs){
+            //TODO: delegation of listener no good -> use event bus or something
+            viewMvcPlayerAvatar.bindCharacterSelectionPopUp(listener);
+            for (Pair<Integer, PopUpViewMvcSelectCharacterImpl.Character> characterImage : characterImages){
+                viewMvcPlayerAvatar.addCharacterToPopUpSelection(characterImage.first, characterImage.second);
+            }
+            //viewMvcPlayerAvatar.registerListener(this);
         }
     }
 
@@ -118,21 +129,5 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout
                 .simple_spinner_dropdown_item);
         mSpinnerChooseGreatOldOne.setAdapter(spinnerArrayAdapter);
-    }
-
-    @Override
-    public void setChooseCharacterPopUpList(ArrayList<Pair<Integer,Integer>> characterIdsImageAndButtons) {
-        for (int i = 0; i < mPlayerAvatarViewMvcs.size(); i++){
-            for (Pair<Integer, Integer> characterIdImageButton : characterIdsImageAndButtons){
-                mPlayerAvatarViewMvcs.get(i).addCharacterToPopUpSelection(characterIdImageButton.first, characterIdImageButton.second);
-            }
-        }
-    }
-
-    @Override
-    public void onPopUpCharacterButtonClicked(int buttonId) {
-        for (ViewMvcItemPlayerAvatar viewMvcItemPlayerAvatar : mPlayerAvatarViewMvcs){
-            viewMvcItemPlayerAvatar.removeCharacterFromPopUpSelection(buttonId);
-        }
     }
 }

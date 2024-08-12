@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacterImpl;
+
 import java.util.AbstractList;
 import java.util.ArrayList;
 
@@ -15,8 +17,7 @@ public class DataBaseCharacters {
     public AbstractList<WrapperCharacterEntry> readData(SQLiteDatabase db){
 
         String[] projection = { // specifies which columns from the database you will actually use after this query.
-                FeedReaderContract.CharactersFeedEntry.COLUMN_IMAGE_RESOURCE,
-                FeedReaderContract.CharactersFeedEntry.COLUMN_IMAGE_BUTTON_ID
+                FeedReaderContract.CharactersFeedEntry.COLUMN_IMAGE_RESOURCE
         };
 
         Cursor cursor = db.query(
@@ -33,11 +34,7 @@ public class DataBaseCharacters {
                     FeedReaderContract.CharactersFeedEntry.COLUMN_IMAGE_RESOURCE)
             );
 
-            int imageButtonId = cursor.getInt( cursor.getColumnIndex(
-                    FeedReaderContract.CharactersFeedEntry.COLUMN_IMAGE_BUTTON_ID)
-            );
-
-            mEntries.add(new WrapperCharacterEntry(imageResource, imageButtonId));
+            mEntries.add(new WrapperCharacterEntry(imageResource));
         }
         cursor.close();
 
