@@ -117,7 +117,7 @@ public class ViewMvcFactory {
         return new ViewMvcTradeImpl(mLayoutInflater, parent, this);
     }
 
-    public PopUpViewMvcSelectCharacter getViewMvcPopupAddPlayer() {
+    public PopUpViewMvcSelectCharacter getViewMvcPopupSelectPlayer() {
         return new PopUpViewMvcSelectCharacterImpl(mLayoutInflater);
     }
 }

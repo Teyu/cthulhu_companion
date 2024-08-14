@@ -102,14 +102,14 @@ public class PopUpManager {
         mPopUpWindowTrade.dismiss();
     }
 
-    public void anchorPopUpAddPlayer(@NonNull final View anchorView, PopUpViewMvcSelectCharacter viewMvcAddPlayer, PopUpViewMvcSelectCharacter.Listener listener) {
+    public void anchorPopUpAddPlayer(@NonNull final View anchorView, PopUpViewMvcSelectCharacter viewMvcAddPlayer, PopUpViewMvcSelectCharacter.PopUpListener popUpListener) {
 
         mPopUpWindowAddPlayer = new PopupWindow(
                 viewMvcAddPlayer.getRootView(),
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        anchorPopUpToView(viewMvcAddPlayer, anchorView, listener, mPopUpWindowAddPlayer);
+        anchorPopUpToView(viewMvcAddPlayer, anchorView, popUpListener, mPopUpWindowAddPlayer);
     }
 
     public void dismissPopUpAddPlayer() {

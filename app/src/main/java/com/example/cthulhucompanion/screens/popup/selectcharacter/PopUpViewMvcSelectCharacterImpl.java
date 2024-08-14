@@ -12,24 +12,11 @@ import java.util.ArrayList;
 
 import kotlin.Pair;
 
-public class PopUpViewMvcSelectCharacterImpl extends BaseObservableViewMvc<PopUpViewMvcSelectCharacter.Listener> implements PopUpViewMvcSelectCharacter {
+public class PopUpViewMvcSelectCharacterImpl extends BaseObservableViewMvc<PopUpViewMvcSelectCharacter.PopUpListener> implements PopUpViewMvcSelectCharacter {
 
     private final ImageButton mCharacterDeleteButton;
     private final ArrayList<ImageButton> mCharacterButtons = new ArrayList<>();
     private final ArrayList<Pair<Integer, Character>> mCharacterImageButtons = new ArrayList<>();
-
-    public enum Character {
-        AHMED_YASIN,
-        BORDEN,
-        ELIZABETH_IVES,
-        FATIMA_SAFAR,
-        JOHN_MORGAN,
-        LORD_ADAM_BENCHLEY,
-        RASPUTIN,
-        SERGEANT_IAN_WELLES,
-        SISTER_BETH,
-        THE_KID
-    }
 
     @SuppressLint("InflateParams")
     public PopUpViewMvcSelectCharacterImpl(LayoutInflater inflater){
@@ -38,8 +25,8 @@ public class PopUpViewMvcSelectCharacterImpl extends BaseObservableViewMvc<PopUp
         this.mCharacterDeleteButton = findViewById(R.id.delete_avatar_btn);
         mCharacterDeleteButton.setImageResource(R.drawable.icon_delete);
         mCharacterDeleteButton.setOnClickListener(v -> {
-            for (Listener listener : getListeners()){
-                listener.onDeleteButtonClicked();
+            for (PopUpListener popUpListener : getListeners()){
+                popUpListener.onDeleteButtonClicked();
             }
         });
 
@@ -87,12 +74,22 @@ public class PopUpViewMvcSelectCharacterImpl extends BaseObservableViewMvc<PopUp
 
                 imageButton.setImageResource(imageResource);
                 imageButton.setOnClickListener(v -> {
-                    for (Listener listener : getListeners()){
-                        listener.onCharacterButtonClicked(character);
+                    for (PopUpListener popUpListener : getListeners()){
+                        popUpListener.onCharacterButtonClicked(character);
                     }
                 });
             }
         }
+    }
+
+    @Override
+    public int getCharacterImage(Character character) {
+        for (Pair<Integer, Character> characterImageButton : mCharacterImageButtons){
+            if (characterImageButton.getSecond() == character){
+                return characterImageButton.getFirst();
+            }
+        }
+        return 0;
     }
 
     @Override

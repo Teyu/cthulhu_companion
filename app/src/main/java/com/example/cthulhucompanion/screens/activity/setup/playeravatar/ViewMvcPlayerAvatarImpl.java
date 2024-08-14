@@ -29,12 +29,12 @@ public class ViewMvcPlayerAvatarImpl extends BaseObservableViewMvc<ViewMvcPlayer
         this.mPlayerAvatarButton = findViewById(R.id.player_avatar_btn);
         this.mViewMvcFactory = viewMvcFactory;
         this.mPopUpmanager = new PopUpManager(mViewMvcFactory);
-        this.mPopUpViewMvc = viewMvcFactory.getViewMvcPopupAddPlayer();
+        this.mPopUpViewMvc = viewMvcFactory.getViewMvcPopupSelectPlayer();
     }
 
     @Override
-    public void bindCharacterSelectionPopUp(@NonNull PopUpViewMvcSelectCharacter.Listener listener) {
-        mPopUpmanager.anchorPopUpAddPlayer(mPlayerAvatarButton, mPopUpViewMvc, listener);
+    public void bindCharacterSelectionPopUp(@NonNull PopUpViewMvcSelectCharacter.PopUpListener popUpListener) {
+        mPopUpmanager.anchorPopUpAddPlayer(mPlayerAvatarButton, mPopUpViewMvc, popUpListener);
     }
 
     public void setBackgroundColor(int resourceId){
@@ -42,8 +42,9 @@ public class ViewMvcPlayerAvatarImpl extends BaseObservableViewMvc<ViewMvcPlayer
     }
 
     @Override
-    public void setAvatarImage(int resourceId) {
-        mPlayerAvatarButton.setImageResource(resourceId);
+    public void setAvatarImage(PopUpViewMvcSelectCharacter.Character character) {
+        int imageResource = mPopUpViewMvc.getCharacterImage(character);
+        mPlayerAvatarButton.setImageResource(imageResource);
     }
 
     public void addCharacterToPopUpSelection(Integer imageResource, PopUpViewMvcSelectCharacterImpl.Character character) {
@@ -61,12 +62,12 @@ public class ViewMvcPlayerAvatarImpl extends BaseObservableViewMvc<ViewMvcPlayer
     }
 
     @Override
-    public void addDeleteButtonToPopUp() {
+    public void addDeleteButtonToPopUpSelection() {
         mPopUpViewMvc.addDeleteButton();
     }
 
     @Override
-    public void removeDeleteButtonFromPopUp() {
+    public void removeDeleteButtonFromPopUpSelection() {
         mPopUpViewMvc.removeDeleteButton();
     }
 }

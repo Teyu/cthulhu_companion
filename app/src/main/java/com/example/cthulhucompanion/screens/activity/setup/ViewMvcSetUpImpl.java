@@ -27,18 +27,9 @@ import java.util.ArrayList;
 
 public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listener> implements ViewMvcSetUp {
 
-    private final Pair<PlayerColor, Integer>
-            mPlayerButtonBlue = new Pair<>(PLAYER_BLUE, R.color.player_blue),
-            mPlayerButtonRed = new Pair<>(PLAYER_RED, R.color.player_red),
-            mPlayerButtonGreen = new Pair<>(PLAYER_GREEN, R.color.player_green),
-            mPlayerButtonOrange = new Pair<>(PLAYER_ORANGE, R.color.player_orange),
-            mPlayerButtonViolet = new Pair<>(PLAYER_VIOLET, R.color.player_violet);
-
-    private final ArrayList<Pair<PlayerColor, Integer>> mPlayerColorButtons= new ArrayList<>();
+    private final ArrayList<PlayerAvatar> mPlayerAvatars = new ArrayList<>();
     private final Toolbar mToolbar;
     private final ViewMvcToolbarMain mToolbarViewMvc;
-    private final ArrayList<FrameLayout> mPlayerAvatars = new ArrayList<>();
-    private final ArrayList<ViewMvcPlayerAvatar> mPlayerAvatarViewMvcs = new ArrayList<>();
     private final Button mButtonContinue;
     private Spinner mSpinnerChooseEpisode;
     private Spinner mSpinnerChooseGreatOldOne;
@@ -48,30 +39,46 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
                             ViewMvcFactory viewMvcFactory){
         setRootView(inflater.inflate(R.layout.activity_set_up, parent, false));
 
-        mPlayerAvatars.add(this.findViewById(R.id.element_player_avatar1));
-        mPlayerAvatars.add(this.findViewById(R.id.element_player_avatar2));
-        mPlayerAvatars.add(this.findViewById(R.id.element_player_avatar3));
-        mPlayerAvatars.add(this.findViewById(R.id.element_player_avatar4));
-        mPlayerAvatars.add(this.findViewById(R.id.element_player_avatar5));
+        mPlayerAvatars.add(new PlayerAvatar(
+                new ViewMvcPlayerAvatarImpl(inflater, parent, viewMvcFactory),
+                PLAYER_BLUE,
+                R.color.player_blue,
+                findViewById(R.id.element_player_avatar1)
+                ));
 
-        mPlayerColorButtons.add(mPlayerButtonBlue);
-        mPlayerColorButtons.add(mPlayerButtonRed);
-        mPlayerColorButtons.add(mPlayerButtonGreen);
-        mPlayerColorButtons.add(mPlayerButtonOrange);
-        mPlayerColorButtons.add(mPlayerButtonViolet);
+        mPlayerAvatars.add(new PlayerAvatar(
+                new ViewMvcPlayerAvatarImpl(inflater, parent, viewMvcFactory),
+                PLAYER_GREEN,
+                R.color.player_green,
+                findViewById(R.id.element_player_avatar2)
+        ));
 
-        //TODO: create a class containing viewmvcs, colorButtons, frameLayouts
-        for (int i = 0 ; i < mPlayerAvatars.size(); i++){
-            ViewMvcPlayerAvatarImpl playerAvatarViewMvc = new ViewMvcPlayerAvatarImpl(inflater, parent, viewMvcFactory);
-            playerAvatarViewMvc.setBackgroundColor(mPlayerColorButtons.get(i).second);
-            View view = playerAvatarViewMvc.getRootView();
-            mPlayerAvatars.get(i).addView(view);
+        mPlayerAvatars.add(new PlayerAvatar(
+                new ViewMvcPlayerAvatarImpl(inflater, parent, viewMvcFactory),
+                PLAYER_RED,
+                R.color.player_red,
+                findViewById(R.id.element_player_avatar3)
+        ));
 
-            mPlayerAvatarViewMvcs.add(playerAvatarViewMvc);
-        }
+        mPlayerAvatars.add(new PlayerAvatar(
+                new ViewMvcPlayerAvatarImpl(inflater, parent, viewMvcFactory),
+                PLAYER_ORANGE,
+                R.color.player_orange,
+                findViewById(R.id.element_player_avatar4)
+        ));
 
-        for (ViewMvcPlayerAvatar playerAvatarViewMvc : mPlayerAvatarViewMvcs){
-            playerAvatarViewMvc.makeAvatarEmpty();
+        mPlayerAvatars.add(new PlayerAvatar(
+                new ViewMvcPlayerAvatarImpl(inflater, parent, viewMvcFactory),
+                PLAYER_VIOLET,
+                R.color.player_violet,
+                findViewById(R.id.element_player_avatar5)
+        ));
+
+        for (PlayerAvatar playerAvatar : mPlayerAvatars){
+            View view = playerAvatar.getViewMvc().getRootView();
+            playerAvatar.getLayout().addView(view);
+            playerAvatar.getViewMvc().makeAvatarEmpty();
+            playerAvatar.getViewMvc().setBackgroundColor(playerAvatar.getColorResource());
         }
 
         mButtonContinue = this.findViewById(R.id.continue_btn);
@@ -91,14 +98,31 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
     }
 
     @Override
-    public void setCharacterSelectionPopUpList(ArrayList<Pair<Integer, PopUpViewMvcSelectCharacterImpl.Character>> characterImages, PopUpViewMvcSelectCharacter.Listener listener) {
-        for (ViewMvcPlayerAvatar viewMvcPlayerAvatar : mPlayerAvatarViewMvcs){
-            //TODO: delegation of listener no good -> use event bus or something
-            viewMvcPlayerAvatar.bindCharacterSelectionPopUp(listener);
-            for (Pair<Integer, PopUpViewMvcSelectCharacterImpl.Character> characterImage : characterImages){
-                viewMvcPlayerAvatar.addCharacterToPopUpSelection(characterImage.first, characterImage.second);
+    public void setCharacterSelectionPopUpList(ArrayList<Pair<Integer, PopUpViewMvcSelectCharacterImpl.Character>> characterImageResources, PopUpViewMvcSelectCharacter.PopUpListener popUpListener) {
+        for (PlayerAvatar playerAvatar : mPlayerAvatars){
+            playerAvatar.getViewMvc().bindCharacterSelectionPopUp(popUpListener);
+            for (Pair<Integer, PopUpViewMvcSelectCharacterImpl.Character> characterImage : characterImageResources){
+                playerAvatar.getViewMvc().addCharacterToPopUpSelection(characterImage.first, characterImage.second);
             }
-            //viewMvcPlayerAvatar.registerListener(this);
+        }
+    }
+
+    @Override
+    public void setPlayerAvatar(PlayerColor playerColor, PopUpViewMvcSelectCharacter.Character character) {
+        for (PlayerAvatar playerAvatar : mPlayerAvatars){
+            if (playerAvatar.getColor() == playerColor) {
+                playerAvatar.getViewMvc().setAvatarImage(character);
+                break;
+            }
+        }
+    }
+
+    @Override
+    public void removePlayerAvatar(PlayerColor playerColor) {
+        for (PlayerAvatar playerAvatar : mPlayerAvatars){
+            if (playerAvatar.getColor() == playerColor){
+                playerAvatar.getViewMvc().makeAvatarEmpty();
+            }
         }
     }
 
@@ -129,5 +153,38 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout
                 .simple_spinner_dropdown_item);
         mSpinnerChooseGreatOldOne.setAdapter(spinnerArrayAdapter);
+    }
+
+
+    private class PlayerAvatar {
+
+        private final ViewMvcPlayerAvatar mViewMvc;
+        private final PlayerColor mColor;
+        private final int mColorResource;
+        private final FrameLayout mLayout;
+        PlayerAvatar(ViewMvcPlayerAvatar viewMvc,
+                     PlayerColor color,
+                     int colorResource,
+                     FrameLayout layout){
+            this.mViewMvc = viewMvc;
+            this.mColor = color;
+            this.mColorResource = colorResource;
+            this.mLayout = layout;
+        }
+        public ViewMvcPlayerAvatar getViewMvc() {
+            return mViewMvc;
+        }
+
+        public PlayerColor getColor() {
+            return mColor;
+        }
+
+        public int getColorResource() {
+            return mColorResource;
+        }
+
+        public FrameLayout getLayout() {
+            return mLayout;
+        }
     }
 }

@@ -12,12 +12,12 @@ public interface ViewMvcPlayerAvatar extends ObservableViewMvc<ViewMvcPlayerAvat
         void onAvatarButtonClicked();
     }
 
-    void bindCharacterSelectionPopUp(@NonNull PopUpViewMvcSelectCharacter.Listener listener);;
+    void bindCharacterSelectionPopUp(@NonNull PopUpViewMvcSelectCharacter.PopUpListener popUpListener);;
     void setBackgroundColor(int resourceId);
-    void setAvatarImage(int resourceId);
+    void setAvatarImage(PopUpViewMvcSelectCharacter.Character character);
     void makeAvatarEmpty();
-    void addDeleteButtonToPopUp(); // delegation to PopUp view mvc
-    void removeDeleteButtonFromPopUp(); // delegation to PopUp viewMvc
+    void addDeleteButtonToPopUpSelection(); // delegation to PopUp view mvc
+    void removeDeleteButtonFromPopUpSelection(); // delegation to PopUp viewMvc
     void addCharacterToPopUpSelection(Integer imageResource, PopUpViewMvcSelectCharacterImpl.Character character);
     void removeCharacterFromPopUpSelection(PopUpViewMvcSelectCharacterImpl.Character character);
 }
