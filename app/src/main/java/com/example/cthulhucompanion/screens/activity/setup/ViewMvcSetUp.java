@@ -7,12 +7,14 @@ package com.example.cthulhucompanion.screens.activity.setup;
 import android.util.Pair;
 
 import com.example.cthulhucompanion.screens.common.mvcviews.observable.ObservableViewMvc;
+import com.example.cthulhucompanion.screens.common.popupmanager.PopUpManager;
 import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacter;
 import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacterImpl;
 
 import java.util.ArrayList;
 
 public interface ViewMvcSetUp extends ObservableViewMvc<ViewMvcSetUp.Listener> {
+
     enum PlayerColor{
         PLAYER_RED,
         PLAYER_BLUE,
@@ -23,6 +25,8 @@ public interface ViewMvcSetUp extends ObservableViewMvc<ViewMvcSetUp.Listener> {
 
     interface Listener{
         void OnFinishSetUp();
+        void onCharacterSelected(PlayerColor playerBlue, PopUpViewMvcSelectCharacter.Character character);
+        void onCharacterDeleted(PlayerColor playerColor, PopUpViewMvcSelectCharacter.Character character);
     }
 
     void setPlayerAvatar(PlayerColor playerColor, PopUpViewMvcSelectCharacter.Character character);
@@ -31,6 +35,15 @@ public interface ViewMvcSetUp extends ObservableViewMvc<ViewMvcSetUp.Listener> {
     void setEpisodeList(final ArrayList<Pair<String, Integer>> titleAndCountPairs);
 
     void setGreatOldOnesList(final ArrayList<String> names);
+    void bindCharacterSelectionPopUp(PopUpManager mPopUpManagerMock);
 
-    void setCharacterSelectionPopUpList(ArrayList<Pair<Integer, PopUpViewMvcSelectCharacterImpl.Character>> characterImageResources, PopUpViewMvcSelectCharacter.PopUpListener popUpListener);
+    void setCharacterSelectionPopUp(ArrayList<Pair<Integer, PopUpViewMvcSelectCharacterImpl.Character>> characterImageResources, PopUpViewMvcSelectCharacter.PopUpListener popUpListener);
+
+    void addCharacterToPopUpSelection(PopUpViewMvcSelectCharacter.Character character);
+
+    void removeCharacterFromPopUpSelection(PopUpViewMvcSelectCharacter.Character character);
+
+    void provideCharacterDeleteButton();
+
+    void disableCharacterDeleteButton();
 }

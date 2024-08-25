@@ -11,6 +11,9 @@ import android.view.LayoutInflater;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.cthulhucompanion.database.characters.DataBaseCharacters;
+import com.example.cthulhucompanion.database.episodes.DataBaseEpisodes;
+import com.example.cthulhucompanion.database.greatoldone.DataBaseGreatOldOnes;
 import com.example.cthulhucompanion.screens.common.fragmentnavigator.FragmentFrameWrapper;
 import com.example.cthulhucompanion.screens.common.fragmentnavigator.FragmentNavigator;
 import com.example.cthulhucompanion.screens.common.popupmanager.PopUpManager;
@@ -77,8 +80,16 @@ public class ControllerCompositionRoot {
 
     /** ------------------------------------- controllers ------------------------------------- **/
 
-    public ControllerSetUp getControllerSetUp(ScreensNavigator screensNavigator, SQLiteDatabase readableDataBase){
-        return new ControllerSetUp(screensNavigator, readableDataBase, getContext());
+    public ControllerSetUp getControllerSetUp(ScreensNavigator screensNavigator,
+                                              SQLiteDatabase readableDataBase,
+                                              PopUpManager popUpManager){
+        return new ControllerSetUp(screensNavigator,
+                readableDataBase,
+                new DataBaseGreatOldOnes(),
+                new DataBaseEpisodes(),
+                new DataBaseCharacters(),
+                popUpManager,
+                getContext());
     }
 
     public ControllerChooseAction getControllerChooseAction(ScreensNavigator screensNavigator,

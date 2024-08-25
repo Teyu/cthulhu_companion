@@ -26,7 +26,8 @@ public class ActivitySetUp extends BaseActivity {
         try {
             mControllerSetUp = getCompositionRoot().getControllerSetUp(
                     getCompositionRoot().getScreensNavigator(),
-                    getCompositionRoot().accessReadableDataBase());
+                    getCompositionRoot().accessReadableDataBase(),
+                    getCompositionRoot().getPopUpManager());
         } catch (Exception e) {
             Log.i("ERROR", Objects.requireNonNull(e.getMessage()));
         }

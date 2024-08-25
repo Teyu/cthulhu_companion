@@ -6,17 +6,13 @@ package com.example.cthulhucompanion.screens.activity.setup;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Pair;
 
 import com.example.cthulhucompanion.database.characters.DataBaseCharacters;
-import com.example.cthulhucompanion.database.characters.WrapperCharacterEntry;
 import com.example.cthulhucompanion.database.episodes.DataBaseEpisodes;
-import com.example.cthulhucompanion.database.episodes.WrapperEpisodeEntry;
 import com.example.cthulhucompanion.database.greatoldone.DataBaseGreatOldOnes;
-import com.example.cthulhucompanion.database.greatoldone.WrapperGreatOldOneEntry;
+import com.example.cthulhucompanion.screens.common.popupmanager.PopUpManager;
 import com.example.cthulhucompanion.screens.common.screensnavigator.ScreensNavigator;
-
-import java.util.ArrayList;
+import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacter;
 
 public class ControllerSetUp implements ViewMvcSetUp.Listener{
 
@@ -28,13 +24,21 @@ public class ControllerSetUp implements ViewMvcSetUp.Listener{
     private final DataBaseCharacters mDataBaseCharacters;
     private final Context mContext;
 
-    public ControllerSetUp(ScreensNavigator screensNavigator, SQLiteDatabase readableDataBase, Context context) {
+    private final PopUpManager mPopUpManager;
+
+    public ControllerSetUp(ScreensNavigator screensNavigator,
+                           SQLiteDatabase readableDataBase,
+                           DataBaseGreatOldOnes dataBaseGreatOldOnes,
+                           DataBaseEpisodes dataBaseEpisodes,
+                           DataBaseCharacters dataBaseCharacters,
+                           PopUpManager popUpManager, Context context) {
         this.mScreensNavigator = screensNavigator;
         this.mReadableDataBase = readableDataBase;
-        this.mDataBaseGreatOldOnes = new DataBaseGreatOldOnes();
-        this.mDataBaseEpisodes = new DataBaseEpisodes();
-        this.mDataBaseCharacters = new DataBaseCharacters();
+        this.mDataBaseGreatOldOnes = dataBaseGreatOldOnes;
+        this.mDataBaseEpisodes = dataBaseEpisodes;
+        this.mDataBaseCharacters = dataBaseCharacters;
         this.mContext = context;
+        this.mPopUpManager = popUpManager;
     }
 
     void onStart() {
@@ -78,5 +82,15 @@ public class ControllerSetUp implements ViewMvcSetUp.Listener{
     @Override
     public void OnFinishSetUp() {
         mScreensNavigator.toActivityChooseAction(null);
+    }
+
+    @Override
+    public void onCharacterSelected(ViewMvcSetUp.PlayerColor playerBlue, PopUpViewMvcSelectCharacter.Character character) {
+
+    }
+
+    @Override
+    public void onCharacterDeleted(ViewMvcSetUp.PlayerColor playerColor, PopUpViewMvcSelectCharacter.Character character) {
+
     }
 }

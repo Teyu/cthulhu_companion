@@ -19,6 +19,7 @@ import com.example.cthulhucompanion.screens.activity.setup.playeravatar.ViewMvcP
 import com.example.cthulhucompanion.screens.common.ViewMvcFactory;
 import com.example.cthulhucompanion.screens.common.mvcviews.observable.BaseObservableViewMvc;
 import com.example.cthulhucompanion.screens.activity.setup.playeravatar.ViewMvcPlayerAvatarImpl;
+import com.example.cthulhucompanion.screens.common.popupmanager.PopUpManager;
 import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacter;
 import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacterImpl;
 import com.example.cthulhucompanion.screens.toolbar.main.ViewMvcToolbarMain;
@@ -98,13 +99,33 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
     }
 
     @Override
-    public void setCharacterSelectionPopUpList(ArrayList<Pair<Integer, PopUpViewMvcSelectCharacterImpl.Character>> characterImageResources, PopUpViewMvcSelectCharacter.PopUpListener popUpListener) {
+    public void setCharacterSelectionPopUp(ArrayList<Pair<Integer, PopUpViewMvcSelectCharacterImpl.Character>> characterImageResources, PopUpViewMvcSelectCharacter.PopUpListener popUpListener) {
         for (PlayerAvatar playerAvatar : mPlayerAvatars){
             playerAvatar.getViewMvc().bindCharacterSelectionPopUp(popUpListener);
             for (Pair<Integer, PopUpViewMvcSelectCharacterImpl.Character> characterImage : characterImageResources){
                 playerAvatar.getViewMvc().addCharacterToPopUpSelection(characterImage.first, characterImage.second);
             }
         }
+    }
+
+    @Override
+    public void addCharacterToPopUpSelection(PopUpViewMvcSelectCharacter.Character character) {
+
+    }
+
+    @Override
+    public void removeCharacterFromPopUpSelection(PopUpViewMvcSelectCharacter.Character character) {
+
+    }
+
+    @Override
+    public void provideCharacterDeleteButton() {
+
+    }
+
+    @Override
+    public void disableCharacterDeleteButton() {
+
     }
 
     @Override
@@ -153,6 +174,11 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout
                 .simple_spinner_dropdown_item);
         mSpinnerChooseGreatOldOne.setAdapter(spinnerArrayAdapter);
+    }
+
+    @Override
+    public void bindCharacterSelectionPopUp(PopUpManager mPopUpManagerMock) {
+
     }
 
 
