@@ -25,6 +25,7 @@ import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSe
 import com.example.cthulhucompanion.screens.toolbar.main.ViewMvcToolbarMain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listener> implements ViewMvcSetUp {
 
@@ -99,11 +100,11 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
     }
 
     @Override
-    public void setCharacterSelectionPopUp(ArrayList<Pair<Integer, PopUpViewMvcSelectCharacterImpl.Character>> characterImageResources, PopUpViewMvcSelectCharacter.PopUpListener popUpListener) {
+    public void setCharacterSelectionPopUp(HashMap<Integer, PopUpViewMvcSelectCharacterImpl.Character> characterImageResources, PopUpViewMvcSelectCharacter.PopUpListener popUpListener) {
         for (PlayerAvatar playerAvatar : mPlayerAvatars){
             playerAvatar.getViewMvc().bindCharacterSelectionPopUp(popUpListener);
-            for (Pair<Integer, PopUpViewMvcSelectCharacterImpl.Character> characterImage : characterImageResources){
-                playerAvatar.getViewMvc().addCharacterToPopUpSelection(characterImage.first, characterImage.second);
+            for (int characterImage : characterImageResources.keySet()){
+                playerAvatar.getViewMvc().addCharacterToPopUpSelection(characterImage, characterImageResources.get(characterImage));
             }
         }
     }

@@ -12,6 +12,7 @@ import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSe
 import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacterImpl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public interface ViewMvcSetUp extends ObservableViewMvc<ViewMvcSetUp.Listener> {
 
@@ -37,7 +38,7 @@ public interface ViewMvcSetUp extends ObservableViewMvc<ViewMvcSetUp.Listener> {
     void setGreatOldOnesList(final ArrayList<String> names);
     void bindCharacterSelectionPopUp(PopUpManager mPopUpManagerMock);
 
-    void setCharacterSelectionPopUp(ArrayList<Pair<Integer, PopUpViewMvcSelectCharacterImpl.Character>> characterImageResources, PopUpViewMvcSelectCharacter.PopUpListener popUpListener);
+    void setCharacterSelectionPopUp(HashMap<Integer, PopUpViewMvcSelectCharacterImpl.Character> characterImageResources, PopUpViewMvcSelectCharacter.PopUpListener popUpListener);
 
     void addCharacterToPopUpSelection(PopUpViewMvcSelectCharacter.Character character);
 

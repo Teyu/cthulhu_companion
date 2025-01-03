@@ -1,6 +1,7 @@
 package com.example.cthulhucompanion.screens.activity.setup.playeravatar;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -30,6 +31,14 @@ public class ViewMvcPlayerAvatarImpl extends BaseObservableViewMvc<ViewMvcPlayer
         this.mViewMvcFactory = viewMvcFactory;
         this.mPopUpmanager = new PopUpManager(mViewMvcFactory);
         this.mPopUpViewMvc = viewMvcFactory.getViewMvcPopupSelectPlayer();
+
+        mPlayerAvatarButton.setOnClickListener(
+                v -> {
+                    for (Listener listener: getListeners()){
+                        listener.onAvatarButtonClicked();
+                    }
+                }
+        );
     }
 
     @Override

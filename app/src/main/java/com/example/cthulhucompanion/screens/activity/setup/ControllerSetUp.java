@@ -10,11 +10,12 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.cthulhucompanion.database.characters.DataBaseCharacters;
 import com.example.cthulhucompanion.database.episodes.DataBaseEpisodes;
 import com.example.cthulhucompanion.database.greatoldone.DataBaseGreatOldOnes;
+import com.example.cthulhucompanion.screens.activity.setup.playeravatar.ViewMvcPlayerAvatar;
 import com.example.cthulhucompanion.screens.common.popupmanager.PopUpManager;
 import com.example.cthulhucompanion.screens.common.screensnavigator.ScreensNavigator;
 import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacter;
 
-public class ControllerSetUp implements ViewMvcSetUp.Listener{
+public class ControllerSetUp implements ViewMvcSetUp.Listener, ViewMvcPlayerAvatar.Listener{
 
     private final ScreensNavigator mScreensNavigator;
     private ViewMvcSetUp mViewMvcSetUp;
@@ -85,12 +86,19 @@ public class ControllerSetUp implements ViewMvcSetUp.Listener{
     }
 
     @Override
-    public void onCharacterSelected(ViewMvcSetUp.PlayerColor playerBlue, PopUpViewMvcSelectCharacter.Character character) {
-
+    public void onCharacterSelected(ViewMvcSetUp.PlayerColor playerColor, PopUpViewMvcSelectCharacter.Character character) {
+        //update avatar
+        mViewMvcSetUp.setPlayerAvatar(playerColor, character);
     }
 
     @Override
     public void onCharacterDeleted(ViewMvcSetUp.PlayerColor playerColor, PopUpViewMvcSelectCharacter.Character character) {
 
+    }
+
+    @Override
+    public void onAvatarButtonClicked() {
+        //verify(mViewMvcMock).setCharacterSelectionPopUp(CHARACTERS, null/*PopUpListener not needed*/);
+        //verify(mViewMvcMock).bindCharacterSelectionPopUp(mPopUpManagerMock);
     }
 }

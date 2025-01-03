@@ -1,5 +1,6 @@
 package com.example.cthulhucompanion.database;
 
+import static com.example.cthulhucompanion.database.characters.FeedReaderContract.CharactersFeedEntry.COLUMN_CHARACTER_ID;
 import static com.example.cthulhucompanion.database.characters.FeedReaderContract.CharactersFeedEntry.COLUMN_IMAGE_RESOURCE;
 import static com.example.cthulhucompanion.database.characters.FeedReaderContract.CharactersFeedEntry.TABLE_CHARACTERS;
 import static com.example.cthulhucompanion.database.characters.FeedReaderContract.SQL_CREATE_CHARACTERS_ENTRIES;
@@ -34,7 +35,7 @@ public class FeedReaderSQLHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + TABLE_GREAT_OLD_ONES + " ( " + COLUMN_NAME + " String )");
         db.execSQL(SQL_CREATE_GREAT_OLD_ENTRIES);
 
-        db.execSQL("CREATE TABLE " + TABLE_CHARACTERS + " ( " + COLUMN_IMAGE_RESOURCE + " Integer)");
+        db.execSQL("CREATE TABLE " + TABLE_CHARACTERS + " ( " + COLUMN_IMAGE_RESOURCE + " Integer, " + COLUMN_CHARACTER_ID + " String )");
         db.execSQL(SQL_CREATE_CHARACTERS_ENTRIES);
     }
 

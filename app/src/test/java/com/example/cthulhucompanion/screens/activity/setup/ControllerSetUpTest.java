@@ -19,14 +19,20 @@ import com.example.cthulhucompanion.screens.common.popupmanager.PopUpManager;
 import com.example.cthulhucompanion.screens.common.screensnavigator.ScreensNavigator;
 import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacter;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
+@RunWith(MockitoJUnitRunner.class)
 public class ControllerSetUpTest {
 
-    private static final ArrayList<Pair<Integer, PopUpViewMvcSelectCharacter.Character>> CHARACTERS = new ArrayList<>();
+    private static final HashMap<Integer, PopUpViewMvcSelectCharacter.Character> CHARACTERS = new HashMap<>();
 
     private ControllerSetUp SUT;
     @Mock ViewMvcSetUp mViewMvcMock;
@@ -39,11 +45,11 @@ public class ControllerSetUpTest {
     @Mock PopUpManager mPopUpManagerMock;
     @Mock ViewMvcSetUp.Listener mListenerMock1, mListenerMock2;
 
+    @Before
     public void setUp() {
-
         int someImageResource = 0;
         for (PopUpViewMvcSelectCharacter.Character character : PopUpViewMvcSelectCharacter.Character.values()){
-            CHARACTERS.add(new Pair<>(someImageResource++, character));
+            CHARACTERS.put(someImageResource++, character);
         }
 
         SUT = new ControllerSetUp(mScreensNavigatorMock,
@@ -58,16 +64,15 @@ public class ControllerSetUpTest {
         mViewMvcMock.registerListener(mListenerMock2);
 
         ArrayList<WrapperCharacterEntry> characterEntries = new ArrayList<>();
-        for (Pair<Integer, PopUpViewMvcSelectCharacter.Character> characterPair : CHARACTERS){
-            //TODO: DataBase no longer contains buttonIds, but Character enums
-            // move buttonIds responisibilty to PopUpViewMvc
-            //characterEntries.add(new WrapperCharacterEntry(characterPair.first, characterPair.second));
+        for (int key : CHARACTERS.keySet()){
+            characterEntries.add(new WrapperCharacterEntry(key, CHARACTERS.get(key)));
         }
         when(mDBCharactersMock.readData(mSQLDataBaseMock)).thenReturn(characterEntries);
 
         SUT.bindView(mViewMvcMock);
     }
 
+    @After
     public void tearDown() {
         mViewMvcMock.unregisterListener(mListenerMock1);
         mViewMvcMock.unregisterListener(mListenerMock2);
@@ -81,18 +86,17 @@ public class ControllerSetUpTest {
         verify(mViewMvcMock).bindCharacterSelectionPopUp(mPopUpManagerMock);
     }
 
-    //onCharacterSelected_playerAvatarUpdated
     @Test
     public void onCharacterSelected_playerAvatarUpdated(){
         ViewMvcSetUp.PlayerColor playerColor = ViewMvcSetUp.PlayerColor.PLAYER_GREEN;
         PopUpViewMvcSelectCharacter.Character character = PopUpViewMvcSelectCharacter.Character.AHMED_YASIN;
 
-        mListenerMock1.onCharacterSelected( playerColor, character);
+        SUT.onCharacterSelected(playerColor, character);
         verify(mViewMvcMock).setPlayerAvatar(playerColor, character);
-        verify(mViewMvcMock, times(0)).removePlayerAvatar(playerColor);
 
-        mListenerMock2.onCharacterSelected(playerColor, character);
-        verify(mViewMvcMock).setPlayerAvatar(playerColor, character);
+        SUT.onCharacterSelected(playerColor, character);
+        verify(mViewMvcMock, times(2)).setPlayerAvatar(playerColor, character);
+
         verify(mViewMvcMock, times(0)).removePlayerAvatar(playerColor);
     }
 
