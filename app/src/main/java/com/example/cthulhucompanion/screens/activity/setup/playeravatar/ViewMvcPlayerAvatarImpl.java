@@ -9,13 +9,14 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 
 import com.example.cthulhucompanion.R;
+import com.example.cthulhucompanion.screens.activity.setup.ViewMvcSetUp;
 import com.example.cthulhucompanion.screens.common.ViewMvcFactory;
 import com.example.cthulhucompanion.screens.common.mvcviews.observable.BaseObservableViewMvc;
 import com.example.cthulhucompanion.screens.common.popupmanager.PopUpManager;
 import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacter;
 import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacterImpl;
 
-public class ViewMvcPlayerAvatarImpl extends BaseObservableViewMvc<ViewMvcPlayerAvatar.Listener> implements ViewMvcPlayerAvatar {
+public class ViewMvcPlayerAvatarImpl extends BaseObservableViewMvc<ViewMvcPlayerAvatar.Listener> implements ViewMvcPlayerAvatar, PopUpViewMvcSelectCharacter.PopUpListener {
 
     private final ImageView mPlayerAvatarBackground;
     private final ImageButton mPlayerAvatarButton;
@@ -42,8 +43,8 @@ public class ViewMvcPlayerAvatarImpl extends BaseObservableViewMvc<ViewMvcPlayer
     }
 
     @Override
-    public void bindCharacterSelectionPopUp(@NonNull PopUpViewMvcSelectCharacter.PopUpListener popUpListener) {
-        mPopUpmanager.anchorPopUpAddPlayer(mPlayerAvatarButton, mPopUpViewMvc, popUpListener);
+    public void bindCharacterSelectionPopUp() {
+        mPopUpmanager.anchorPopUpAddPlayer(mPlayerAvatarButton, mPopUpViewMvc, this);
     }
 
     public void setBackgroundColor(int resourceId){
@@ -78,5 +79,19 @@ public class ViewMvcPlayerAvatarImpl extends BaseObservableViewMvc<ViewMvcPlayer
     @Override
     public void removeDeleteButtonFromPopUpSelection() {
         mPopUpViewMvc.removeDeleteButton();
+    }
+
+    @Override
+    public void onCharacterButtonClicked(PopUpViewMvcSelectCharacterImpl.Character character) {
+        for (Listener listener : getListeners()){
+            listener.onCharacterButtonClicked(character);
+        }
+    }
+
+    @Override
+    public void onDeleteButtonClicked() {
+        for (Listener listener : getListeners()){
+            listener.onDeleteButtonClicked();
+        }
     }
 }

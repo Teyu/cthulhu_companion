@@ -3,6 +3,7 @@ package com.example.cthulhucompanion.screens.activity.setup.playeravatar;
 
 import androidx.annotation.NonNull;
 
+import com.example.cthulhucompanion.screens.activity.setup.ViewMvcSetUp;
 import com.example.cthulhucompanion.screens.common.mvcviews.observable.ObservableViewMvc;
 import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacter;
 import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacterImpl;
@@ -10,9 +11,11 @@ import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSe
 public interface ViewMvcPlayerAvatar extends ObservableViewMvc<ViewMvcPlayerAvatar.Listener> {
     interface Listener{
         void onAvatarButtonClicked();
+        void onCharacterButtonClicked(PopUpViewMvcSelectCharacter.Character character);
+        void onDeleteButtonClicked();
     }
 
-    void bindCharacterSelectionPopUp(@NonNull PopUpViewMvcSelectCharacter.PopUpListener popUpListener);;
+    void bindCharacterSelectionPopUp();
     void setBackgroundColor(int resourceId);
     void setAvatarImage(PopUpViewMvcSelectCharacter.Character character);
     void makeAvatarEmpty();

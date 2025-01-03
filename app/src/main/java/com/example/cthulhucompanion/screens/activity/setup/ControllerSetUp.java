@@ -6,8 +6,10 @@ package com.example.cthulhucompanion.screens.activity.setup;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.cthulhucompanion.database.characters.DataBaseCharacters;
+import com.example.cthulhucompanion.database.characters.WrapperCharacterEntry;
 import com.example.cthulhucompanion.database.episodes.DataBaseEpisodes;
 import com.example.cthulhucompanion.database.greatoldone.DataBaseGreatOldOnes;
 import com.example.cthulhucompanion.screens.activity.setup.playeravatar.ViewMvcPlayerAvatar;
@@ -15,7 +17,10 @@ import com.example.cthulhucompanion.screens.common.popupmanager.PopUpManager;
 import com.example.cthulhucompanion.screens.common.screensnavigator.ScreensNavigator;
 import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacter;
 
-public class ControllerSetUp implements ViewMvcSetUp.Listener, ViewMvcPlayerAvatar.Listener{
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class ControllerSetUp implements ViewMvcSetUp.Listener{
 
     private final ScreensNavigator mScreensNavigator;
     private ViewMvcSetUp mViewMvcSetUp;
@@ -53,7 +58,15 @@ public class ControllerSetUp implements ViewMvcSetUp.Listener, ViewMvcPlayerAvat
     void bindView (ViewMvcSetUp viewMvcSetUp) {
         mViewMvcSetUp = viewMvcSetUp;
 
-        //mViewMvcSetUp.bindCharacterSelectionPopUpToPlayerColorButtons();
+        HashMap<Integer, PopUpViewMvcSelectCharacter.Character> characterIds = new HashMap<>();
+        for (WrapperCharacterEntry characterEntry : mDataBaseCharacters.readData(mReadableDataBase)){
+            characterIds.put(characterEntry.getImageResource(), characterEntry.getCharacterId());
+        }
+
+        for (ViewMvcSetUp.PlayerColor color : ViewMvcSetUp.PlayerColor.values()) {
+            mViewMvcSetUp.setCharacterSelectionPopUp(color, characterIds, null);
+            mViewMvcSetUp.bindCharacterSelectionPopUp(color);
+        }
 
         initializeFromDataBase();
     }
@@ -88,17 +101,16 @@ public class ControllerSetUp implements ViewMvcSetUp.Listener, ViewMvcPlayerAvat
     @Override
     public void onCharacterSelected(ViewMvcSetUp.PlayerColor playerColor, PopUpViewMvcSelectCharacter.Character character) {
         //update avatar
+        Log.i("TEST", "Player " + playerColor.toString() + " selected " + character.toString());
         mViewMvcSetUp.setPlayerAvatar(playerColor, character);
     }
 
     @Override
-    public void onCharacterDeleted(ViewMvcSetUp.PlayerColor playerColor, PopUpViewMvcSelectCharacter.Character character) {
+    public void onCharacterDeleted(ViewMvcSetUp.PlayerColor playerColor) {
 
     }
 
     @Override
-    public void onAvatarButtonClicked() {
-        //verify(mViewMvcMock).setCharacterSelectionPopUp(CHARACTERS, null/*PopUpListener not needed*/);
-        //verify(mViewMvcMock).bindCharacterSelectionPopUp(mPopUpManagerMock);
+    public void onPlayerAvatarClicked(ViewMvcSetUp.PlayerColor playerColor) {
     }
 }

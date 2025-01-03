@@ -73,6 +73,7 @@ public class PopUpViewMvcSelectCharacterImpl extends BaseObservableViewMvc<PopUp
                 imageButton.setVisibility(View.VISIBLE);
 
                 imageButton.setImageResource(imageResource);
+                imageButton.setTag(imageResource);
                 imageButton.setOnClickListener(v -> {
                     for (PopUpListener popUpListener : getListeners()){
                         popUpListener.onCharacterButtonClicked(character);
@@ -86,7 +87,8 @@ public class PopUpViewMvcSelectCharacterImpl extends BaseObservableViewMvc<PopUp
     public int getCharacterImage(Character character) {
         for (Pair<Integer, Character> characterImageButton : mCharacterImageButtons){
             if (characterImageButton.getSecond() == character){
-                return characterImageButton.getFirst();
+                ImageButton imageButton = findViewById(characterImageButton.getFirst());
+                return (int) imageButton.getTag();
             }
         }
         return 0;

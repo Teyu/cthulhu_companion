@@ -112,6 +112,10 @@ public class PopUpManager {
         anchorPopUpToView(viewMvcAddPlayer, anchorView, popUpListener, mPopUpWindowAddPlayer);
     }
 
+    public boolean isPopUpAddPlayerShowing() {
+        return mPopUpWindowAddPlayer.isShowing();
+    }
+
     public void dismissPopUpAddPlayer() {
         mPopUpWindowAddPlayer.dismiss();
     }

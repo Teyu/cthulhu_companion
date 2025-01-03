@@ -26,10 +26,12 @@ import com.example.cthulhucompanion.screens.toolbar.main.ViewMvcToolbarMain;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listener> implements ViewMvcSetUp {
 
-    private final ArrayList<PlayerAvatar> mPlayerAvatars = new ArrayList<>();
+    private final HashMap<PlayerColor, PlayerAvatar> mPlayerAvatars = new HashMap<>();
     private final Toolbar mToolbar;
     private final ViewMvcToolbarMain mToolbarViewMvc;
     private final Button mButtonContinue;
@@ -41,42 +43,47 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
                             ViewMvcFactory viewMvcFactory){
         setRootView(inflater.inflate(R.layout.activity_set_up, parent, false));
 
-        mPlayerAvatars.add(new PlayerAvatar(
+        mPlayerAvatars.put(PLAYER_BLUE,new PlayerAvatar(
                 new ViewMvcPlayerAvatarImpl(inflater, parent, viewMvcFactory),
                 PLAYER_BLUE,
                 R.color.player_blue,
-                findViewById(R.id.element_player_avatar1)
+                findViewById(R.id.element_player_avatar1),
+                getListeners()
                 ));
 
-        mPlayerAvatars.add(new PlayerAvatar(
+        mPlayerAvatars.put(PLAYER_GREEN, new PlayerAvatar(
                 new ViewMvcPlayerAvatarImpl(inflater, parent, viewMvcFactory),
                 PLAYER_GREEN,
                 R.color.player_green,
-                findViewById(R.id.element_player_avatar2)
+                findViewById(R.id.element_player_avatar2),
+                getListeners()
         ));
 
-        mPlayerAvatars.add(new PlayerAvatar(
+        mPlayerAvatars.put(PLAYER_RED, new PlayerAvatar(
                 new ViewMvcPlayerAvatarImpl(inflater, parent, viewMvcFactory),
                 PLAYER_RED,
                 R.color.player_red,
-                findViewById(R.id.element_player_avatar3)
+                findViewById(R.id.element_player_avatar3),
+                getListeners()
         ));
 
-        mPlayerAvatars.add(new PlayerAvatar(
+        mPlayerAvatars.put(PLAYER_ORANGE, new PlayerAvatar(
                 new ViewMvcPlayerAvatarImpl(inflater, parent, viewMvcFactory),
                 PLAYER_ORANGE,
                 R.color.player_orange,
-                findViewById(R.id.element_player_avatar4)
+                findViewById(R.id.element_player_avatar4),
+                getListeners()
         ));
 
-        mPlayerAvatars.add(new PlayerAvatar(
+        mPlayerAvatars.put(PLAYER_VIOLET, new PlayerAvatar(
                 new ViewMvcPlayerAvatarImpl(inflater, parent, viewMvcFactory),
                 PLAYER_VIOLET,
                 R.color.player_violet,
-                findViewById(R.id.element_player_avatar5)
+                findViewById(R.id.element_player_avatar5),
+                getListeners()
         ));
 
-        for (PlayerAvatar playerAvatar : mPlayerAvatars){
+        for (PlayerAvatar playerAvatar : mPlayerAvatars.values()){
             View view = playerAvatar.getViewMvc().getRootView();
             playerAvatar.getLayout().addView(view);
             playerAvatar.getViewMvc().makeAvatarEmpty();
@@ -97,16 +104,6 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
         mSpinnerChooseEpisode = findViewById(R.id.choose_episode_list);
 
         mSpinnerChooseGreatOldOne = findViewById(R.id.choose_great_old_list);
-    }
-
-    @Override
-    public void setCharacterSelectionPopUp(HashMap<Integer, PopUpViewMvcSelectCharacterImpl.Character> characterImageResources, PopUpViewMvcSelectCharacter.PopUpListener popUpListener) {
-        for (PlayerAvatar playerAvatar : mPlayerAvatars){
-            playerAvatar.getViewMvc().bindCharacterSelectionPopUp(popUpListener);
-            for (int characterImage : characterImageResources.keySet()){
-                playerAvatar.getViewMvc().addCharacterToPopUpSelection(characterImage, characterImageResources.get(characterImage));
-            }
-        }
     }
 
     @Override
@@ -131,21 +128,12 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
 
     @Override
     public void setPlayerAvatar(PlayerColor playerColor, PopUpViewMvcSelectCharacter.Character character) {
-        for (PlayerAvatar playerAvatar : mPlayerAvatars){
-            if (playerAvatar.getColor() == playerColor) {
-                playerAvatar.getViewMvc().setAvatarImage(character);
-                break;
-            }
-        }
+        mPlayerAvatars.get(playerColor).getViewMvc().setAvatarImage(character);
     }
 
     @Override
     public void removePlayerAvatar(PlayerColor playerColor) {
-        for (PlayerAvatar playerAvatar : mPlayerAvatars){
-            if (playerAvatar.getColor() == playerColor){
-                playerAvatar.getViewMvc().makeAvatarEmpty();
-            }
-        }
+        mPlayerAvatars.get(playerColor).getViewMvc().makeAvatarEmpty();
     }
 
     @Override
@@ -178,25 +166,38 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
     }
 
     @Override
-    public void bindCharacterSelectionPopUp(PopUpManager mPopUpManagerMock) {
+    public void setCharacterSelectionPopUp(PlayerColor color, HashMap<Integer, PopUpViewMvcSelectCharacterImpl.Character> characterImageResources, PopUpViewMvcSelectCharacter.PopUpListener popUpListener) {
+        for (int characterImage : characterImageResources.keySet()){
+            mPlayerAvatars.get(color).getViewMvc().addCharacterToPopUpSelection(characterImage, characterImageResources.get(characterImage));
+        }
+    }
 
+    @Override
+    public void bindCharacterSelectionPopUp(PlayerColor color) {
+        mPlayerAvatars.get(color).getViewMvc().bindCharacterSelectionPopUp(/*this*/);
     }
 
 
-    private class PlayerAvatar {
+    private class PlayerAvatar implements ViewMvcPlayerAvatar.Listener{
 
         private final ViewMvcPlayerAvatar mViewMvc;
         private final PlayerColor mColor;
         private final int mColorResource;
         private final FrameLayout mLayout;
+        private final Set<ViewMvcSetUp.Listener> mListeners;
+
         PlayerAvatar(ViewMvcPlayerAvatar viewMvc,
                      PlayerColor color,
                      int colorResource,
-                     FrameLayout layout){
+                     FrameLayout layout,
+                     Set<ViewMvcSetUp.Listener> listeners){
             this.mViewMvc = viewMvc;
             this.mColor = color;
             this.mColorResource = colorResource;
             this.mLayout = layout;
+            this.mListeners = listeners;
+
+            mViewMvc.registerListener(this);
         }
         public ViewMvcPlayerAvatar getViewMvc() {
             return mViewMvc;
@@ -212,6 +213,27 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
 
         public FrameLayout getLayout() {
             return mLayout;
+        }
+
+        @Override
+        public void onAvatarButtonClicked() {
+            for (ViewMvcSetUp.Listener listener : mListeners){
+                listener.onPlayerAvatarClicked(mColor);
+            }
+        }
+
+        @Override
+        public void onCharacterButtonClicked(PopUpViewMvcSelectCharacter.Character character) {
+            for (ViewMvcSetUp.Listener listener : mListeners){
+                listener.onCharacterSelected(mColor, character);
+            }
+        }
+
+        @Override
+        public void onDeleteButtonClicked() {
+            for (ViewMvcSetUp.Listener listener : mListeners){
+                listener.onCharacterDeleted(mColor);
+            }
         }
     }
 }
