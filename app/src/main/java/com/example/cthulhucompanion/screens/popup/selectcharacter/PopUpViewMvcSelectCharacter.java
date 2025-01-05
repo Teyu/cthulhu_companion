@@ -15,4 +15,5 @@ public interface PopUpViewMvcSelectCharacter extends ObservableViewMvc<PopUpView
     int getCharacterImage(ViewMvcPlayerAvatar.Character character);
     void removeCharacter(ViewMvcPlayerAvatar.Character character);
     void showCharacter(ViewMvcPlayerAvatar.Character character);
+    boolean contains(ViewMvcPlayerAvatar.Character character);
 }

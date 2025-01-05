@@ -31,6 +31,7 @@ public interface ViewMvcSetUp extends ObservableViewMvc<ViewMvcSetUp.Listener> {
     }
 
     void setPlayerAvatar(PlayerColor playerColor, ViewMvcPlayerAvatar.Character character);
+    ViewMvcPlayerAvatar.Character getSelectedCharacter(PlayerColor playerColor);
     void removePlayerAvatar(PlayerColor playerColor);
 
     void setEpisodeList(final ArrayList<Pair<String, Integer>> titleAndCountPairs);
@@ -43,6 +44,7 @@ public interface ViewMvcSetUp extends ObservableViewMvc<ViewMvcSetUp.Listener> {
     void addCharacterToPopUpSelection(ViewMvcPlayerAvatar.Character character);
 
     void removeCharacterFromPopUpSelection(ViewMvcPlayerAvatar.Character character);
+    boolean selectionContainsCharacter(PlayerColor playerColor, ViewMvcPlayerAvatar.Character character);
 
     void provideCharacterDeleteButton();
 

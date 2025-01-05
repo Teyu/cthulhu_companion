@@ -16,8 +16,7 @@ import kotlin.Pair;
 public class PopUpViewMvcSelectCharacterImpl extends BaseObservableViewMvc<PopUpViewMvcSelectCharacter.PopUpListener> implements PopUpViewMvcSelectCharacter {
 
     private final ImageButton mCharacterDeleteButton;
-    private final ArrayList<ImageButton> mCharacterButtons = new ArrayList<>();
-    private final ArrayList<Pair<Integer, ViewMvcPlayerAvatar.Character>> mCharacterImageButtons = new ArrayList<>();
+    private final ArrayList<Pair<Integer, ViewMvcPlayerAvatar.Character>> mCharacterButtons = new ArrayList<>();
 
     @SuppressLint("InflateParams")
     public PopUpViewMvcSelectCharacterImpl(LayoutInflater inflater){
@@ -32,42 +31,42 @@ public class PopUpViewMvcSelectCharacterImpl extends BaseObservableViewMvc<PopUp
         });
 
         Pair<Integer, ViewMvcPlayerAvatar.Character> character = new Pair<>(R.id.avatar_ahmed_yasin_btn, ViewMvcPlayerAvatar.Character.AHMED_YASIN);
-        mCharacterImageButtons.add(character);
+        mCharacterButtons.add(character);
 
         character = new Pair<>(R.id.avatar_ahmed_yasin_btn, ViewMvcPlayerAvatar.Character.AHMED_YASIN);
-        mCharacterImageButtons.add(character);
+        mCharacterButtons.add(character);
 
         character = new Pair<>(R.id.avatar_borden_btn, ViewMvcPlayerAvatar.Character.BORDEN);
-        mCharacterImageButtons.add(character);
+        mCharacterButtons.add(character);
 
         character = new Pair<>(R.id.avatar_elizabeth_ives_btn, ViewMvcPlayerAvatar.Character.ELIZABETH_IVES);
-        mCharacterImageButtons.add(character);
+        mCharacterButtons.add(character);
 
         character = new Pair<>(R.id.avatar_fatima_safar_btn, ViewMvcPlayerAvatar.Character.FATIMA_SAFAR);
-        mCharacterImageButtons.add(character);
+        mCharacterButtons.add(character);
 
         character = new Pair<>(R.id.avatar_john_morgan_btn, ViewMvcPlayerAvatar.Character.JOHN_MORGAN);
-        mCharacterImageButtons.add(character);
+        mCharacterButtons.add(character);
 
         character = new Pair<>(R.id.avatar_lord_benchley_btn, ViewMvcPlayerAvatar.Character.LORD_ADAM_BENCHLEY);
-        mCharacterImageButtons.add(character);
+        mCharacterButtons.add(character);
 
         character = new Pair<>(R.id.avatar_rasputin_btn, ViewMvcPlayerAvatar.Character.RASPUTIN);
-        mCharacterImageButtons.add(character);
+        mCharacterButtons.add(character);
 
         character = new Pair<>(R.id.avatar_sergeant_welles_btn, ViewMvcPlayerAvatar.Character.SERGEANT_IAN_WELLES);
-        mCharacterImageButtons.add(character);
+        mCharacterButtons.add(character);
 
         character = new Pair<>(R.id.avatar_sister_beth_btn, ViewMvcPlayerAvatar.Character.SISTER_BETH);
-        mCharacterImageButtons.add(character);
+        mCharacterButtons.add(character);
 
         character = new Pair<>(R.id.avatar_the_kid_btn, ViewMvcPlayerAvatar.Character.THE_KID);
-        mCharacterImageButtons.add(character);
+        mCharacterButtons.add(character);
     }
 
     @Override
     public void setCharacterImage(int imageResource, final ViewMvcPlayerAvatar.Character character){
-        for (Pair<Integer, ViewMvcPlayerAvatar.Character> characterImageButton : mCharacterImageButtons){
+        for (Pair<Integer, ViewMvcPlayerAvatar.Character> characterImageButton : mCharacterButtons){
             if (characterImageButton.getSecond() == character){
 
                 ImageButton imageButton = findViewById(characterImageButton.getFirst());
@@ -86,7 +85,7 @@ public class PopUpViewMvcSelectCharacterImpl extends BaseObservableViewMvc<PopUp
 
     @Override
     public int getCharacterImage(ViewMvcPlayerAvatar.Character character) {
-        for (Pair<Integer, ViewMvcPlayerAvatar.Character> characterImageButton : mCharacterImageButtons){
+        for (Pair<Integer, ViewMvcPlayerAvatar.Character> characterImageButton : mCharacterButtons){
             if (characterImageButton.getSecond() == character){
                 ImageButton imageButton = findViewById(characterImageButton.getFirst());
                 return (int) imageButton.getTag();
@@ -97,7 +96,7 @@ public class PopUpViewMvcSelectCharacterImpl extends BaseObservableViewMvc<PopUp
 
     @Override
     public void removeCharacter(ViewMvcPlayerAvatar.Character character) {
-        for (Pair<Integer, ViewMvcPlayerAvatar.Character> characterImageButton : mCharacterImageButtons) {
+        for (Pair<Integer, ViewMvcPlayerAvatar.Character> characterImageButton : mCharacterButtons) {
             if (characterImageButton.getSecond() == character){
                 ImageButton characterButton = findViewById(characterImageButton.getFirst());
                 characterButton.setVisibility(View.GONE);
@@ -118,11 +117,22 @@ public class PopUpViewMvcSelectCharacterImpl extends BaseObservableViewMvc<PopUp
     @Override
     public void showCharacter(ViewMvcPlayerAvatar.Character character) {
 
-        for (Pair<Integer, ViewMvcPlayerAvatar.Character> characterImageButton : mCharacterImageButtons) {
+        for (Pair<Integer, ViewMvcPlayerAvatar.Character> characterImageButton : mCharacterButtons) {
             if (characterImageButton.getSecond() == character){
                 ImageButton characterButton = findViewById(characterImageButton.getFirst());
                 characterButton.setVisibility(View.VISIBLE);
             }
         }
+    }
+
+    @Override
+    public boolean contains(ViewMvcPlayerAvatar.Character character) {
+        for (Pair<Integer, ViewMvcPlayerAvatar.Character> characterButton : mCharacterButtons) {
+            if (characterButton.getSecond() == character){
+                ImageButton imageButton = findViewById(characterButton.getFirst());
+                return imageButton.getVisibility() == View.VISIBLE;
+            }
+        }
+        return false;
     }
 }

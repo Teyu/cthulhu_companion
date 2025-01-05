@@ -105,12 +105,21 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
 
     @Override
     public void addCharacterToPopUpSelection(ViewMvcPlayerAvatar.Character character) {
-
+        for (PlayerAvatar playerAvatar : mPlayerAvatars.values()){
+            playerAvatar.getViewMvc().showCharacterInPopUpSelection(character);
+        }
     }
 
     @Override
     public void removeCharacterFromPopUpSelection(ViewMvcPlayerAvatar.Character character) {
+        for (PlayerAvatar playerAvatar : mPlayerAvatars.values()){
+            playerAvatar.getViewMvc().removeCharacterFromPopUpSelection(character);
+        }
+    }
 
+    @Override
+    public boolean selectionContainsCharacter(PlayerColor playerColor, ViewMvcPlayerAvatar.Character character) {
+        return mPlayerAvatars.get(playerColor).getViewMvc().popUpSelectionContainsCharacter(character);
     }
 
     @Override
@@ -125,7 +134,12 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
 
     @Override
     public void setPlayerAvatar(PlayerColor playerColor, ViewMvcPlayerAvatar.Character character) {
-        mPlayerAvatars.get(playerColor).getViewMvc().setAvatarImage(character);
+        mPlayerAvatars.get(playerColor).getViewMvc().setAvatar(character);
+    }
+
+    @Override
+    public ViewMvcPlayerAvatar.Character getSelectedCharacter(PlayerColor playerColor) {
+        return mPlayerAvatars.get(playerColor).getViewMvc().getSelectedCharacter();
     }
 
     @Override

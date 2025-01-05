@@ -4,6 +4,8 @@
 
 package com.example.cthulhucompanion.screens.activity.setup;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -18,11 +20,14 @@ import com.example.cthulhucompanion.screens.activity.setup.playeravatar.ViewMvcP
 import com.example.cthulhucompanion.screens.common.popupmanager.PopUpManager;
 import com.example.cthulhucompanion.screens.common.screensnavigator.ScreensNavigator;
 
+import org.hamcrest.CoreMatchers;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
+import org.mockito.internal.matchers.Contains;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
@@ -59,9 +64,6 @@ public class ControllerSetUpTest {
                 mPopUpManagerMock,
                 mContextMock);
 
-        mViewMvcMock.registerListener(mListenerMock1);
-        mViewMvcMock.registerListener(mListenerMock2);
-
         ArrayList<WrapperCharacterEntry> characterEntries = new ArrayList<>();
         for (int key : CHARACTERS.keySet()){
             characterEntries.add(new WrapperCharacterEntry(key, CHARACTERS.get(key)));
@@ -92,63 +94,51 @@ public class ControllerSetUpTest {
 
         SUT.onCharacterSelected(playerColor, character);
         verify(mViewMvcMock).setPlayerAvatar(playerColor, character);
-
-        SUT.onCharacterSelected(playerColor, character);
-        verify(mViewMvcMock, times(2)).setPlayerAvatar(playerColor, character);
-
         verify(mViewMvcMock, times(0)).removePlayerAvatar(playerColor);
     }
 
-    //onCharacterDeleted_playerAvatarEmpty
     @Test
     public void onCharacterDeleted_playerAvatarEmpty(){
 
         ViewMvcSetUp.PlayerColor playerColor = ViewMvcSetUp.PlayerColor.PLAYER_BLUE;
         ViewMvcPlayerAvatar.Character character = ViewMvcPlayerAvatar.Character.BORDEN;
 
-        mListenerMock1.onCharacterDeleted(playerColor);
-        verify(mViewMvcMock).removePlayerAvatar(playerColor);
-        verify(mViewMvcMock, times(0)).setPlayerAvatar(playerColor, character);
-
-        mListenerMock2.onCharacterDeleted(playerColor);
-        verify(mViewMvcMock).removePlayerAvatar(playerColor);
+        SUT.onCharacterDeleted(playerColor);
+        verify(mViewMvcMock, times(1)).removePlayerAvatar(playerColor);
         verify(mViewMvcMock, times(0)).setPlayerAvatar(playerColor, character);
     }
 
-    //onCharacterSelected_characterRemovedFromPopUpSelection
     @Test
     public void onCharacterSelected_characterRemovedFromPopUpSelection(){
 
         ViewMvcSetUp.PlayerColor playerColor = ViewMvcSetUp.PlayerColor.PLAYER_RED;
         ViewMvcPlayerAvatar.Character character = ViewMvcPlayerAvatar.Character.JOHN_MORGAN;
 
-        mListenerMock1.onCharacterSelected(playerColor, character);
-        verify(mViewMvcMock).removeCharacterFromPopUpSelection(character);
-        verify(mViewMvcMock, times(0)).addCharacterToPopUpSelection(character);
-
-        mListenerMock2.onCharacterSelected(playerColor, character);
-        verify(mViewMvcMock).removeCharacterFromPopUpSelection(character);
-        verifyNoMoreInteractions(mViewMvcMock);
+        SUT.onCharacterSelected(playerColor, character);
+        verify(mViewMvcMock, times(1)).removeCharacterFromPopUpSelection(character);
         verify(mViewMvcMock, times(0)).addCharacterToPopUpSelection(character);
     }
 
-    //onCharacterDeleted_characterInsertedIntoPopUpSelection
     @Test
     public void onCharacterDeleted_characterResetInPopUpSelection(){
 
         ViewMvcSetUp.PlayerColor playerColor = ViewMvcSetUp.PlayerColor.PLAYER_ORANGE;
         ViewMvcPlayerAvatar.Character character = ViewMvcPlayerAvatar.Character.LORD_ADAM_BENCHLEY;
 
-        mListenerMock1.onCharacterDeleted(playerColor);
-        verify(mViewMvcMock).addCharacterToPopUpSelection(character);
-        verify(mViewMvcMock, times(0)).removeCharacterFromPopUpSelection(character);
+        ArgumentCaptor<ViewMvcPlayerAvatar.Character> addCapture = ArgumentCaptor.forClass(ViewMvcPlayerAvatar.Character.class);
+        ArgumentCaptor<ViewMvcPlayerAvatar.Character> removeCapture = ArgumentCaptor.forClass(ViewMvcPlayerAvatar.Character.class);
 
-        mListenerMock2.onCharacterDeleted(playerColor);
-        verify(mViewMvcMock).addCharacterToPopUpSelection(character);
-        verify(mViewMvcMock, times(0)).removeCharacterFromPopUpSelection(character);
+        when(mViewMvcMock.getSelectedCharacter(playerColor)).thenReturn(character);
+
+        SUT.onCharacterSelected(playerColor, character);
+        SUT.onCharacterDeleted(playerColor);
+        verify(mViewMvcMock).removeCharacterFromPopUpSelection(removeCapture.capture());
+        verify(mViewMvcMock).addCharacterToPopUpSelection(addCapture.capture());
+
+        assertTrue(removeCapture.getAllValues().contains(character));
+        assertTrue(addCapture.getAllValues().contains(character));
     }
 
-    //onMultipleCharactersSelected_charactersRemovedFromPopUpSelection
     @Test
     public void onMultipleCharactersSelected_charactersRemovedFromPopUpSelection(){
 

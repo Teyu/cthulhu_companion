@@ -3,10 +3,13 @@ package com.example.cthulhucompanion.screens.activity.setup.playeravatar;
 
 import com.example.cthulhucompanion.screens.common.mvcviews.observable.ObservableViewMvc;
 
+import java.util.ArrayList;
+
 public interface ViewMvcPlayerAvatar extends ObservableViewMvc<ViewMvcPlayerAvatar.Listener> {
 
 
     enum Character {
+        NONE,
         AHMED_YASIN,
         BORDEN,
         ELIZABETH_IVES,
@@ -27,10 +30,13 @@ public interface ViewMvcPlayerAvatar extends ObservableViewMvc<ViewMvcPlayerAvat
 
     void bindCharacterSelectionPopUp();
     void setBackgroundColor(int resourceId);
-    void setAvatarImage(Character character);
+    void setAvatar(Character character);
+    Character getSelectedCharacter();
     void makeAvatarEmpty();
     void addDeleteButtonToPopUpSelection(); // delegation to PopUp view mvc
     void removeDeleteButtonFromPopUpSelection(); // delegation to PopUp viewMvc
     void addCharacterToPopUpSelection(Integer imageResource, Character character);
+    void showCharacterInPopUpSelection(Character character);
     void removeCharacterFromPopUpSelection(Character character);
+    boolean popUpSelectionContainsCharacter(Character character);
 }

@@ -6,7 +6,6 @@ package com.example.cthulhucompanion.screens.activity.setup;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.example.cthulhucompanion.database.characters.DataBaseCharacters;
 import com.example.cthulhucompanion.database.characters.WrapperCharacterEntry;
@@ -98,14 +97,15 @@ public class ControllerSetUp implements ViewMvcSetUp.Listener{
 
     @Override
     public void onCharacterSelected(ViewMvcSetUp.PlayerColor playerColor, ViewMvcPlayerAvatar.Character character) {
-        //update avatar
-        Log.i("TEST", "Player " + playerColor.toString() + " selected " + character.toString());
         mViewMvcSetUp.setPlayerAvatar(playerColor, character);
+        mViewMvcSetUp.removeCharacterFromPopUpSelection(character);
     }
 
     @Override
     public void onCharacterDeleted(ViewMvcSetUp.PlayerColor playerColor) {
-
+        ViewMvcPlayerAvatar.Character selectedCharacter = mViewMvcSetUp.getSelectedCharacter(playerColor);
+        mViewMvcSetUp.removePlayerAvatar(playerColor);
+        mViewMvcSetUp.addCharacterToPopUpSelection(selectedCharacter);
     }
 
     @Override

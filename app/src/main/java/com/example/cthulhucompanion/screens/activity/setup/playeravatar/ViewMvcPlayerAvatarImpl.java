@@ -1,5 +1,7 @@
 package com.example.cthulhucompanion.screens.activity.setup.playeravatar;
 
+import static com.example.cthulhucompanion.screens.activity.setup.playeravatar.ViewMvcPlayerAvatar.Character.NONE;
+
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -11,6 +13,8 @@ import com.example.cthulhucompanion.screens.common.mvcviews.observable.BaseObser
 import com.example.cthulhucompanion.screens.common.popupmanager.PopUpManager;
 import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacter;
 
+import java.util.ArrayList;
+
 public class ViewMvcPlayerAvatarImpl extends BaseObservableViewMvc<ViewMvcPlayerAvatar.Listener> implements ViewMvcPlayerAvatar, PopUpViewMvcSelectCharacter.PopUpListener {
 
     private final ImageView mPlayerAvatarBackground;
@@ -18,6 +22,7 @@ public class ViewMvcPlayerAvatarImpl extends BaseObservableViewMvc<ViewMvcPlayer
     private final PopUpManager mPopUpmanager;
     private final ViewMvcFactory mViewMvcFactory;
     private final PopUpViewMvcSelectCharacter mPopUpViewMvc;
+    private Character mSelectedCharacter = NONE;
 
     public ViewMvcPlayerAvatarImpl(LayoutInflater inflater, ViewGroup parent, ViewMvcFactory viewMvcFactory){
         setRootView(inflater.inflate(R.layout.item_player_avatar, parent, false));
@@ -47,17 +52,33 @@ public class ViewMvcPlayerAvatarImpl extends BaseObservableViewMvc<ViewMvcPlayer
     }
 
     @Override
-    public void setAvatarImage(Character character) {
+    public void setAvatar(Character character) {
         int imageResource = mPopUpViewMvc.getCharacterImage(character);
         mPlayerAvatarButton.setImageResource(imageResource);
+        mSelectedCharacter = character;
+    }
+
+    @Override
+    public Character getSelectedCharacter() {
+        return mSelectedCharacter;
     }
 
     public void addCharacterToPopUpSelection(Integer imageResource, Character character) {
         mPopUpViewMvc.setCharacterImage(imageResource, character);
     }
 
+    @Override
+    public void showCharacterInPopUpSelection(Character character) {
+        mPopUpViewMvc.showCharacter(character);
+    }
+
     public void removeCharacterFromPopUpSelection(Character character) {
         mPopUpViewMvc.removeCharacter(character);
+    }
+
+    @Override
+    public boolean popUpSelectionContainsCharacter(Character character) {
+        return mPopUpViewMvc.contains(character);
     }
 
     public void makeAvatarEmpty() {
