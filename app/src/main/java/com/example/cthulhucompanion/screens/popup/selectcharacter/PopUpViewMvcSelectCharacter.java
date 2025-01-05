@@ -1,30 +1,18 @@
 package com.example.cthulhucompanion.screens.popup.selectcharacter;
 
+import com.example.cthulhucompanion.screens.activity.setup.playeravatar.ViewMvcPlayerAvatar;
 import com.example.cthulhucompanion.screens.common.mvcviews.observable.ObservableViewMvc;
 
 public interface PopUpViewMvcSelectCharacter extends ObservableViewMvc<PopUpViewMvcSelectCharacter.PopUpListener> {
 
-    enum Character {
-        AHMED_YASIN,
-        BORDEN,
-        ELIZABETH_IVES,
-        FATIMA_SAFAR,
-        JOHN_MORGAN,
-        LORD_ADAM_BENCHLEY,
-        RASPUTIN,
-        SERGEANT_IAN_WELLES,
-        SISTER_BETH,
-        THE_KID
-    }
-
     interface PopUpListener {
-        void onCharacterButtonClicked(PopUpViewMvcSelectCharacterImpl.Character character);
+        void onCharacterButtonClicked(ViewMvcPlayerAvatar.Character character);
         void onDeleteButtonClicked();
     }
     void addDeleteButton();
     void removeDeleteButton();
-    void setCharacterImage(int imageResource, final PopUpViewMvcSelectCharacterImpl.Character character);
-    int getCharacterImage(Character character);
-    void removeCharacter(PopUpViewMvcSelectCharacterImpl.Character character);
-    void showCharacter(PopUpViewMvcSelectCharacterImpl.Character character);
+    void setCharacterImage(int imageResource, final ViewMvcPlayerAvatar.Character character);
+    int getCharacterImage(ViewMvcPlayerAvatar.Character character);
+    void removeCharacter(ViewMvcPlayerAvatar.Character character);
+    void showCharacter(ViewMvcPlayerAvatar.Character character);
 }

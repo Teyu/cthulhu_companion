@@ -9,15 +9,14 @@ import static org.mockito.Mockito.*;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Pair;
 
 import com.example.cthulhucompanion.database.characters.DataBaseCharacters;
 import com.example.cthulhucompanion.database.characters.WrapperCharacterEntry;
 import com.example.cthulhucompanion.database.episodes.DataBaseEpisodes;
 import com.example.cthulhucompanion.database.greatoldone.DataBaseGreatOldOnes;
+import com.example.cthulhucompanion.screens.activity.setup.playeravatar.ViewMvcPlayerAvatar;
 import com.example.cthulhucompanion.screens.common.popupmanager.PopUpManager;
 import com.example.cthulhucompanion.screens.common.screensnavigator.ScreensNavigator;
-import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacter;
 
 import org.junit.After;
 import org.junit.Before;
@@ -32,7 +31,7 @@ import java.util.HashMap;
 @RunWith(MockitoJUnitRunner.class)
 public class ControllerSetUpTest {
 
-    private static final HashMap<Integer, PopUpViewMvcSelectCharacter.Character> CHARACTERS = new HashMap<>();
+    private static final HashMap<Integer, ViewMvcPlayerAvatar.Character> CHARACTERS = new HashMap<>();
 
     private ControllerSetUp SUT;
     @Mock ViewMvcSetUp mViewMvcMock;
@@ -48,7 +47,7 @@ public class ControllerSetUpTest {
     @Before
     public void setUp() {
         int someImageResource = 0;
-        for (PopUpViewMvcSelectCharacter.Character character : PopUpViewMvcSelectCharacter.Character.values()){
+        for (ViewMvcPlayerAvatar.Character character : ViewMvcPlayerAvatar.Character.values()){
             CHARACTERS.put(someImageResource++, character);
         }
 
@@ -89,7 +88,7 @@ public class ControllerSetUpTest {
     @Test
     public void onCharacterSelected_playerAvatarUpdated(){
         ViewMvcSetUp.PlayerColor playerColor = ViewMvcSetUp.PlayerColor.PLAYER_GREEN;
-        PopUpViewMvcSelectCharacter.Character character = PopUpViewMvcSelectCharacter.Character.AHMED_YASIN;
+        ViewMvcPlayerAvatar.Character character = ViewMvcPlayerAvatar.Character.AHMED_YASIN;
 
         SUT.onCharacterSelected(playerColor, character);
         verify(mViewMvcMock).setPlayerAvatar(playerColor, character);
@@ -105,7 +104,7 @@ public class ControllerSetUpTest {
     public void onCharacterDeleted_playerAvatarEmpty(){
 
         ViewMvcSetUp.PlayerColor playerColor = ViewMvcSetUp.PlayerColor.PLAYER_BLUE;
-        PopUpViewMvcSelectCharacter.Character character = PopUpViewMvcSelectCharacter.Character.BORDEN;
+        ViewMvcPlayerAvatar.Character character = ViewMvcPlayerAvatar.Character.BORDEN;
 
         mListenerMock1.onCharacterDeleted(playerColor);
         verify(mViewMvcMock).removePlayerAvatar(playerColor);
@@ -121,7 +120,7 @@ public class ControllerSetUpTest {
     public void onCharacterSelected_characterRemovedFromPopUpSelection(){
 
         ViewMvcSetUp.PlayerColor playerColor = ViewMvcSetUp.PlayerColor.PLAYER_RED;
-        PopUpViewMvcSelectCharacter.Character character = PopUpViewMvcSelectCharacter.Character.JOHN_MORGAN;
+        ViewMvcPlayerAvatar.Character character = ViewMvcPlayerAvatar.Character.JOHN_MORGAN;
 
         mListenerMock1.onCharacterSelected(playerColor, character);
         verify(mViewMvcMock).removeCharacterFromPopUpSelection(character);
@@ -138,7 +137,7 @@ public class ControllerSetUpTest {
     public void onCharacterDeleted_characterResetInPopUpSelection(){
 
         ViewMvcSetUp.PlayerColor playerColor = ViewMvcSetUp.PlayerColor.PLAYER_ORANGE;
-        PopUpViewMvcSelectCharacter.Character character = PopUpViewMvcSelectCharacter.Character.LORD_ADAM_BENCHLEY;
+        ViewMvcPlayerAvatar.Character character = ViewMvcPlayerAvatar.Character.LORD_ADAM_BENCHLEY;
 
         mListenerMock1.onCharacterDeleted(playerColor);
         verify(mViewMvcMock).addCharacterToPopUpSelection(character);
@@ -156,8 +155,8 @@ public class ControllerSetUpTest {
         ViewMvcSetUp.PlayerColor playerColor1 = ViewMvcSetUp.PlayerColor.PLAYER_ORANGE;
         ViewMvcSetUp.PlayerColor playerColor2 = ViewMvcSetUp.PlayerColor.PLAYER_VIOLET;
 
-        PopUpViewMvcSelectCharacter.Character character1 = PopUpViewMvcSelectCharacter.Character.LORD_ADAM_BENCHLEY;
-        PopUpViewMvcSelectCharacter.Character character2 = PopUpViewMvcSelectCharacter.Character.SERGEANT_IAN_WELLES;
+        ViewMvcPlayerAvatar.Character character1 = ViewMvcPlayerAvatar.Character.LORD_ADAM_BENCHLEY;
+        ViewMvcPlayerAvatar.Character character2 = ViewMvcPlayerAvatar.Character.SERGEANT_IAN_WELLES;
 
         mListenerMock1.onCharacterSelected(playerColor1, character1);
         mListenerMock1.onCharacterSelected(playerColor2, character2);
@@ -179,8 +178,8 @@ public class ControllerSetUpTest {
         ViewMvcSetUp.PlayerColor playerColor1 = ViewMvcSetUp.PlayerColor.PLAYER_VIOLET;
         ViewMvcSetUp.PlayerColor playerColor2 = ViewMvcSetUp.PlayerColor.PLAYER_GREEN;
 
-        PopUpViewMvcSelectCharacter.Character character1 = PopUpViewMvcSelectCharacter.Character.RASPUTIN;
-        PopUpViewMvcSelectCharacter.Character character2 = PopUpViewMvcSelectCharacter.Character.SERGEANT_IAN_WELLES;
+        ViewMvcPlayerAvatar.Character character1 = ViewMvcPlayerAvatar.Character.RASPUTIN;
+        ViewMvcPlayerAvatar.Character character2 = ViewMvcPlayerAvatar.Character.SERGEANT_IAN_WELLES;
 
         mListenerMock1.onCharacterDeleted(playerColor1);
         mListenerMock1.onCharacterDeleted(playerColor2);
@@ -199,8 +198,8 @@ public class ControllerSetUpTest {
     @Test
     public void onCharacterReplaced_characterSelectionUpdated(){
         ViewMvcSetUp.PlayerColor playerColor = ViewMvcSetUp.PlayerColor.PLAYER_GREEN;
-        PopUpViewMvcSelectCharacter.Character character1 = PopUpViewMvcSelectCharacter.Character.BORDEN;
-        PopUpViewMvcSelectCharacter.Character character2 = PopUpViewMvcSelectCharacter.Character.SISTER_BETH;
+        ViewMvcPlayerAvatar.Character character1 = ViewMvcPlayerAvatar.Character.BORDEN;
+        ViewMvcPlayerAvatar.Character character2 = ViewMvcPlayerAvatar.Character.SISTER_BETH;
 
         mListenerMock1.onCharacterSelected(playerColor, character1);
         mListenerMock1.onCharacterSelected(playerColor, character2);
@@ -226,8 +225,8 @@ public class ControllerSetUpTest {
         ViewMvcSetUp.PlayerColor playerColor1 = ViewMvcSetUp.PlayerColor.PLAYER_GREEN;
         ViewMvcSetUp.PlayerColor playerColor2 = ViewMvcSetUp.PlayerColor.PLAYER_VIOLET;
 
-        PopUpViewMvcSelectCharacter.Character character1 = PopUpViewMvcSelectCharacter.Character.FATIMA_SAFAR;
-        PopUpViewMvcSelectCharacter.Character character2 = PopUpViewMvcSelectCharacter.Character.THE_KID;
+        ViewMvcPlayerAvatar.Character character1 = ViewMvcPlayerAvatar.Character.FATIMA_SAFAR;
+        ViewMvcPlayerAvatar.Character character2 = ViewMvcPlayerAvatar.Character.THE_KID;
 
         mListenerMock1.onCharacterSelected(playerColor1, character1);
         mListenerMock1.onCharacterSelected(playerColor2, character1);
@@ -249,7 +248,7 @@ public class ControllerSetUpTest {
     @Test
     public void onCharacterSelected_popUpSelectionDeleteButtonAvailable(){
         ViewMvcSetUp.PlayerColor playerColor = ViewMvcSetUp.PlayerColor.PLAYER_BLUE;
-        PopUpViewMvcSelectCharacter.Character character = PopUpViewMvcSelectCharacter.Character.ELIZABETH_IVES;
+        ViewMvcPlayerAvatar.Character character = ViewMvcPlayerAvatar.Character.ELIZABETH_IVES;
 
         mListenerMock1.onCharacterSelected(playerColor, character);
 
@@ -267,8 +266,8 @@ public class ControllerSetUpTest {
         ViewMvcSetUp.PlayerColor playerColor1 = ViewMvcSetUp.PlayerColor.PLAYER_RED;
         ViewMvcSetUp.PlayerColor playerColor2 = ViewMvcSetUp.PlayerColor.PLAYER_VIOLET;
 
-        PopUpViewMvcSelectCharacter.Character character1 = PopUpViewMvcSelectCharacter.Character.BORDEN;
-        PopUpViewMvcSelectCharacter.Character character2 = PopUpViewMvcSelectCharacter.Character.THE_KID;
+        ViewMvcPlayerAvatar.Character character1 = ViewMvcPlayerAvatar.Character.BORDEN;
+        ViewMvcPlayerAvatar.Character character2 = ViewMvcPlayerAvatar.Character.THE_KID;
 
         mListenerMock1.onCharacterSelected(playerColor1, character1);
         mListenerMock1.onCharacterSelected(playerColor2, character2);

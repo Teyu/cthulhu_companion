@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.cthulhucompanion.R;
+import com.example.cthulhucompanion.screens.activity.setup.playeravatar.ViewMvcPlayerAvatar;
 import com.example.cthulhucompanion.screens.common.mvcviews.observable.BaseObservableViewMvc;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class PopUpViewMvcSelectCharacterImpl extends BaseObservableViewMvc<PopUp
 
     private final ImageButton mCharacterDeleteButton;
     private final ArrayList<ImageButton> mCharacterButtons = new ArrayList<>();
-    private final ArrayList<Pair<Integer, Character>> mCharacterImageButtons = new ArrayList<>();
+    private final ArrayList<Pair<Integer, ViewMvcPlayerAvatar.Character>> mCharacterImageButtons = new ArrayList<>();
 
     @SuppressLint("InflateParams")
     public PopUpViewMvcSelectCharacterImpl(LayoutInflater inflater){
@@ -30,43 +31,43 @@ public class PopUpViewMvcSelectCharacterImpl extends BaseObservableViewMvc<PopUp
             }
         });
 
-        Pair<Integer, Character> character = new Pair<>(R.id.avatar_ahmed_yasin_btn, Character.AHMED_YASIN);
+        Pair<Integer, ViewMvcPlayerAvatar.Character> character = new Pair<>(R.id.avatar_ahmed_yasin_btn, ViewMvcPlayerAvatar.Character.AHMED_YASIN);
         mCharacterImageButtons.add(character);
 
-        character = new Pair<>(R.id.avatar_ahmed_yasin_btn, Character.AHMED_YASIN);
+        character = new Pair<>(R.id.avatar_ahmed_yasin_btn, ViewMvcPlayerAvatar.Character.AHMED_YASIN);
         mCharacterImageButtons.add(character);
 
-        character = new Pair<>(R.id.avatar_borden_btn, Character.BORDEN);
+        character = new Pair<>(R.id.avatar_borden_btn, ViewMvcPlayerAvatar.Character.BORDEN);
         mCharacterImageButtons.add(character);
 
-        character = new Pair<>(R.id.avatar_elizabeth_ives_btn, Character.ELIZABETH_IVES);
+        character = new Pair<>(R.id.avatar_elizabeth_ives_btn, ViewMvcPlayerAvatar.Character.ELIZABETH_IVES);
         mCharacterImageButtons.add(character);
 
-        character = new Pair<>(R.id.avatar_fatima_safar_btn, Character.FATIMA_SAFAR);
+        character = new Pair<>(R.id.avatar_fatima_safar_btn, ViewMvcPlayerAvatar.Character.FATIMA_SAFAR);
         mCharacterImageButtons.add(character);
 
-        character = new Pair<>(R.id.avatar_john_morgan_btn, Character.JOHN_MORGAN);
+        character = new Pair<>(R.id.avatar_john_morgan_btn, ViewMvcPlayerAvatar.Character.JOHN_MORGAN);
         mCharacterImageButtons.add(character);
 
-        character = new Pair<>(R.id.avatar_lord_benchley_btn, Character.LORD_ADAM_BENCHLEY);
+        character = new Pair<>(R.id.avatar_lord_benchley_btn, ViewMvcPlayerAvatar.Character.LORD_ADAM_BENCHLEY);
         mCharacterImageButtons.add(character);
 
-        character = new Pair<>(R.id.avatar_rasputin_btn, Character.RASPUTIN);
+        character = new Pair<>(R.id.avatar_rasputin_btn, ViewMvcPlayerAvatar.Character.RASPUTIN);
         mCharacterImageButtons.add(character);
 
-        character = new Pair<>(R.id.avatar_sergeant_welles_btn, Character.SERGEANT_IAN_WELLES);
+        character = new Pair<>(R.id.avatar_sergeant_welles_btn, ViewMvcPlayerAvatar.Character.SERGEANT_IAN_WELLES);
         mCharacterImageButtons.add(character);
 
-        character = new Pair<>(R.id.avatar_sister_beth_btn, Character.SISTER_BETH);
+        character = new Pair<>(R.id.avatar_sister_beth_btn, ViewMvcPlayerAvatar.Character.SISTER_BETH);
         mCharacterImageButtons.add(character);
 
-        character = new Pair<>(R.id.avatar_the_kid_btn, Character.THE_KID);
+        character = new Pair<>(R.id.avatar_the_kid_btn, ViewMvcPlayerAvatar.Character.THE_KID);
         mCharacterImageButtons.add(character);
     }
 
     @Override
-    public void setCharacterImage(int imageResource, final Character character){
-        for (Pair<Integer, Character> characterImageButton : mCharacterImageButtons){
+    public void setCharacterImage(int imageResource, final ViewMvcPlayerAvatar.Character character){
+        for (Pair<Integer, ViewMvcPlayerAvatar.Character> characterImageButton : mCharacterImageButtons){
             if (characterImageButton.getSecond() == character){
 
                 ImageButton imageButton = findViewById(characterImageButton.getFirst());
@@ -84,8 +85,8 @@ public class PopUpViewMvcSelectCharacterImpl extends BaseObservableViewMvc<PopUp
     }
 
     @Override
-    public int getCharacterImage(Character character) {
-        for (Pair<Integer, Character> characterImageButton : mCharacterImageButtons){
+    public int getCharacterImage(ViewMvcPlayerAvatar.Character character) {
+        for (Pair<Integer, ViewMvcPlayerAvatar.Character> characterImageButton : mCharacterImageButtons){
             if (characterImageButton.getSecond() == character){
                 ImageButton imageButton = findViewById(characterImageButton.getFirst());
                 return (int) imageButton.getTag();
@@ -95,8 +96,8 @@ public class PopUpViewMvcSelectCharacterImpl extends BaseObservableViewMvc<PopUp
     }
 
     @Override
-    public void removeCharacter(Character character) {
-        for (Pair<Integer, Character> characterImageButton : mCharacterImageButtons) {
+    public void removeCharacter(ViewMvcPlayerAvatar.Character character) {
+        for (Pair<Integer, ViewMvcPlayerAvatar.Character> characterImageButton : mCharacterImageButtons) {
             if (characterImageButton.getSecond() == character){
                 ImageButton characterButton = findViewById(characterImageButton.getFirst());
                 characterButton.setVisibility(View.GONE);
@@ -115,9 +116,9 @@ public class PopUpViewMvcSelectCharacterImpl extends BaseObservableViewMvc<PopUp
     }
 
     @Override
-    public void showCharacter(Character character) {
+    public void showCharacter(ViewMvcPlayerAvatar.Character character) {
 
-        for (Pair<Integer, Character> characterImageButton : mCharacterImageButtons) {
+        for (Pair<Integer, ViewMvcPlayerAvatar.Character> characterImageButton : mCharacterImageButtons) {
             if (characterImageButton.getSecond() == character){
                 ImageButton characterButton = findViewById(characterImageButton.getFirst());
                 characterButton.setVisibility(View.VISIBLE);

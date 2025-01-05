@@ -6,10 +6,9 @@ package com.example.cthulhucompanion.screens.activity.setup;
 
 import android.util.Pair;
 
+import com.example.cthulhucompanion.screens.activity.setup.playeravatar.ViewMvcPlayerAvatar;
 import com.example.cthulhucompanion.screens.common.mvcviews.observable.ObservableViewMvc;
-import com.example.cthulhucompanion.screens.common.popupmanager.PopUpManager;
 import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacter;
-import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacterImpl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,11 +26,11 @@ public interface ViewMvcSetUp extends ObservableViewMvc<ViewMvcSetUp.Listener> {
     interface Listener{
         void onPlayerAvatarClicked(PlayerColor playerColor);
         void OnFinishSetUp();
-        void onCharacterSelected(PlayerColor playerBlue, PopUpViewMvcSelectCharacter.Character character);
+        void onCharacterSelected(PlayerColor playerBlue, ViewMvcPlayerAvatar.Character character);
         void onCharacterDeleted(PlayerColor playerColor);
     }
 
-    void setPlayerAvatar(PlayerColor playerColor, PopUpViewMvcSelectCharacter.Character character);
+    void setPlayerAvatar(PlayerColor playerColor, ViewMvcPlayerAvatar.Character character);
     void removePlayerAvatar(PlayerColor playerColor);
 
     void setEpisodeList(final ArrayList<Pair<String, Integer>> titleAndCountPairs);
@@ -39,11 +38,11 @@ public interface ViewMvcSetUp extends ObservableViewMvc<ViewMvcSetUp.Listener> {
     void setGreatOldOnesList(final ArrayList<String> names);
     void bindCharacterSelectionPopUp(PlayerColor color);
 
-    void setCharacterSelectionPopUp(PlayerColor color, HashMap<Integer, PopUpViewMvcSelectCharacterImpl.Character> characterImageResources, PopUpViewMvcSelectCharacter.PopUpListener popUpListener);
+    void setCharacterSelectionPopUp(PlayerColor color, HashMap<Integer, ViewMvcPlayerAvatar.Character> characterImageResources, PopUpViewMvcSelectCharacter.PopUpListener popUpListener);
 
-    void addCharacterToPopUpSelection(PopUpViewMvcSelectCharacter.Character character);
+    void addCharacterToPopUpSelection(ViewMvcPlayerAvatar.Character character);
 
-    void removeCharacterFromPopUpSelection(PopUpViewMvcSelectCharacter.Character character);
+    void removeCharacterFromPopUpSelection(ViewMvcPlayerAvatar.Character character);
 
     void provideCharacterDeleteButton();
 

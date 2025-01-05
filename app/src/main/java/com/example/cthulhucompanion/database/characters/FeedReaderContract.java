@@ -1,12 +1,10 @@
 package com.example.cthulhucompanion.database.characters;
 
-import static com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacter.Character.*;
-import static com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacter.Character;
+import static com.example.cthulhucompanion.screens.activity.setup.playeravatar.ViewMvcPlayerAvatar.Character.*;
 
 import android.provider.BaseColumns;
 
 import com.example.cthulhucompanion.R;
-import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacter;
 
 public final class FeedReaderContract {
 

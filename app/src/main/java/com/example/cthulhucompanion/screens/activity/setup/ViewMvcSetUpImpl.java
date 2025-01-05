@@ -19,14 +19,11 @@ import com.example.cthulhucompanion.screens.activity.setup.playeravatar.ViewMvcP
 import com.example.cthulhucompanion.screens.common.ViewMvcFactory;
 import com.example.cthulhucompanion.screens.common.mvcviews.observable.BaseObservableViewMvc;
 import com.example.cthulhucompanion.screens.activity.setup.playeravatar.ViewMvcPlayerAvatarImpl;
-import com.example.cthulhucompanion.screens.common.popupmanager.PopUpManager;
 import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacter;
-import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacterImpl;
 import com.example.cthulhucompanion.screens.toolbar.main.ViewMvcToolbarMain;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Set;
 
 public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listener> implements ViewMvcSetUp {
@@ -107,12 +104,12 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
     }
 
     @Override
-    public void addCharacterToPopUpSelection(PopUpViewMvcSelectCharacter.Character character) {
+    public void addCharacterToPopUpSelection(ViewMvcPlayerAvatar.Character character) {
 
     }
 
     @Override
-    public void removeCharacterFromPopUpSelection(PopUpViewMvcSelectCharacter.Character character) {
+    public void removeCharacterFromPopUpSelection(ViewMvcPlayerAvatar.Character character) {
 
     }
 
@@ -127,7 +124,7 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
     }
 
     @Override
-    public void setPlayerAvatar(PlayerColor playerColor, PopUpViewMvcSelectCharacter.Character character) {
+    public void setPlayerAvatar(PlayerColor playerColor, ViewMvcPlayerAvatar.Character character) {
         mPlayerAvatars.get(playerColor).getViewMvc().setAvatarImage(character);
     }
 
@@ -166,7 +163,7 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
     }
 
     @Override
-    public void setCharacterSelectionPopUp(PlayerColor color, HashMap<Integer, PopUpViewMvcSelectCharacterImpl.Character> characterImageResources, PopUpViewMvcSelectCharacter.PopUpListener popUpListener) {
+    public void setCharacterSelectionPopUp(PlayerColor color, HashMap<Integer, ViewMvcPlayerAvatar.Character> characterImageResources, PopUpViewMvcSelectCharacter.PopUpListener popUpListener) {
         for (int characterImage : characterImageResources.keySet()){
             mPlayerAvatars.get(color).getViewMvc().addCharacterToPopUpSelection(characterImage, characterImageResources.get(characterImage));
         }
@@ -223,7 +220,7 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
         }
 
         @Override
-        public void onCharacterButtonClicked(PopUpViewMvcSelectCharacter.Character character) {
+        public void onCharacterButtonClicked(ViewMvcPlayerAvatar.Character character) {
             for (ViewMvcSetUp.Listener listener : mListeners){
                 listener.onCharacterSelected(mColor, character);
             }

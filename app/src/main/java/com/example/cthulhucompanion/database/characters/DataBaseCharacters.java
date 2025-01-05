@@ -4,8 +4,7 @@ import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacter;
-import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacterImpl;
+import com.example.cthulhucompanion.screens.activity.setup.playeravatar.ViewMvcPlayerAvatar;
 
 import java.util.AbstractList;
 import java.util.ArrayList;
@@ -40,7 +39,7 @@ public class DataBaseCharacters {
                     FeedReaderContract.CharactersFeedEntry.COLUMN_CHARACTER_ID)
             );
 
-            mEntries.add(new WrapperCharacterEntry(imageResource, PopUpViewMvcSelectCharacter.Character.valueOf(characterId)));
+            mEntries.add(new WrapperCharacterEntry(imageResource, ViewMvcPlayerAvatar.Character.valueOf(characterId)));
         }
         cursor.close();
 

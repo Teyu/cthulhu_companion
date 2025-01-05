@@ -15,9 +15,7 @@ import com.example.cthulhucompanion.database.greatoldone.DataBaseGreatOldOnes;
 import com.example.cthulhucompanion.screens.activity.setup.playeravatar.ViewMvcPlayerAvatar;
 import com.example.cthulhucompanion.screens.common.popupmanager.PopUpManager;
 import com.example.cthulhucompanion.screens.common.screensnavigator.ScreensNavigator;
-import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacter;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ControllerSetUp implements ViewMvcSetUp.Listener{
@@ -58,7 +56,7 @@ public class ControllerSetUp implements ViewMvcSetUp.Listener{
     void bindView (ViewMvcSetUp viewMvcSetUp) {
         mViewMvcSetUp = viewMvcSetUp;
 
-        HashMap<Integer, PopUpViewMvcSelectCharacter.Character> characterIds = new HashMap<>();
+        HashMap<Integer, ViewMvcPlayerAvatar.Character> characterIds = new HashMap<>();
         for (WrapperCharacterEntry characterEntry : mDataBaseCharacters.readData(mReadableDataBase)){
             characterIds.put(characterEntry.getImageResource(), characterEntry.getCharacterId());
         }
@@ -99,7 +97,7 @@ public class ControllerSetUp implements ViewMvcSetUp.Listener{
     }
 
     @Override
-    public void onCharacterSelected(ViewMvcSetUp.PlayerColor playerColor, PopUpViewMvcSelectCharacter.Character character) {
+    public void onCharacterSelected(ViewMvcSetUp.PlayerColor playerColor, ViewMvcPlayerAvatar.Character character) {
         //update avatar
         Log.i("TEST", "Player " + playerColor.toString() + " selected " + character.toString());
         mViewMvcSetUp.setPlayerAvatar(playerColor, character);

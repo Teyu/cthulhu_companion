@@ -1,15 +1,14 @@
 package com.example.cthulhucompanion.database.characters;
 
-import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacter;
-import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacterImpl;
+import com.example.cthulhucompanion.screens.activity.setup.playeravatar.ViewMvcPlayerAvatar;
 
 public class WrapperCharacterEntry {
 
     private final int mImageResource;
-    private final PopUpViewMvcSelectCharacter.Character mCharacterId;
+    private final ViewMvcPlayerAvatar.Character mCharacterId;
 
     public WrapperCharacterEntry(int imageResource,
-                                 PopUpViewMvcSelectCharacter.Character characterId) {
+                                 ViewMvcPlayerAvatar.Character characterId) {
         this.mImageResource = imageResource;
         this.mCharacterId = characterId;
     }
@@ -18,5 +17,5 @@ public class WrapperCharacterEntry {
         return mImageResource;
     }
 
-    public PopUpViewMvcSelectCharacter.Character getCharacterId() { return mCharacterId;}
+    public ViewMvcPlayerAvatar.Character getCharacterId() { return mCharacterId;}
 }

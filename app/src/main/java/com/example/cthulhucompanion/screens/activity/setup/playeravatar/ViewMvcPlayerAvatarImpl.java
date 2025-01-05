@@ -1,20 +1,15 @@
 package com.example.cthulhucompanion.screens.activity.setup.playeravatar;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
-import androidx.annotation.NonNull;
-
 import com.example.cthulhucompanion.R;
-import com.example.cthulhucompanion.screens.activity.setup.ViewMvcSetUp;
 import com.example.cthulhucompanion.screens.common.ViewMvcFactory;
 import com.example.cthulhucompanion.screens.common.mvcviews.observable.BaseObservableViewMvc;
 import com.example.cthulhucompanion.screens.common.popupmanager.PopUpManager;
 import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacter;
-import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacterImpl;
 
 public class ViewMvcPlayerAvatarImpl extends BaseObservableViewMvc<ViewMvcPlayerAvatar.Listener> implements ViewMvcPlayerAvatar, PopUpViewMvcSelectCharacter.PopUpListener {
 
@@ -52,16 +47,16 @@ public class ViewMvcPlayerAvatarImpl extends BaseObservableViewMvc<ViewMvcPlayer
     }
 
     @Override
-    public void setAvatarImage(PopUpViewMvcSelectCharacter.Character character) {
+    public void setAvatarImage(Character character) {
         int imageResource = mPopUpViewMvc.getCharacterImage(character);
         mPlayerAvatarButton.setImageResource(imageResource);
     }
 
-    public void addCharacterToPopUpSelection(Integer imageResource, PopUpViewMvcSelectCharacterImpl.Character character) {
+    public void addCharacterToPopUpSelection(Integer imageResource, Character character) {
         mPopUpViewMvc.setCharacterImage(imageResource, character);
     }
 
-    public void removeCharacterFromPopUpSelection(PopUpViewMvcSelectCharacterImpl.Character character) {
+    public void removeCharacterFromPopUpSelection(Character character) {
         mPopUpViewMvc.removeCharacter(character);
     }
 
@@ -82,7 +77,7 @@ public class ViewMvcPlayerAvatarImpl extends BaseObservableViewMvc<ViewMvcPlayer
     }
 
     @Override
-    public void onCharacterButtonClicked(PopUpViewMvcSelectCharacterImpl.Character character) {
+    public void onCharacterButtonClicked(Character character) {
         for (Listener listener : getListeners()){
             listener.onCharacterButtonClicked(character);
         }
