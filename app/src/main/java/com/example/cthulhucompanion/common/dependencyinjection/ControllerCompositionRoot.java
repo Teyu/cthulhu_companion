@@ -81,14 +81,12 @@ public class ControllerCompositionRoot {
     /** ------------------------------------- controllers ------------------------------------- **/
 
     public ControllerSetUp getControllerSetUp(ScreensNavigator screensNavigator,
-                                              SQLiteDatabase readableDataBase,
-                                              PopUpManager popUpManager){
+                                              SQLiteDatabase readableDataBase){
         return new ControllerSetUp(screensNavigator,
                 readableDataBase,
                 new DataBaseGreatOldOnes(),
                 new DataBaseEpisodes(),
                 new DataBaseCharacters(),
-                popUpManager,
                 getContext());
     }
 

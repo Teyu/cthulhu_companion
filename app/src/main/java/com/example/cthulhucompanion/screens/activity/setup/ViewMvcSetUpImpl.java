@@ -19,6 +19,7 @@ import com.example.cthulhucompanion.screens.activity.setup.playeravatar.ViewMvcP
 import com.example.cthulhucompanion.screens.common.ViewMvcFactory;
 import com.example.cthulhucompanion.screens.common.mvcviews.observable.BaseObservableViewMvc;
 import com.example.cthulhucompanion.screens.activity.setup.playeravatar.ViewMvcPlayerAvatarImpl;
+import com.example.cthulhucompanion.screens.common.popupmanager.PopUpManager;
 import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacter;
 import com.example.cthulhucompanion.screens.toolbar.main.ViewMvcToolbarMain;
 
@@ -40,12 +41,12 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
                             ViewMvcFactory viewMvcFactory){
         setRootView(inflater.inflate(R.layout.activity_set_up, parent, false));
 
-        mPlayerAvatars.put(PLAYER_BLUE,new PlayerAvatar(
+        mPlayerAvatars.put(PLAYER_BLUE, new PlayerAvatar(
                 new ViewMvcPlayerAvatarImpl(inflater, parent, viewMvcFactory),
                 PLAYER_BLUE,
                 R.color.player_blue,
                 findViewById(R.id.element_player_avatar1),
-                getListeners()
+                getListeners(), PopUpManager.create(viewMvcFactory)
                 ));
 
         mPlayerAvatars.put(PLAYER_GREEN, new PlayerAvatar(
@@ -53,7 +54,7 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
                 PLAYER_GREEN,
                 R.color.player_green,
                 findViewById(R.id.element_player_avatar2),
-                getListeners()
+                getListeners(), PopUpManager.create(viewMvcFactory)
         ));
 
         mPlayerAvatars.put(PLAYER_RED, new PlayerAvatar(
@@ -61,7 +62,7 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
                 PLAYER_RED,
                 R.color.player_red,
                 findViewById(R.id.element_player_avatar3),
-                getListeners()
+                getListeners(), PopUpManager.create(viewMvcFactory)
         ));
 
         mPlayerAvatars.put(PLAYER_ORANGE, new PlayerAvatar(
@@ -69,7 +70,7 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
                 PLAYER_ORANGE,
                 R.color.player_orange,
                 findViewById(R.id.element_player_avatar4),
-                getListeners()
+                getListeners(), PopUpManager.create(viewMvcFactory)
         ));
 
         mPlayerAvatars.put(PLAYER_VIOLET, new PlayerAvatar(
@@ -77,7 +78,7 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
                 PLAYER_VIOLET,
                 R.color.player_violet,
                 findViewById(R.id.element_player_avatar5),
-                getListeners()
+                getListeners(), PopUpManager.create(viewMvcFactory)
         ));
 
         for (PlayerAvatar playerAvatar : mPlayerAvatars.values()){
@@ -123,13 +124,13 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
     }
 
     @Override
-    public void provideCharacterDeleteButton() {
-
+    public void provideCharacterDelete() {
+        //TODO
     }
 
     @Override
-    public void disableCharacterDeleteButton() {
-
+    public void disableCharacterDelete() {
+        //TODO
     }
 
     @Override
@@ -177,17 +178,23 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
     }
 
     @Override
-    public void setCharacterSelectionPopUp(PlayerColor color, HashMap<Integer, ViewMvcPlayerAvatar.Character> characterImageResources, PopUpViewMvcSelectCharacter.PopUpListener popUpListener) {
-        for (int characterImage : characterImageResources.keySet()){
-            mPlayerAvatars.get(color).getViewMvc().addCharacterToPopUpSelection(characterImage, characterImageResources.get(characterImage));
+    public void bindCharacterSelectionPopUp() {
+        for (PlayerAvatar playerAvatar : mPlayerAvatars.values()){
+            playerAvatar.getViewMvc().bindCharacterSelectionPopUp(playerAvatar.getPopUpManager());
         }
     }
 
     @Override
-    public void bindCharacterSelectionPopUp(PlayerColor color) {
-        mPlayerAvatars.get(color).getViewMvc().bindCharacterSelectionPopUp(/*this*/);
+    public void dismissPopUpAddPlayer(PlayerColor playerColor) {
+        mPlayerAvatars.get(playerColor).getPopUpManager().dismissPopUpAddPlayer();
     }
 
+    @Override
+    public void setCharacterSelectionPopUp(PlayerColor color, HashMap<Integer, ViewMvcPlayerAvatar.Character> characterImageResources) {
+        for (int characterImage : characterImageResources.keySet()){
+            mPlayerAvatars.get(color).getViewMvc().addCharacterToPopUpSelection(characterImage, characterImageResources.get(characterImage));
+        }
+    }
 
     private class PlayerAvatar implements ViewMvcPlayerAvatar.Listener{
 
@@ -196,17 +203,20 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
         private final int mColorResource;
         private final FrameLayout mLayout;
         private final Set<ViewMvcSetUp.Listener> mListeners;
+        private final PopUpManager mPopUpManager;
 
         PlayerAvatar(ViewMvcPlayerAvatar viewMvc,
                      PlayerColor color,
                      int colorResource,
                      FrameLayout layout,
-                     Set<ViewMvcSetUp.Listener> listeners){
+                     Set<ViewMvcSetUp.Listener> listeners,
+                     PopUpManager popUpManager){
             this.mViewMvc = viewMvc;
             this.mColor = color;
             this.mColorResource = colorResource;
             this.mLayout = layout;
             this.mListeners = listeners;
+            this.mPopUpManager = popUpManager;
 
             mViewMvc.registerListener(this);
         }
@@ -224,6 +234,10 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
 
         public FrameLayout getLayout() {
             return mLayout;
+        }
+
+        public PopUpManager getPopUpManager() {
+            return mPopUpManager;
         }
 
         @Override

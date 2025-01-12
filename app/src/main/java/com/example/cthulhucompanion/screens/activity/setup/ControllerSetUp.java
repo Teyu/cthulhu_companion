@@ -12,7 +12,6 @@ import com.example.cthulhucompanion.database.characters.WrapperCharacterEntry;
 import com.example.cthulhucompanion.database.episodes.DataBaseEpisodes;
 import com.example.cthulhucompanion.database.greatoldone.DataBaseGreatOldOnes;
 import com.example.cthulhucompanion.screens.activity.setup.playeravatar.ViewMvcPlayerAvatar;
-import com.example.cthulhucompanion.screens.common.popupmanager.PopUpManager;
 import com.example.cthulhucompanion.screens.common.screensnavigator.ScreensNavigator;
 
 import java.util.HashMap;
@@ -27,21 +26,18 @@ public class ControllerSetUp implements ViewMvcSetUp.Listener{
     private final DataBaseCharacters mDataBaseCharacters;
     private final Context mContext;
 
-    private final PopUpManager mPopUpManager;
-
     public ControllerSetUp(ScreensNavigator screensNavigator,
                            SQLiteDatabase readableDataBase,
                            DataBaseGreatOldOnes dataBaseGreatOldOnes,
                            DataBaseEpisodes dataBaseEpisodes,
                            DataBaseCharacters dataBaseCharacters,
-                           PopUpManager popUpManager, Context context) {
+                           Context context) {
         this.mScreensNavigator = screensNavigator;
         this.mReadableDataBase = readableDataBase;
         this.mDataBaseGreatOldOnes = dataBaseGreatOldOnes;
         this.mDataBaseEpisodes = dataBaseEpisodes;
         this.mDataBaseCharacters = dataBaseCharacters;
         this.mContext = context;
-        this.mPopUpManager = popUpManager;
     }
 
     void onStart() {
@@ -60,10 +56,12 @@ public class ControllerSetUp implements ViewMvcSetUp.Listener{
             characterIds.put(characterEntry.getImageResource(), characterEntry.getCharacterId());
         }
 
+        mViewMvcSetUp.bindCharacterSelectionPopUp();
         for (ViewMvcSetUp.PlayerColor color : ViewMvcSetUp.PlayerColor.values()) {
-            mViewMvcSetUp.setCharacterSelectionPopUp(color, characterIds, null);
-            mViewMvcSetUp.bindCharacterSelectionPopUp(color);
+            mViewMvcSetUp.setCharacterSelectionPopUp(color, characterIds);
         }
+
+        mViewMvcSetUp.disableCharacterDelete();
 
         initializeFromDataBase();
     }
@@ -97,8 +95,15 @@ public class ControllerSetUp implements ViewMvcSetUp.Listener{
 
     @Override
     public void onCharacterSelected(ViewMvcSetUp.PlayerColor playerColor, ViewMvcPlayerAvatar.Character character) {
-        mViewMvcSetUp.setPlayerAvatar(playerColor, character);
+        ViewMvcPlayerAvatar.Character selectedCharacter = mViewMvcSetUp.getSelectedCharacter(playerColor);
+        if (mViewMvcSetUp.getSelectedCharacter(playerColor) != ViewMvcPlayerAvatar.Character.NONE) {
+            mViewMvcSetUp.addCharacterToPopUpSelection(selectedCharacter);
+        }
         mViewMvcSetUp.removeCharacterFromPopUpSelection(character);
+        mViewMvcSetUp.setPlayerAvatar(playerColor, character);
+        mViewMvcSetUp.provideCharacterDelete();
+
+        mViewMvcSetUp.dismissPopUpAddPlayer(playerColor);
     }
 
     @Override
@@ -106,6 +111,8 @@ public class ControllerSetUp implements ViewMvcSetUp.Listener{
         ViewMvcPlayerAvatar.Character selectedCharacter = mViewMvcSetUp.getSelectedCharacter(playerColor);
         mViewMvcSetUp.removePlayerAvatar(playerColor);
         mViewMvcSetUp.addCharacterToPopUpSelection(selectedCharacter);
+
+        mViewMvcSetUp.dismissPopUpAddPlayer(playerColor);
     }
 
     @Override

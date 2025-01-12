@@ -2,8 +2,7 @@ package com.example.cthulhucompanion.screens.activity.setup.playeravatar;
 
 
 import com.example.cthulhucompanion.screens.common.mvcviews.observable.ObservableViewMvc;
-
-import java.util.ArrayList;
+import com.example.cthulhucompanion.screens.common.popupmanager.PopUpManager;
 
 public interface ViewMvcPlayerAvatar extends ObservableViewMvc<ViewMvcPlayerAvatar.Listener> {
 
@@ -28,7 +27,7 @@ public interface ViewMvcPlayerAvatar extends ObservableViewMvc<ViewMvcPlayerAvat
         void onDeleteButtonClicked();
     }
 
-    void bindCharacterSelectionPopUp();
+    void bindCharacterSelectionPopUp(PopUpManager popUpManager);
     void setBackgroundColor(int resourceId);
     void setAvatar(Character character);
     Character getSelectedCharacter();

@@ -8,10 +8,8 @@ import android.util.Pair;
 
 import com.example.cthulhucompanion.screens.activity.setup.playeravatar.ViewMvcPlayerAvatar;
 import com.example.cthulhucompanion.screens.common.mvcviews.observable.ObservableViewMvc;
-import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacter;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 
 public interface ViewMvcSetUp extends ObservableViewMvc<ViewMvcSetUp.Listener> {
 
@@ -37,16 +35,17 @@ public interface ViewMvcSetUp extends ObservableViewMvc<ViewMvcSetUp.Listener> {
     void setEpisodeList(final ArrayList<Pair<String, Integer>> titleAndCountPairs);
 
     void setGreatOldOnesList(final ArrayList<String> names);
-    void bindCharacterSelectionPopUp(PlayerColor color);
+    void bindCharacterSelectionPopUp();
+    void dismissPopUpAddPlayer(PlayerColor playerColor);
 
-    void setCharacterSelectionPopUp(PlayerColor color, HashMap<Integer, ViewMvcPlayerAvatar.Character> characterImageResources, PopUpViewMvcSelectCharacter.PopUpListener popUpListener);
+    void setCharacterSelectionPopUp(PlayerColor color, HashMap<Integer, ViewMvcPlayerAvatar.Character> characterImageResources);
 
     void addCharacterToPopUpSelection(ViewMvcPlayerAvatar.Character character);
 
     void removeCharacterFromPopUpSelection(ViewMvcPlayerAvatar.Character character);
     boolean selectionContainsCharacter(PlayerColor playerColor, ViewMvcPlayerAvatar.Character character);
 
-    void provideCharacterDeleteButton();
+    void provideCharacterDelete();
 
-    void disableCharacterDeleteButton();
+    void disableCharacterDelete();
 }

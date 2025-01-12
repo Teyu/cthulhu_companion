@@ -2,10 +2,8 @@ package com.example.cthulhucompanion.screens.activity.setup.playeravatar;
 
 import static com.example.cthulhucompanion.screens.activity.setup.playeravatar.ViewMvcPlayerAvatar.Character.NONE;
 
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.ImageView;
+import android.view.*;
+import android.widget.*;
 
 import com.example.cthulhucompanion.R;
 import com.example.cthulhucompanion.screens.common.ViewMvcFactory;
@@ -19,8 +17,6 @@ public class ViewMvcPlayerAvatarImpl extends BaseObservableViewMvc<ViewMvcPlayer
 
     private final ImageView mPlayerAvatarBackground;
     private final ImageButton mPlayerAvatarButton;
-    private final PopUpManager mPopUpmanager;
-    private final ViewMvcFactory mViewMvcFactory;
     private final PopUpViewMvcSelectCharacter mPopUpViewMvc;
     private Character mSelectedCharacter = NONE;
 
@@ -29,8 +25,6 @@ public class ViewMvcPlayerAvatarImpl extends BaseObservableViewMvc<ViewMvcPlayer
 
         this.mPlayerAvatarBackground = findViewById(R.id.player_color_background_img);
         this.mPlayerAvatarButton = findViewById(R.id.player_avatar_btn);
-        this.mViewMvcFactory = viewMvcFactory;
-        this.mPopUpmanager = new PopUpManager(mViewMvcFactory);
         this.mPopUpViewMvc = viewMvcFactory.getViewMvcPopupSelectPlayer();
 
         mPlayerAvatarButton.setOnClickListener(
@@ -43,8 +37,8 @@ public class ViewMvcPlayerAvatarImpl extends BaseObservableViewMvc<ViewMvcPlayer
     }
 
     @Override
-    public void bindCharacterSelectionPopUp() {
-        mPopUpmanager.anchorPopUpAddPlayer(mPlayerAvatarButton, mPopUpViewMvc, this);
+    public void bindCharacterSelectionPopUp(PopUpManager popUpManager) {
+        popUpManager.anchorPopUpAddPlayer(mPlayerAvatarButton, mPopUpViewMvc, this);
     }
 
     public void setBackgroundColor(int resourceId){

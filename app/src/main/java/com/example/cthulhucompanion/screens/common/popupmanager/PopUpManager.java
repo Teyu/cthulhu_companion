@@ -22,6 +22,10 @@ public class PopUpManager {
     PopupWindow mPopUpWindowMove, mPopUpWindowAttack, mPopUpWindowRest, mPopUpWindowTrade;
     PopupWindow mPopUpWindowAddPlayer;
 
+    public static PopUpManager create(ViewMvcFactory viewMvcFactory) {
+        return new PopUpManager(viewMvcFactory);
+    }
+
     public PopUpManager(ViewMvcFactory viewMvcFactory) {
         this.mViewMvcFactory = viewMvcFactory;
     }
@@ -102,18 +106,14 @@ public class PopUpManager {
         mPopUpWindowTrade.dismiss();
     }
 
-    public void anchorPopUpAddPlayer(@NonNull final View anchorView, PopUpViewMvcSelectCharacter viewMvcAddPlayer, PopUpViewMvcSelectCharacter.PopUpListener popUpListener) {
+    public void anchorPopUpAddPlayer(@NonNull final View anchorView, PopUpViewMvcSelectCharacter viewMvcAddPlayer, @NonNull PopUpViewMvcSelectCharacter.PopUpListener popUpListener) {
 
         mPopUpWindowAddPlayer = new PopupWindow(
-                viewMvcAddPlayer.getRootView(),
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT);
+                    viewMvcAddPlayer.getRootView(),
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT);
 
         anchorPopUpToView(viewMvcAddPlayer, anchorView, popUpListener, mPopUpWindowAddPlayer);
-    }
-
-    public boolean isPopUpAddPlayerShowing() {
-        return mPopUpWindowAddPlayer.isShowing();
     }
 
     public void dismissPopUpAddPlayer() {
