@@ -24,7 +24,6 @@ public interface ViewMvcPlayerAvatar extends ObservableViewMvc<ViewMvcPlayerAvat
     interface Listener{
         void onAvatarButtonClicked();
         void onCharacterButtonClicked(Character character);
-        void onDeleteButtonClicked();
     }
 
     void bindCharacterSelectionPopUp(PopUpManager popUpManager);
@@ -32,10 +31,9 @@ public interface ViewMvcPlayerAvatar extends ObservableViewMvc<ViewMvcPlayerAvat
     void setAvatar(Character character);
     Character getSelectedCharacter();
     void makeAvatarEmpty();
-    void addDeleteButtonToPopUpSelection(); // delegation to PopUp view mvc
-    void removeDeleteButtonFromPopUpSelection(); // delegation to PopUp viewMvc
     void addCharacterToPopUpSelection(Integer imageResource, Character character);
-    void showCharacterInPopUpSelection(Character character);
-    void removeCharacterFromPopUpSelection(Character character);
+    void enableCharacterInPopUpSelection(Character character);
+    void disableCharacterInPopUpSelection(Character character);
+    void makeCharacterDeletableInPopUpSelection(Character character, boolean deletable);
     boolean popUpSelectionContainsCharacter(Character character);
 }

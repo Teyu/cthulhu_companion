@@ -15,52 +15,41 @@ import kotlin.Pair;
 
 public class PopUpViewMvcSelectCharacterImpl extends BaseObservableViewMvc<PopUpViewMvcSelectCharacter.PopUpListener> implements PopUpViewMvcSelectCharacter {
 
-    private final ImageButton mCharacterDeleteButton;
+    //TODO: use character as key (Hashmap) and remove all loops
     private final ArrayList<Pair<Integer, ViewMvcPlayerAvatar.Character>> mCharacterButtons = new ArrayList<>();
 
     @SuppressLint("InflateParams")
     public PopUpViewMvcSelectCharacterImpl(LayoutInflater inflater){
         setRootView(inflater.inflate(R.layout.popup_add_player, null, false));
 
-        this.mCharacterDeleteButton = findViewById(R.id.delete_avatar_btn);
-        mCharacterDeleteButton.setImageResource(R.drawable.icon_delete);
-        mCharacterDeleteButton.setOnClickListener(v -> {
-            for (PopUpListener popUpListener : getListeners()){
-                popUpListener.onDeleteButtonClicked();
-            }
-        });
-
-        Pair<Integer, ViewMvcPlayerAvatar.Character> character = new Pair<>(R.id.avatar_ahmed_yasin_btn, ViewMvcPlayerAvatar.Character.AHMED_YASIN);
+        Pair<Integer, ViewMvcPlayerAvatar.Character> character = new Pair<>(R.id.avatar_ahmed_yasin, ViewMvcPlayerAvatar.Character.AHMED_YASIN);
         mCharacterButtons.add(character);
 
-        character = new Pair<>(R.id.avatar_ahmed_yasin_btn, ViewMvcPlayerAvatar.Character.AHMED_YASIN);
+        character = new Pair<>(R.id.avatar_borden, ViewMvcPlayerAvatar.Character.BORDEN);
         mCharacterButtons.add(character);
 
-        character = new Pair<>(R.id.avatar_borden_btn, ViewMvcPlayerAvatar.Character.BORDEN);
+        character = new Pair<>(R.id.avatar_elizabeth_ives, ViewMvcPlayerAvatar.Character.ELIZABETH_IVES);
         mCharacterButtons.add(character);
 
-        character = new Pair<>(R.id.avatar_elizabeth_ives_btn, ViewMvcPlayerAvatar.Character.ELIZABETH_IVES);
+        character = new Pair<>(R.id.avatar_fatima_safar, ViewMvcPlayerAvatar.Character.FATIMA_SAFAR);
         mCharacterButtons.add(character);
 
-        character = new Pair<>(R.id.avatar_fatima_safar_btn, ViewMvcPlayerAvatar.Character.FATIMA_SAFAR);
+        character = new Pair<>(R.id.avatar_john_morgan, ViewMvcPlayerAvatar.Character.JOHN_MORGAN);
         mCharacterButtons.add(character);
 
-        character = new Pair<>(R.id.avatar_john_morgan_btn, ViewMvcPlayerAvatar.Character.JOHN_MORGAN);
+        character = new Pair<>(R.id.avatar_lord_benchley, ViewMvcPlayerAvatar.Character.LORD_ADAM_BENCHLEY);
         mCharacterButtons.add(character);
 
-        character = new Pair<>(R.id.avatar_lord_benchley_btn, ViewMvcPlayerAvatar.Character.LORD_ADAM_BENCHLEY);
+        character = new Pair<>(R.id.avatar_rasputin, ViewMvcPlayerAvatar.Character.RASPUTIN);
         mCharacterButtons.add(character);
 
-        character = new Pair<>(R.id.avatar_rasputin_btn, ViewMvcPlayerAvatar.Character.RASPUTIN);
+        character = new Pair<>(R.id.avatar_sergeant_welles, ViewMvcPlayerAvatar.Character.SERGEANT_IAN_WELLES);
         mCharacterButtons.add(character);
 
-        character = new Pair<>(R.id.avatar_sergeant_welles_btn, ViewMvcPlayerAvatar.Character.SERGEANT_IAN_WELLES);
+        character = new Pair<>(R.id.avatar_sister_beth, ViewMvcPlayerAvatar.Character.SISTER_BETH);
         mCharacterButtons.add(character);
 
-        character = new Pair<>(R.id.avatar_sister_beth_btn, ViewMvcPlayerAvatar.Character.SISTER_BETH);
-        mCharacterButtons.add(character);
-
-        character = new Pair<>(R.id.avatar_the_kid_btn, ViewMvcPlayerAvatar.Character.THE_KID);
+        character = new Pair<>(R.id.avatar_the_kid, ViewMvcPlayerAvatar.Character.THE_KID);
         mCharacterButtons.add(character);
     }
 
@@ -69,7 +58,7 @@ public class PopUpViewMvcSelectCharacterImpl extends BaseObservableViewMvc<PopUp
         for (Pair<Integer, ViewMvcPlayerAvatar.Character> characterImageButton : mCharacterButtons){
             if (characterImageButton.getSecond() == character){
 
-                ImageButton imageButton = findViewById(characterImageButton.getFirst());
+                ImageButton imageButton = findViewById(characterImageButton.getFirst()).findViewById(R.id.character_btn);
                 imageButton.setVisibility(View.VISIBLE);
 
                 imageButton.setImageResource(imageResource);
@@ -87,7 +76,7 @@ public class PopUpViewMvcSelectCharacterImpl extends BaseObservableViewMvc<PopUp
     public int getCharacterImage(ViewMvcPlayerAvatar.Character character) {
         for (Pair<Integer, ViewMvcPlayerAvatar.Character> characterImageButton : mCharacterButtons){
             if (characterImageButton.getSecond() == character){
-                ImageButton imageButton = findViewById(characterImageButton.getFirst());
+                ImageButton imageButton = findViewById(characterImageButton.getFirst()).findViewById(R.id.character_btn);
                 return (int) imageButton.getTag();
             }
         }
@@ -95,36 +84,46 @@ public class PopUpViewMvcSelectCharacterImpl extends BaseObservableViewMvc<PopUp
     }
 
     @Override
-    public void removeCharacter(ViewMvcPlayerAvatar.Character character) {
+    public void disableCharacter(ViewMvcPlayerAvatar.Character character) {
         for (Pair<Integer, ViewMvcPlayerAvatar.Character> characterImageButton : mCharacterButtons) {
             if (characterImageButton.getSecond() == character){
-                ImageButton characterButton = findViewById(characterImageButton.getFirst());
-                characterButton.setVisibility(View.GONE);
+                ImageButton characterButton = findViewById(characterImageButton.getFirst()).findViewById(R.id.character_btn);
+                characterButton.setAlpha(0.2f);
+                characterButton.setEnabled(false);
             }
         }
     }
 
     @Override
-    public void addDeleteButton(){
-        mCharacterDeleteButton.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void removeDeleteButton(){
-        mCharacterDeleteButton.setVisibility(View.GONE);
-    }
-
-    @Override
-    public void showCharacter(ViewMvcPlayerAvatar.Character character) {
+    public void enableCharacter(ViewMvcPlayerAvatar.Character character) {
 
         for (Pair<Integer, ViewMvcPlayerAvatar.Character> characterImageButton : mCharacterButtons) {
             if (characterImageButton.getSecond() == character){
-                ImageButton characterButton = findViewById(characterImageButton.getFirst());
-                characterButton.setVisibility(View.VISIBLE);
+                ImageButton characterButton = findViewById(characterImageButton.getFirst()).findViewById(R.id.character_btn);
+                characterButton.setAlpha(1.0f);
+                characterButton.setEnabled(true);
             }
         }
     }
 
+    @Override
+    public void makeCharacterDeletable(ViewMvcPlayerAvatar.Character character, boolean deletable) {
+
+        for (Pair<Integer, ViewMvcPlayerAvatar.Character> characterImageButton : mCharacterButtons) {
+            if (characterImageButton.getSecond() == character){
+                ImageButton deleteButton = findViewById(characterImageButton.getFirst()).findViewById(R.id.delete_character_btn);
+                if (deletable) {
+                    deleteButton.setEnabled(true);
+                    deleteButton.setVisibility(View.VISIBLE);
+                } else {
+                    deleteButton.setEnabled(false);
+                    deleteButton.setVisibility(View.GONE);
+                }
+            }
+        }
+    }
+
+    // WARNING: !!! deprecated
     @Override
     public boolean contains(ViewMvcPlayerAvatar.Character character) {
         for (Pair<Integer, ViewMvcPlayerAvatar.Character> characterButton : mCharacterButtons) {

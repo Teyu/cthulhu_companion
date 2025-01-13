@@ -11,8 +11,6 @@ import com.example.cthulhucompanion.screens.common.mvcviews.observable.BaseObser
 import com.example.cthulhucompanion.screens.common.popupmanager.PopUpManager;
 import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacter;
 
-import java.util.ArrayList;
-
 public class ViewMvcPlayerAvatarImpl extends BaseObservableViewMvc<ViewMvcPlayerAvatar.Listener> implements ViewMvcPlayerAvatar, PopUpViewMvcSelectCharacter.PopUpListener {
 
     private final ImageView mPlayerAvatarBackground;
@@ -58,16 +56,22 @@ public class ViewMvcPlayerAvatarImpl extends BaseObservableViewMvc<ViewMvcPlayer
     }
 
     public void addCharacterToPopUpSelection(Integer imageResource, Character character) {
+        //mPopUpViewMvc.setCharacterImage(imageResource, character);
         mPopUpViewMvc.setCharacterImage(imageResource, character);
     }
 
     @Override
-    public void showCharacterInPopUpSelection(Character character) {
-        mPopUpViewMvc.showCharacter(character);
+    public void enableCharacterInPopUpSelection(Character character) {
+        mPopUpViewMvc.enableCharacter(character);
     }
 
-    public void removeCharacterFromPopUpSelection(Character character) {
-        mPopUpViewMvc.removeCharacter(character);
+    public void disableCharacterInPopUpSelection(Character character) {
+        mPopUpViewMvc.disableCharacter(character);
+    }
+
+    @Override
+    public void makeCharacterDeletableInPopUpSelection(Character character, boolean deletable) {
+        mPopUpViewMvc.makeCharacterDeletable(character, deletable);
     }
 
     @Override
@@ -79,29 +83,13 @@ public class ViewMvcPlayerAvatarImpl extends BaseObservableViewMvc<ViewMvcPlayer
         mPlayerAvatarButton.setImageResource(android.R.color.transparent);
         mPlayerAvatarButton.setImageResource(R.color.white);
         mPlayerAvatarButton.setBackgroundResource(R.color.white);
-    }
-
-    @Override
-    public void addDeleteButtonToPopUpSelection() {
-        mPopUpViewMvc.addDeleteButton();
-    }
-
-    @Override
-    public void removeDeleteButtonFromPopUpSelection() {
-        mPopUpViewMvc.removeDeleteButton();
+        mSelectedCharacter = NONE;
     }
 
     @Override
     public void onCharacterButtonClicked(Character character) {
         for (Listener listener : getListeners()){
             listener.onCharacterButtonClicked(character);
-        }
-    }
-
-    @Override
-    public void onDeleteButtonClicked() {
-        for (Listener listener : getListeners()){
-            listener.onDeleteButtonClicked();
         }
     }
 }

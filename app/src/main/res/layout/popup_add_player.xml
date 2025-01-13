@@ -7,6 +7,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/base_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/material_dynamic_neutral30"
@@ -38,23 +39,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:contentDescription="@null"
-                tools:src="@tools:sample/avatars">
+                android:contentDescription="@null">
 
-                <ImageButton
-                    android:id="@+id/avatar_the_kid_btn"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:baselineAlignBottom="true"
-                    android:contentDescription="@null"
-                    android:scaleType="fitXY"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="H,1:1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:src="@drawable/avatar_the_kid" />
+                <include layout="@layout/avatar_item"
+                    android:id="@+id/avatar_the_kid"
+                    />
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -64,20 +55,9 @@
                 android:contentDescription="@null"
                 tools:src="@tools:sample/avatars">
 
-                <ImageButton
-                    android:id="@+id/avatar_lord_benchley_btn"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:baselineAlignBottom="true"
-                    android:contentDescription="@null"
-                    android:scaleType="fitXY"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="H,1:1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:src="@drawable/avatar_lord_adam_benchley" />
+                <include layout="@layout/avatar_item"
+                    android:id="@+id/avatar_lord_benchley"
+                    />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -87,20 +67,10 @@
                 android:contentDescription="@null"
                 tools:src="@tools:sample/avatars">
 
-                <ImageButton
-                    android:id="@+id/avatar_ahmed_yasin_btn"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:baselineAlignBottom="true"
-                    android:contentDescription="@null"
-                    android:scaleType="fitXY"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="H,1:1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:src="@drawable/avatar_ahmed_yasin" />
+                <include layout="@layout/avatar_item"
+                    android:id="@+id/avatar_ahmed_yasin"
+                    />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -110,20 +80,10 @@
                 android:contentDescription="@null"
                 tools:src="@tools:sample/avatars">
 
-                <ImageButton
-                    android:id="@+id/avatar_borden_btn"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:baselineAlignBottom="true"
-                    android:contentDescription="@null"
-                    android:scaleType="fitXY"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="H,1:1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:src="@drawable/avatar_borden" />
+                <include layout="@layout/avatar_item"
+                    android:id="@+id/avatar_borden"
+                    />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </TableRow>
 
@@ -139,20 +99,10 @@
                 android:contentDescription="@null"
                 tools:src="@tools:sample/avatars">
 
-                <ImageButton
-                    android:id="@+id/avatar_fatima_safar_btn"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:baselineAlignBottom="true"
-                    android:contentDescription="@null"
-                    android:scaleType="fitXY"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="H,1:1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:src="@drawable/avatar_fatima_safar" />
+                <include layout="@layout/avatar_item"
+                    android:id="@+id/avatar_fatima_safar"
+                    />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -162,20 +112,10 @@
                 android:contentDescription="@null"
                 tools:src="@tools:sample/avatars">
 
-                <ImageButton
-                    android:id="@+id/avatar_elizabeth_ives_btn"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:baselineAlignBottom="true"
-                    android:contentDescription="@null"
-                    android:scaleType="fitXY"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="H,1:1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:src="@drawable/avatar_elizabeth_ives" />
+                <include layout="@layout/avatar_item"
+                    android:id="@+id/avatar_elizabeth_ives"
+                    />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -185,20 +125,10 @@
                 android:contentDescription="@null"
                 tools:src="@tools:sample/avatars">
 
-                <ImageButton
-                    android:id="@+id/avatar_sergeant_welles_btn"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:baselineAlignBottom="true"
-                    android:contentDescription="@null"
-                    android:scaleType="fitXY"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="H,1:1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:src="@drawable/avatar_sergeant_ian_welles" />
+                <include layout="@layout/avatar_item"
+                    android:id="@+id/avatar_sergeant_welles"
+                    />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -208,20 +138,10 @@
                 android:contentDescription="@null"
                 tools:src="@tools:sample/avatars">
 
-                <ImageButton
-                    android:id="@+id/avatar_john_morgan_btn"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:baselineAlignBottom="true"
-                    android:contentDescription="@null"
-                    android:scaleType="fitXY"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="H,1:1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:src="@drawable/avatar_john_morgan" />
+                <include layout="@layout/avatar_item"
+                    android:id="@+id/avatar_john_morgan"
+                    />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </TableRow>
 
@@ -237,20 +157,10 @@
                 android:contentDescription="@null"
                 tools:src="@tools:sample/avatars">
 
-                <ImageButton
-                    android:id="@+id/avatar_sister_beth_btn"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:baselineAlignBottom="true"
-                    android:contentDescription="@null"
-                    android:scaleType="fitXY"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="H,1:1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:src="@drawable/avatar_sister_beth" />
+                <include layout="@layout/avatar_item"
+                    android:id="@+id/avatar_sister_beth"
+                    />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -260,43 +170,10 @@
                 android:contentDescription="@null"
                 tools:src="@tools:sample/avatars">
 
-                <ImageButton
-                    android:id="@+id/avatar_rasputin_btn"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:baselineAlignBottom="true"
-                    android:contentDescription="@null"
-                    android:scaleType="fitXY"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="H,1:1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:src="@drawable/avatar_rasputin" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <include layout="@layout/avatar_item"
+                    android:id="@+id/avatar_rasputin"
+                    />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:contentDescription="@null"
-                tools:src="@tools:sample/avatars">
-
-                <ImageButton
-                    android:id="@+id/delete_avatar_btn"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:baselineAlignBottom="true"
-                    android:contentDescription="@null"
-                    android:scaleType="fitXY"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="H,1:1"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:src="@android:drawable/ic_menu_delete" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -307,7 +184,30 @@
                 tools:src="@tools:sample/avatars">
 
                 <ImageView
-                    android:id="@+id/some_empty_img"
+                    android:id="@+id/some_empty_img1"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:baselineAlignBottom="true"
+                    android:contentDescription="@null"
+                    android:scaleType="fitXY"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="H,1:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@android:color/transparent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:contentDescription="@null"
+                tools:src="@tools:sample/avatars">
+
+                <ImageView
+                    android:id="@+id/some_empty_img2"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_weight="1"

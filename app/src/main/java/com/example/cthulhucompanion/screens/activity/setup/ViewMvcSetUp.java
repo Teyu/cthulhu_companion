@@ -24,8 +24,7 @@ public interface ViewMvcSetUp extends ObservableViewMvc<ViewMvcSetUp.Listener> {
     interface Listener{
         void onPlayerAvatarClicked(PlayerColor playerColor);
         void OnFinishSetUp();
-        void onCharacterSelected(PlayerColor playerBlue, ViewMvcPlayerAvatar.Character character);
-        void onCharacterDeleted(PlayerColor playerColor);
+        void onCharacterClicked(PlayerColor playerBlue, ViewMvcPlayerAvatar.Character character);
     }
 
     void setPlayerAvatar(PlayerColor playerColor, ViewMvcPlayerAvatar.Character character);
@@ -40,12 +39,9 @@ public interface ViewMvcSetUp extends ObservableViewMvc<ViewMvcSetUp.Listener> {
 
     void setCharacterSelectionPopUp(PlayerColor color, HashMap<Integer, ViewMvcPlayerAvatar.Character> characterImageResources);
 
-    void addCharacterToPopUpSelection(ViewMvcPlayerAvatar.Character character);
+    void enableCharacterInPopUpSelection(PlayerColor playerColor, ViewMvcPlayerAvatar.Character character);
 
-    void removeCharacterFromPopUpSelection(ViewMvcPlayerAvatar.Character character);
+    void disableCharacterInPopUpSelection(PlayerColor playerColor, ViewMvcPlayerAvatar.Character character);
+    void makeCharacterDeletableInPopUpSelection(PlayerColor playerColor, ViewMvcPlayerAvatar.Character character, boolean deletable);
     boolean selectionContainsCharacter(PlayerColor playerColor, ViewMvcPlayerAvatar.Character character);
-
-    void provideCharacterDelete();
-
-    void disableCharacterDelete();
 }

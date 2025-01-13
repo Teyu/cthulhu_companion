@@ -27,7 +27,7 @@
         android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/avatar_btn"
+            android:id="@+id/character_btn"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

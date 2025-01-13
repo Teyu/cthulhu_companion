@@ -7,13 +7,11 @@ public interface PopUpViewMvcSelectCharacter extends ObservableViewMvc<PopUpView
 
     interface PopUpListener {
         void onCharacterButtonClicked(ViewMvcPlayerAvatar.Character character);
-        void onDeleteButtonClicked();
     }
-    void addDeleteButton();
-    void removeDeleteButton();
     void setCharacterImage(int imageResource, final ViewMvcPlayerAvatar.Character character);
     int getCharacterImage(ViewMvcPlayerAvatar.Character character);
-    void removeCharacter(ViewMvcPlayerAvatar.Character character);
-    void showCharacter(ViewMvcPlayerAvatar.Character character);
+    void disableCharacter(ViewMvcPlayerAvatar.Character character);
+    void enableCharacter(ViewMvcPlayerAvatar.Character character);
+    void makeCharacterDeletable(ViewMvcPlayerAvatar.Character character, boolean deletable);
     boolean contains(ViewMvcPlayerAvatar.Character character);
 }

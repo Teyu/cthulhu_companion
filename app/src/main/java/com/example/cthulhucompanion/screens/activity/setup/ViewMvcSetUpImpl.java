@@ -20,7 +20,6 @@ import com.example.cthulhucompanion.screens.common.ViewMvcFactory;
 import com.example.cthulhucompanion.screens.common.mvcviews.observable.BaseObservableViewMvc;
 import com.example.cthulhucompanion.screens.activity.setup.playeravatar.ViewMvcPlayerAvatarImpl;
 import com.example.cthulhucompanion.screens.common.popupmanager.PopUpManager;
-import com.example.cthulhucompanion.screens.popup.selectcharacter.PopUpViewMvcSelectCharacter;
 import com.example.cthulhucompanion.screens.toolbar.main.ViewMvcToolbarMain;
 
 import java.util.ArrayList;
@@ -105,32 +104,23 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
     }
 
     @Override
-    public void addCharacterToPopUpSelection(ViewMvcPlayerAvatar.Character character) {
-        for (PlayerAvatar playerAvatar : mPlayerAvatars.values()){
-            playerAvatar.getViewMvc().showCharacterInPopUpSelection(character);
-        }
+    public void enableCharacterInPopUpSelection(PlayerColor playerColor, ViewMvcPlayerAvatar.Character character) {
+        mPlayerAvatars.get(playerColor).getViewMvc().enableCharacterInPopUpSelection(character);
     }
 
     @Override
-    public void removeCharacterFromPopUpSelection(ViewMvcPlayerAvatar.Character character) {
-        for (PlayerAvatar playerAvatar : mPlayerAvatars.values()){
-            playerAvatar.getViewMvc().removeCharacterFromPopUpSelection(character);
-        }
+    public void disableCharacterInPopUpSelection(PlayerColor playerColor, ViewMvcPlayerAvatar.Character character) {
+        mPlayerAvatars.get(playerColor).getViewMvc().disableCharacterInPopUpSelection(character);
+    }
+
+    @Override
+    public void makeCharacterDeletableInPopUpSelection(PlayerColor playerColor, ViewMvcPlayerAvatar.Character character, boolean deletable) {
+        mPlayerAvatars.get(playerColor).getViewMvc().makeCharacterDeletableInPopUpSelection(character, deletable);
     }
 
     @Override
     public boolean selectionContainsCharacter(PlayerColor playerColor, ViewMvcPlayerAvatar.Character character) {
         return mPlayerAvatars.get(playerColor).getViewMvc().popUpSelectionContainsCharacter(character);
-    }
-
-    @Override
-    public void provideCharacterDelete() {
-        //TODO
-    }
-
-    @Override
-    public void disableCharacterDelete() {
-        //TODO
     }
 
     @Override
@@ -250,14 +240,7 @@ public class ViewMvcSetUpImpl extends BaseObservableViewMvc<ViewMvcSetUp.Listene
         @Override
         public void onCharacterButtonClicked(ViewMvcPlayerAvatar.Character character) {
             for (ViewMvcSetUp.Listener listener : mListeners){
-                listener.onCharacterSelected(mColor, character);
-            }
-        }
-
-        @Override
-        public void onDeleteButtonClicked() {
-            for (ViewMvcSetUp.Listener listener : mListeners){
-                listener.onCharacterDeleted(mColor);
+                listener.onCharacterClicked(mColor, character);
             }
         }
     }

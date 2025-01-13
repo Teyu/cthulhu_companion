@@ -61,8 +61,6 @@ public class ControllerSetUp implements ViewMvcSetUp.Listener{
             mViewMvcSetUp.setCharacterSelectionPopUp(color, characterIds);
         }
 
-        mViewMvcSetUp.disableCharacterDelete();
-
         initializeFromDataBase();
     }
 
@@ -94,28 +92,49 @@ public class ControllerSetUp implements ViewMvcSetUp.Listener{
     }
 
     @Override
-    public void onCharacterSelected(ViewMvcSetUp.PlayerColor playerColor, ViewMvcPlayerAvatar.Character character) {
-        ViewMvcPlayerAvatar.Character selectedCharacter = mViewMvcSetUp.getSelectedCharacter(playerColor);
-        if (mViewMvcSetUp.getSelectedCharacter(playerColor) != ViewMvcPlayerAvatar.Character.NONE) {
-            mViewMvcSetUp.addCharacterToPopUpSelection(selectedCharacter);
+    public void onCharacterClicked(ViewMvcSetUp.PlayerColor playerColor, ViewMvcPlayerAvatar.Character character) {
+        ViewMvcPlayerAvatar.Character prevCharacter = mViewMvcSetUp.getSelectedCharacter(playerColor);
+
+        //TODO: this is a use case -> unit test instead
+
+        if (prevCharacter != ViewMvcPlayerAvatar.Character.NONE) {
+            for (ViewMvcSetUp.PlayerColor player : ViewMvcSetUp.PlayerColor.values()) {
+                //re-enable
+                mViewMvcSetUp.enableCharacterInPopUpSelection(player, prevCharacter);
+                //mViewMvcSetUp.makeCharacterDeletableInPopUpSelection(player, character, false);
+                if (player != playerColor){
+                    // disable for all other players:
+                    mViewMvcSetUp.disableCharacterInPopUpSelection(player, character);
+                }
+            }
         }
-        mViewMvcSetUp.removeCharacterFromPopUpSelection(character);
-        mViewMvcSetUp.setPlayerAvatar(playerColor, character);
-        mViewMvcSetUp.provideCharacterDelete();
 
-        mViewMvcSetUp.dismissPopUpAddPlayer(playerColor);
-    }
+        if (prevCharacter == character){ // deletes currently selected character
+            mViewMvcSetUp.removePlayerAvatar(playerColor);
+            for (ViewMvcSetUp.PlayerColor player : ViewMvcSetUp.PlayerColor.values()) {
+                //re-enable
+                mViewMvcSetUp.enableCharacterInPopUpSelection(player, prevCharacter);
+                //mViewMvcSetUp.makeCharacterDeletableInPopUpSelection(player, character, false);
+            }
+        } else {
+            mViewMvcSetUp.setPlayerAvatar(playerColor, character);
 
-    @Override
-    public void onCharacterDeleted(ViewMvcSetUp.PlayerColor playerColor) {
-        ViewMvcPlayerAvatar.Character selectedCharacter = mViewMvcSetUp.getSelectedCharacter(playerColor);
-        mViewMvcSetUp.removePlayerAvatar(playerColor);
-        mViewMvcSetUp.addCharacterToPopUpSelection(selectedCharacter);
+            for (ViewMvcSetUp.PlayerColor player : ViewMvcSetUp.PlayerColor.values()) {
+                if (player != playerColor){
+                    // disable for all other players:
+                    mViewMvcSetUp.disableCharacterInPopUpSelection(player, character);
+                } else {
+                    //mViewMvcSetUp.disableCharacterInPopUpSelection(player, character);
+                    //mViewMvcSetUp.makeCharacterDeletableInPopUpSelection(player, character, true);
+                }
+            }
+        }
 
         mViewMvcSetUp.dismissPopUpAddPlayer(playerColor);
     }
 
     @Override
     public void onPlayerAvatarClicked(ViewMvcSetUp.PlayerColor playerColor) {
+        // PopUp already bound
     }
 }
